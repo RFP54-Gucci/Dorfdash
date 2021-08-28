@@ -20,14 +20,20 @@ To run this single page application on your local machine:
 
 4. In one terminal, build the bundle
 
-    ```bash
-    yarn run start
-    ```
+    - Single build:
+      ```bash
+      yarn run build
+      ```
+  
+    - Watch:
+      ```bash
+      yarn run dev
+      ```
 
 5. In another terminal, start the server
 
     ```bash
-    npm start
+    yarn run sttart
     ```
 
 6. Visit [localhost:3000](http://localhost:3000) in the browser
