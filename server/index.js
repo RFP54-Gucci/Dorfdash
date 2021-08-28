@@ -1,5 +1,6 @@
 
 const express = require('express');
+const cors = require('cors');
 // eslint-disable-next-line no-unused-vars
 const db = require('./db.js');
 const morgan = require('morgan');
@@ -14,13 +15,19 @@ const app = express();
 // Set what we are listening on.
 app.set('port', 3000);
 
+//use CORS
+app.use(cors());
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(express.json());
 
 // Set up our routes
 app.use('/data', router);
-app.use('/api', api)
+app.use('/api', api);
+
+app.get('/test', (req, res) => {
+  res.send('success');
+})
 
 // Serve the client files
 app.use(express.static(path.join(__dirname + '../public')));
