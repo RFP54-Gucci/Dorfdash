@@ -15,19 +15,25 @@ To run this single page application on your local machine:
 3. Install dependencies
 
     ```bash
-    npm install
+    yarn install
     ```
 
 4. In one terminal, build the bundle
 
-    ```bash
-    yarn run start
-    ```
+    - Single build:
+      ```bash
+      yarn run build
+      ```
+  
+    - Watch:
+      ```bash
+      yarn run dev
+      ```
 
 5. In another terminal, start the server
 
     ```bash
-    npm start
+    yarn run sttart
     ```
 
 6. Visit [localhost:3000](http://localhost:3000) in the browser
@@ -40,29 +46,17 @@ To run this single page application on your local machine:
 
 ---
 
-## Tech Stack and Challenges
+## Tech Stack
 
 <code><img width="15%" src="https://www.vectorlogo.zone/logos/reactjs/reactjs-ar21.svg"></code>
 
-### React
-
-- In order to implement a responsive, interactive application capable of handling a vast amount of dynamic data, we utilized React Context and Hooks.
-
 <code><img width="15%" src="https://www.vectorlogo.zone/logos/nodejs/nodejs-ar21.svg"></code>
-
-### Nodejs
 
 <code><img width="15%" src="https://www.vectorlogo.zone/logos/expressjs/expressjs-ar21.svg"></code>
 
-### Express
-
 <code><img width="15%" src="https://www.vectorlogo.zone/logos/netlifyapp_watercss/netlifyapp_watercss-ar21.svg"></code>
 
-### CSS
-
 <code><img width="15%" src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-ar21.svg"></code>
-
-### Jest
 
 <code><img width="15%" src="https://www.vectorlogo.zone/logos/js_webpack/js_webpack-ar21.svg"></code>
 
