@@ -15,7 +15,7 @@ To run this single page application on your local machine:
 3. Install dependencies
 
     ```bash
-    npm install
+    yarn install
     ```
 
 4. In one terminal, build the bundle
