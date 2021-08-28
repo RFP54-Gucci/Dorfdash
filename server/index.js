@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require('cors');
 // eslint-disable-next-line no-unused-vars
-const db = require('./db.js');
+const db = require('../db/index.js');
 const morgan = require('morgan');
 const path = require('path');
 
@@ -25,9 +25,9 @@ app.use(express.json());
 app.use('/data', router);
 app.use('/api', api);
 
-app.get('/test', (req, res) => {
-  res.send('success');
-})
+// app.get('/test', (req, res) => {
+//   res.send('success');
+// })
 
 // Serve the client files
 app.use(express.static(path.join(__dirname + '../public')));
