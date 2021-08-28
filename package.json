@@ -20,8 +20,8 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "server": "nodemon ./server/index.js",
+    "dev": "react-scripts start",
+    "start": "nodemon ./server/index.js",
     "build": "react-scripts build",
     "test": "jest --watch",
     "eject": "react-scripts eject"
