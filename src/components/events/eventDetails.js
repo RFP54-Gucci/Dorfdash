@@ -97,4 +97,5 @@ const EventDetails = () => {
     </Container>
   )
 }
+//
 export default EventDetails;
