@@ -1,14 +1,28 @@
 import { useState } from 'react';
+import 'date-fns';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+import DateFnsUtils from '@date-io/date-fns';
+
 
 const EventForm = () => {
   const [ eventName, setEventName ] = useState('');
+  // const [ eventHost, setEventHost ] = useState('');
+  const [ eventDate, setEventDate] = useState(new Date());
+  // const [ eventDate, setEventDate ] = useState('');
+  // const [ eventTime, setEventName ] = useState('');
+  // const [ eventName, setEventName ] = useState('');
+  // const [ eventName, setEventName ] = useState('');
 
-  // --------- styling ----------------
+  // ------------ styling -------------
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -20,10 +34,15 @@ const EventForm = () => {
 
   const classes = useStyles();
 
-  // ---------- funtionality ------------
-  const handleName = (e) => {
+  // ---------- onChange funcs ------------
+  const handleEventName = (e) => {
     e.preventDefault();
+    setEventName(e.target.value);
+    // console.log(eventName);
+  }
 
+  const handleEventDate = (date) => {
+    setEventDate(date);
   }
 
   return (
@@ -37,6 +56,7 @@ const EventForm = () => {
             variant="outlined"
             size="small"
             fullWidth
+            onChange={handleEventName}
           />
         </div>
         <div>
@@ -48,14 +68,20 @@ const EventForm = () => {
             fullWidth
           />
         </div>
-        <div>
-          <TextField
-            id="outlined-size-small"
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <KeyboardDatePicker
+            margin="normal"
+            id="date-picker-dialog"
             label="Event date"
             variant="outlined"
-            size="small"
+            format="MM/dd/yyyy"
+            value={eventDate}
+            onChange={handleEventDate}
+            KeyboardButtonProps={{
+              'aria-label': 'change date',
+            }}
           />
-        </div>
+        </MuiPickersUtilsProvider>
         <div>
           <TextField
             id="outlined-size-small"
