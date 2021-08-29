@@ -5,9 +5,6 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 
-
-
-
 const EventForm = () => {
   const [ eventName, setEventName ] = useState('');
   // const [ eventHost, setEventHost ] = useState('');
@@ -66,17 +63,17 @@ const EventForm = () => {
         <div>
         <TextField
             id="outlined-size-small"
-            label="Event Date"
             variant="outlined"
             size="small"
+            type="date"
           />
         </div>
         <div>
           <TextField
             id="outlined-size-small"
-            label="Event time"
             variant="outlined"
             size="small"
+            type="time"
           />
         </div>
         <div>
