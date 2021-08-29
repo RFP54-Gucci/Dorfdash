@@ -1,8 +1,14 @@
+import { useState } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Container, TextField } from '@material-ui/core';
-
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
 
 const EventForm = () => {
+  const [ eventName, setEventName ] = useState('');
+
+  // --------- styling ----------------
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -13,6 +19,12 @@ const EventForm = () => {
   }));
 
   const classes = useStyles();
+
+  // ---------- funtionality ------------
+  const handleName = (e) => {
+    e.preventDefault();
+
+  }
 
   return (
     <Container maxWidth="sm">
