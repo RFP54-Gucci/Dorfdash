@@ -13,13 +13,22 @@ const Upcoming = () => {
     root: {
       maxWidth: 345,
       height: 130,
+      marginBottom: 20,
     },
     content: {
-      padding: 8,
+      paddingBottom: 2,
     },
     title: {
-      fontSize: 20,
+      fontSize: 14,
       fontWeight: "bold",
+    },
+    body: {
+      fontSize: 12,
+    },
+    action: {
+      height: 30,
+      paddingBottom: 10,
+      paddingTop: 2,
     },
   }));
 
@@ -34,15 +43,18 @@ const Upcoming = () => {
               <Typography className={classes.title}>
                 {event.event_name}
               </Typography>
-              <Typography>
+              <Typography className={classes.body}>
                 {event.event_host}
               </Typography>
-              <Typography>
+              <Typography className={classes.body}>
               {`${event.event_date}  ${event.event_time}`}
               </Typography>
+              <Typography className={classes.body}>
+                {event.event_location}
+              </Typography>
             </CardContent>
-            <CardActions>
-              <Button size="small">Attend</Button>
+            <CardActions className={classes.action}>
+              <Button size="small" color="primary">Attend</Button>
             </CardActions>
           </CardActionArea>
         </Card>
