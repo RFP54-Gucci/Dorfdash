@@ -21,6 +21,13 @@ const EventForm = () => {
         width: '25ch',
       },
     },
+    container: {
+      maxWidth: 345,
+      maxHeight: 600,
+      borderColor: '#ECECEC',
+      borderStyle: 'solid',
+      marginBottom: 10,
+    },
   }));
 
   const classes = useStyles();
@@ -74,8 +81,9 @@ const EventForm = () => {
   // }
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="sm" className={classes.container}>
       <h1>Dorfdash</h1>
+      <h3>Create a new event</h3>
       <form className={classes.root} noValidate autoComplete="off">
         <div>
           <TextField
@@ -117,6 +125,8 @@ const EventForm = () => {
           <TextField
             id="outlined-size-small"
             label="Event location"
+            multiline
+            rows={2}
             variant="outlined"
             size="small"
             fullWidth

@@ -12,7 +12,12 @@ const Upcoming = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 345,
-      height: 130,
+      maxHeight: 600,
+      borderColor: '#ECECEC',
+      borderStyle: 'solid',
+      overflowX: 'scroll',
+    },
+    card: {
       marginBottom: 20,
     },
     content: {
@@ -20,7 +25,7 @@ const Upcoming = () => {
     },
     title: {
       fontSize: 14,
-      fontWeight: "bold",
+      fontWeight: 'bold',
     },
     body: {
       fontSize: 12,
@@ -36,29 +41,33 @@ const Upcoming = () => {
 
   return (
     <Container maxWidth="sm" className={classes.root}>
-      {samples.map((event) => (
-        <Card className={classes.root}>
-          <CardActionArea>
-            <CardContent className={classes.content}>
-              <Typography className={classes.title}>
-                {event.event_name}
-              </Typography>
-              <Typography className={classes.body}>
-                {event.event_host}
-              </Typography>
-              <Typography className={classes.body}>
-              {`${event.event_date}  ${event.event_time}`}
-              </Typography>
-              <Typography className={classes.body}>
-                {event.event_location}
-              </Typography>
-            </CardContent>
-            <CardActions className={classes.action}>
-              <Button size="small" color="primary">Attend</Button>
-            </CardActions>
-          </CardActionArea>
-        </Card>
-      ))}
+      <h1>Dorfdash</h1>
+      <h3>Upcoming events</h3>
+      <div className="container-slide">
+        {samples.map((event) => (
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardContent className={classes.content}>
+                <Typography className={classes.title}>
+                  {event.event_name}
+                </Typography>
+                <Typography className={classes.body}>
+                  {event.event_host}
+                </Typography>
+                <Typography className={classes.body}>
+                {`${event.event_date}  ${event.event_time}`}
+                </Typography>
+                <Typography className={classes.body}>
+                  {event.event_location}
+                </Typography>
+              </CardContent>
+              <CardActions className={classes.action}>
+                <Button size="small" color="primary">Attend</Button>
+              </CardActions>
+            </CardActionArea>
+          </Card>
+        ))}
+      </div>
     </Container>
   );
 };
