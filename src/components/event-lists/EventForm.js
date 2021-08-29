@@ -7,12 +7,11 @@ import TextField from '@material-ui/core/TextField';
 
 const EventForm = () => {
   const [ eventName, setEventName ] = useState('');
-  // const [ eventHost, setEventHost ] = useState('');
-  const [ eventDate, setEventDate] = useState(new Date("2014-08-18T21:11:54"));
-  // const [ eventDate, setEventDate ] = useState('');
-  // const [ eventTime, setEventName ] = useState('');
-  // const [ eventName, setEventName ] = useState('');
-  // const [ eventName, setEventName ] = useState('');
+  const [ eventHost, setEventHost ] = useState('');
+  // const [ eventDate, setEventDate] = useState('');
+  // const [ eventTime, setEventTime ] = useState('');
+  const [ eventLocation, setEventLocation ] = useState('');
+  const [ eventDes, setEventDes ] = useState('');
 
   // ------------ styling -------------
   const useStyles = makeStyles((theme) => ({
@@ -31,11 +30,48 @@ const EventForm = () => {
     e.preventDefault();
     setEventName(e.target.value);
     // console.log(eventName);
-  }
+  };
 
-  const handleEventDate = (date) => {
-    setEventDate(date);
-  }
+  const handleEventHost = (e) => {
+    e.preventDefault();
+    setEventHost(e.target.value);
+    // console.log(eventHost);
+  };
+
+  // const handleEventDate = (date) => {
+  //   setEventDate(date);
+  // };
+
+    // const handleEventTime = (time) => {
+  //   setEventTime(time);
+  // };
+
+  const handleEventLocation = (e) => {
+    e.preventDefault();
+    setEventLocation(e.target.value);
+    // console.log(eventLocation);
+  };
+
+  const handleEventDes = (e) => {
+    e.preventDefault();
+    setEventDes(e.target.value);
+    // console.log(eventDes);
+  };
+
+  // const handleSubmit = () => {
+  //   axios.post('', {
+  //     event_name: eventName,
+  //     event_host: eventHost,
+  //     event_date: eventDate,
+  //     event_time: eventTime,
+  //     event_location: eventLocation,
+  //     event_des: eventDes
+  //   })
+  //     .then((res) => {
+  //       res.send('successfully create new event!');
+  //     })
+  //     .catch((err) => { console.log(err) });
+  // }
 
   return (
     <Container maxWidth="sm">
@@ -58,6 +94,7 @@ const EventForm = () => {
             variant="outlined"
             size="small"
             fullWidth
+            onChange={handleEventHost}
           />
         </div>
         <div>
@@ -83,6 +120,7 @@ const EventForm = () => {
             variant="outlined"
             size="small"
             fullWidth
+            onChange={handleEventLocation}
           />
         </div>
         <div>
@@ -94,9 +132,10 @@ const EventForm = () => {
             variant="outlined"
             size="small"
             fullWidth
+            onChange={handleEventDes}
           />
         </div>
-        <Button color="primary">Create event</Button>
+        <Button color="primary" /* onSubmit={handleSubmit} */>Create event</Button>
       </form>
     </Container>
   );
