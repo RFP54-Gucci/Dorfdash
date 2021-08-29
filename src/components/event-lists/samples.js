@@ -1,4 +1,4 @@
-const sample = [
+const samples = [
   {
     "event_id": 1,
     "event_name": "Pollich-Wehner",
@@ -99,4 +99,4 @@ const sample = [
   }
 ];
 
-module.exports = { sample };
+export default samples;

@@ -6,6 +6,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import samples from './samples.js';
 
 const Upcoming = () => {
   const useStyles = makeStyles((theme) => ({
@@ -26,24 +27,26 @@ const Upcoming = () => {
 
   return (
     <Container maxWidth="sm" className={classes.root}>
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardContent className={classes.content}>
-            <Typography className={classes.title}>
-              Event name
-            </Typography>
-            <Typography>
-              Event host
-            </Typography>
-            <Typography>
-              Event date {`&`} time
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small">Attend</Button>
-          </CardActions>
-        </CardActionArea>
-      </Card>
+      {samples.map((event) => (
+        <Card className={classes.root}>
+          <CardActionArea>
+            <CardContent className={classes.content}>
+              <Typography className={classes.title}>
+                {event.event_name}
+              </Typography>
+              <Typography>
+                {event.event_host}
+              </Typography>
+              <Typography>
+              {`${event.event_date}  ${event.event_time}`}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Attend</Button>
+            </CardActions>
+          </CardActionArea>
+        </Card>
+      ))}
     </Container>
   );
 };
