@@ -26,8 +26,13 @@ const EventForm = () => {
       maxHeight: 600,
       borderColor: '#ECECEC',
       borderStyle: 'solid',
-      marginBottom: 10,
+      marginBottom: 25,
     },
+    button: {
+      backgroundColor: '#20A46B',
+      color: 'white',
+      marginBottom: 15,
+    }
   }));
 
   const classes = useStyles();
@@ -145,7 +150,7 @@ const EventForm = () => {
             onChange={handleEventDes}
           />
         </div>
-        <Button color="primary" /* onSubmit={handleSubmit} */>Create event</Button>
+        <Button className={classes.button}/* onSubmit={handleSubmit} */>Create event</Button>
       </form>
     </Container>
   );

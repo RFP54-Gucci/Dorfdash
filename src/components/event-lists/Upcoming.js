@@ -35,6 +35,9 @@ const Upcoming = () => {
       paddingBottom: 10,
       paddingTop: 2,
     },
+    button: {
+      color: '#20A46B',
+    }
   }));
 
   const classes = useStyles();
@@ -62,7 +65,7 @@ const Upcoming = () => {
                 </Typography>
               </CardContent>
               <CardActions className={classes.action}>
-                <Button size="small" color="primary">Attend</Button>
+                <Button size="small" className={classes.button}>Attend</Button>
               </CardActions>
             </CardActionArea>
           </Card>
