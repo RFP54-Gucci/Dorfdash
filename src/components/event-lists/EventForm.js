@@ -1,22 +1,17 @@
 import { useState } from 'react';
-import 'date-fns';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+
+
 
 
 const EventForm = () => {
   const [ eventName, setEventName ] = useState('');
   // const [ eventHost, setEventHost ] = useState('');
-  const [ eventDate, setEventDate] = useState(new Date());
+  const [ eventDate, setEventDate] = useState(new Date("2014-08-18T21:11:54"));
   // const [ eventDate, setEventDate ] = useState('');
   // const [ eventTime, setEventName ] = useState('');
   // const [ eventName, setEventName ] = useState('');
@@ -68,20 +63,14 @@ const EventForm = () => {
             fullWidth
           />
         </div>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <KeyboardDatePicker
-            margin="normal"
-            id="date-picker-dialog"
-            label="Event date"
+        <div>
+        <TextField
+            id="outlined-size-small"
+            label="Event Date"
             variant="outlined"
-            format="MM/dd/yyyy"
-            value={eventDate}
-            onChange={handleEventDate}
-            KeyboardButtonProps={{
-              'aria-label': 'change date',
-            }}
+            size="small"
           />
-        </MuiPickersUtilsProvider>
+        </div>
         <div>
           <TextField
             id="outlined-size-small"
