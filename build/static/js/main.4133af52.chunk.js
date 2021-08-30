@@ -1,2 +1,0 @@
-(this.webpackJsonpdorfdash=this.webpackJsonpdorfdash||[]).push([[0],{11:function(t,n,e){"use strict";e.r(n);var c=e(1),s=e.n(c),r=e(3),o=e.n(r),a=(e(8),e(9),e(0));var d=function(){return Object(a.jsx)("div",{className:"App"})};o.a.render(Object(a.jsx)(s.a.StrictMode,{children:Object(a.jsx)(d,{})}),document.getElementById("root"))},8:function(t,n,e){},9:function(t,n,e){}},[[11,1,2]]]);
-//# sourceMappingURL=main.4133af52.chunk.js.map
