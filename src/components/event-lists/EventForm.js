@@ -4,12 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import {Context} from '../../_Context/Context.js';
+
 
 
 const EventForm = () => {
-  const {setEvent,Event} = useContext(Context);
-  console.log("what is Event?: ", Event)
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {

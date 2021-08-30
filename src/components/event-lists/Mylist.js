@@ -1,3 +1,6 @@
+import { Context } from '../../_Context/Context.js';
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
@@ -7,7 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-const Mylist = (props) => {
+const Mylist = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 375,
@@ -50,22 +53,35 @@ const Mylist = (props) => {
   const classes = useStyles();
 
   // ------------ removing event --------------
+  const { myEventList, setMyList } = useContext(Context);
+
   const removeEvent = (eventId) => {
-    for (var i = 0; i < props.myEventList.length; i++) {
-      if (props.myEventList[i].event_id === eventId) {
-        props.setMyList(props.myEventList.slice(0, i).concat(props.myEventList.slice(i + 1)));
+    for (var i = 0; i < myEventList.length; i++) {
+      if (myEventList[i].event_id === eventId) {
+        setMyList(myEventList.slice(0, i).concat(myEventList.slice(i + 1)));
       }
     }
   };
 
+  // ------------ switch routes ---------------
+  let history = useHistory();
+
+  const handleCreate = () => {
+    history.push('/eventForm');
+  };
+
+  const handleBrowse = () => {
+    history.push('/upcoming');
+  }
+
   return (
     <Container maxWidth="sm" className={classes.root}>
       <h1>Dorfdash</h1>
-      <Button size="small" className={classes.button}>Create new event</Button>
+      <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button>
       <h3>My events</h3>
       <div className="container-slide">
-        {props.myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
-        props.myEventList.map((event) => (
+        {/* {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> : */}
+        {myEventList.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
               <CardContent className={classes.content}>
@@ -89,7 +105,7 @@ const Mylist = (props) => {
           </Card>
         ))}
       </div>
-      <Button size="small" color="primary" className={classes.browse}>Browse upcoming events</Button>
+      <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
     </Container>
   );
 };

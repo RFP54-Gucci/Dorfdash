@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { Context } from '../../_Context/Context.js';
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
@@ -9,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import samples from './samples.js';
 import Mylist from './Mylist.js';
-
 
 const Upcoming = (props) => {
   const useStyles = makeStyles((theme) => ({
@@ -47,14 +48,21 @@ const Upcoming = (props) => {
   const classes = useStyles();
 
   // ------------- states -----------------
-  const [ myEventList, setMyList ] = useState([]);
+  const { myEventList, setMyList } = useContext(Context);
 
   const addEvent = (evt) => {
     let myList = [];
     myList.push(evt);
     setMyList(myEventList.concat(myList));
     // console.log(myList);
-  }
+  };
+
+  // ------------ switch routes ---------------
+  let history = useHistory();
+
+  const handleDetails = () => {
+    history.push('/eventDetails');
+  };
 
   return (
     <div>
@@ -65,7 +73,7 @@ const Upcoming = (props) => {
           {samples.map((event) => (
             <Card className={classes.card} key={event.event_id}>
               <CardActionArea>
-                <CardContent className={classes.content}>
+                <CardContent className={classes.content} onClick={handleDetails}>
                   <Typography className={classes.title}>
                     {event.event_name}
                   </Typography>
