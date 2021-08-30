@@ -6,6 +6,8 @@ router.get('/users', controller.users.get);
 
 router.post('/users', controller.users.post);
 
+router.get('/events', controller.events.get);
 
+router.post('/events', controller.events.post);
 
 module.exports = router;
