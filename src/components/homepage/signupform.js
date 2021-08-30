@@ -18,7 +18,8 @@ const useStyles = makeStyles({
     backgroundColor: '#20A46B',
     color: '#fff',
     marginTop: '10%',
-    fontSize: '1.2rem'
+    fontSize: '1.2rem',
+    padding: '5%'
   },
   returningContainer: {
     marginTop: '20%'
@@ -26,6 +27,14 @@ const useStyles = makeStyles({
   loginBtn: {
     color: '#20A46B',
     fontSize: '1.2rem'
+  },
+  link: {
+    color: '#fff',
+    textDecoration: 'none'
+  },
+  link2: {
+    color: '#20A46B',
+    textDecoration: 'none'
   }
 })
 
@@ -71,13 +80,17 @@ const SignUpForm = () => {
         onChange={(e) => {handleLastName(e)}}/>
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
        onChange={(e) => {handleEmail(e)}}/>
-      <Button className={classes.signupBtn} variant="contained" disableElevation
+      {/* <Button className={classes.signupBtn} variant="contained" disableElevation
         onClick={(e) => {handleSubmit(e)}}
-        component={Link} to="/newUser"
-      >Sign Up</Button>
+      >Sign Up</Button> */}
+      <Button className={classes.signupBtn}>
+        <Link className={classes.link} to="/newUser">Sign Up</Link>
+      </Button>
       <Container className={classes.returningContainer}>
         <p>Already have an account?</p>
-        <Button className={classes.loginBtn} >Log In</Button>
+        <Button className={classes.loginBtn}>
+          <Link className={classes.link2} to="/returningUser">Log In</Link>
+        </Button>
       </Container>
     </Container>
   )
