@@ -41,7 +41,10 @@ const Mylist = (props) => {
     },
     remove: {
       color: '#20A46B',
-    }
+    },
+    browse: {
+      marginBottom: 15,
+    },
   }));
 
   const classes = useStyles();
@@ -61,7 +64,8 @@ const Mylist = (props) => {
       <Button size="small" className={classes.button}>Create new event</Button>
       <h3>My events</h3>
       <div className="container-slide">
-        {props.myEventList.map((event) => (
+        {props.myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
+        props.myEventList.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
               <CardContent className={classes.content}>
@@ -85,6 +89,7 @@ const Mylist = (props) => {
           </Card>
         ))}
       </div>
+      <Button size="small" color="primary" className={classes.browse}>Browse upcoming events</Button>
     </Container>
   );
 };

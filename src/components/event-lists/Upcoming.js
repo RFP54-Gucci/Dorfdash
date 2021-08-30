@@ -58,13 +58,12 @@ const Upcoming = (props) => {
 
   return (
     <div>
-      {console.log(myEventList)}
       <Container maxWidth="sm" className={classes.root}>
         <h1>Dorfdash</h1>
         <h3>Upcoming events</h3>
         <div className="container-slide">
           {samples.map((event) => (
-            <Card className={classes.card}>
+            <Card className={classes.card} key={event.event_id}>
               <CardActionArea>
                 <CardContent className={classes.content}>
                   <Typography className={classes.title}>

@@ -23,6 +23,7 @@ const EventForm = () => {
     button: {
       backgroundColor: '#20A46B',
       color: 'white',
+      marginTop: 15,
       marginBottom: 15,
     }
   }));
