@@ -6,6 +6,7 @@ import RiderForm from './components/events/riderForm.js';
 import DriverForm from './components/events/driverForm.js';
 import Homepage from './components/homepage/homePage.js';
 import NewUser from './components/homepage/newUser.js';
+import ReturningUser from './components/homepage/returningUser.js';
 import Upcoming from './components/event-lists/Upcoming.js';
 import Map from './components/Map_ui/Map/Map.js';
 
@@ -25,8 +26,9 @@ const [Event, setEvent] = useState(initState);
     <div className="App">
       {/* <EventForm/>
       <Upcoming/> */}
-      {/* <Homepage/> */}
-      <NewUser/>
+      <Homepage/>
+      {/* <NewUser/> */}
+      <ReturningUser/>
       {/* <Context.Provider value={{setEvent,Event}}>
         <EventForm/>
         <Upcoming/>
