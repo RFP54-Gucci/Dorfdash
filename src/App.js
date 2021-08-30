@@ -16,6 +16,9 @@ import {
 } from "react-router-dom";
 
 
+import Homepage from './components/homepage/homePage.js';
+import NewUser from './components/homepage/newUser.js';
+
 function App() {
   return (
     <div className="App">
