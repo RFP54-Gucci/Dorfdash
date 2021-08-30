@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { Container, AppBar, Typography, Button } from '@material-ui/core';
 
 const NewUser = () => {
+
+  // unsure if i need functions to link to pages
+
   return (
     <Container>
       <AppBar position="static">
