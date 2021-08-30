@@ -2,8 +2,14 @@ const models = require('../models');
 
 module.exports = {
 
-  get: /* models.users.getAll */ (res, req) => {},
+  get: (req, res) => {
+    models.users.getAll();
+    res.send('test');
+  },
 
-  post: /* models.users.create */ (res, req) => {}
+  post: (req, res) => {
+    models.users.create();
+    res.send('test');
+  },
 
-}
+};
