@@ -11,7 +11,7 @@ const Mylist = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 375,
-      maxHeight: 770,
+      height: 770,
       borderColor: '#ECECEC',
       borderStyle: 'solid',
       overflowX: 'scroll',
@@ -37,7 +37,7 @@ const Mylist = (props) => {
     },
     button: {
       color: '#20A46B',
-      marginLeft: 170,
+      marginLeft: 155,
     },
     remove: {
       color: '#20A46B',

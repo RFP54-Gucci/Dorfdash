@@ -15,7 +15,7 @@ const EventForm = () => {
     },
     container: {
       maxWidth: 375,
-      maxHeight: 770,
+      height: 770,
       borderColor: '#ECECEC',
       borderStyle: 'solid',
       marginBottom: 25,

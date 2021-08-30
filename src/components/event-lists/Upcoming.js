@@ -15,7 +15,7 @@ const Upcoming = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 375,
-      maxHeight: 770,
+      height: 770,
       borderColor: '#ECECEC',
       borderStyle: 'solid',
       overflowX: 'scroll',
