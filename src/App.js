@@ -1,39 +1,68 @@
+import { Switch, Route } from "react-router-dom";
+import { useState } from 'react';
+import { Context } from './_Context/Context'
 import './App.css';
-import {useState} from 'react'
-import EventForm from './components/event-lists/EventForm.js';
-import EventDetails from './components/events/eventDetails.js';
-import RiderForm from './components/events/riderForm.js';
-import DriverForm from './components/events/driverForm.js';
-import Homepage from './components/homepage/homePage.js';
-import NewUser from './components/homepage/newUser.js';
-import ReturningUser from './components/homepage/returningUser.js';
-import Upcoming from './components/event-lists/Upcoming.js';
-import Map from './components/Map_ui/Map/Map.js';
-
-import {Context} from './_Context/Context.js';
-const initState = {
-  name:'dorf/s world', host:'Dorf',date:'08/30/21',
-  time:'04:00pm',
-  location:'940 Great Mall Dr. Milpitas, CA 95035',
-  description:'All night drinks, dancing and socializing'
-}
+import EventForm from './components/event-lists/EventForm';
+import Mylist from './components/event-lists/Mylist';
+import Upcoming from './components/event-lists/Upcoming';
+import Map from './components/Map_ui/Map/Map';
+import DriverForm from './components/events/driverForm';
+import RiderForm from './components/events/riderForm';
+import EventDetails from './components/events/eventDetails';
+import ReturningUser from './components/homepage/returningUser';
+import NewUser from './components/homepage/newUser';
+import Homepage from './components/homepage/homePage';
 
 
 
 function App() {
-const [Event, setEvent] = useState(initState);
+const [Event, setEvent] = useState({});
+
   return (
     <div className="App">
-      {/* <EventForm/>
-      <Upcoming/> */}
-      <Homepage/>
-      <NewUser/>
-      <ReturningUser/>
-      {/* <Context.Provider value={{setEvent,Event}}>
-        <EventForm/>
-        <Upcoming/>
-        <Map />
-      </Context.Provider> */}
+      <Context.Provider value={{setEvent,Event}}>
+        <Switch>
+          <Route path="/myList">
+            <Mylist />
+          </Route>
+
+          <Route path="/upcoming">
+            <Upcoming />
+          </Route>
+
+          <Route path="/eventForm">
+            <EventForm />
+          </Route>
+
+          <Route path="/map">
+            <Map />
+          </Route>
+
+          <Route path="/eventDetails">
+            <EventDetails />
+          </Route>
+
+          <Route path="/riderForm">
+            <RiderForm />
+          </Route>
+
+          <Route path="/driverForm">
+            <DriverForm />
+          </Route>
+
+          <Route path="/returningUser">
+            <ReturningUser />
+          </Route>
+
+          <Route path="/newUser">
+            <NewUser />
+          </Route>
+
+          <Route path="/">
+            <Homepage />
+          </Route>
+        </Switch>
+      </Context.Provider>
     </div>
   );
 }
