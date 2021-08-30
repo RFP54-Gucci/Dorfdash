@@ -72,6 +72,8 @@ typings/
 .env
 .env.test
 
+
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
@@ -102,10 +104,8 @@ dist
 
 # TernJS port file
 .tern-port
-
-# Eslint local config
-.eslintrc
-
+build
+build/
 package-lock.json
 
-build/
+

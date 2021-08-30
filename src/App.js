@@ -14,6 +14,7 @@ import HomePage from './components/HomePage';
 
 
 function App() {
+const [Event, setEvent] = useState(initState);
   return (
     <div className="App">
       <Switch>
