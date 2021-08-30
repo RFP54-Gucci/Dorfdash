@@ -28,3 +28,13 @@ code {
   text-align: center;
   color: #fff;
 }
+
+.homepage_div {
+  width: 100vw;
+  height: 100vh;
+}
+
+.signup_div {
+  height: 75%;
+  outline: 2px solid red;
+}

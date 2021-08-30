@@ -7,10 +7,12 @@ import {  FormControl, Input } from '@material-ui/core';
 // sign up button
 const SignUpForm = () => {
   return (
-    <FormControl>
-      <inputLabel htmlFor="firstName">First Name</inputLabel>
-      <Input required />
-    </FormControl>
+    <div className="signup_div">
+      <FormControl>
+        <inputLabel htmlFor="firstName">First Name</inputLabel>
+        <Input required />
+      </FormControl>
+    </div>
   )
 
 }
