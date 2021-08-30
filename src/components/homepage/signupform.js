@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {  Container, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -72,6 +73,7 @@ const SignUpForm = () => {
        onChange={(e) => {handleEmail(e)}}/>
       <Button className={classes.signupBtn} variant="contained" disableElevation
         onClick={(e) => {handleSubmit(e)}}
+        component={Link} to="/newUser"
       >Sign Up</Button>
       <Container className={classes.returningContainer}>
         <p>Already have an account?</p>

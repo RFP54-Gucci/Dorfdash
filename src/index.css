@@ -13,17 +13,3 @@ code {
     monospace;
 }
 
-.userContainer {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  padding: 5% !important;
-  width: 40% !important;
-}
-
-.userBtn {
-  padding: 3% !important;
-  background-color: #20A46B !important;
-  color: #fff !important;
-  margin-top: 5% !important;
-}
