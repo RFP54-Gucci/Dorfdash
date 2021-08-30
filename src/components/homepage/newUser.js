@@ -5,6 +5,14 @@ const NewUser = () => {
 
   // unsure if i need functions to link to pages
 
+  // ROUTING EXAMPLE FOR BUTTON CLICKS
+  // import { Link } from 'react-router-dom'
+  // import Button from '@material-ui/core/Button';
+
+  // <Button component={Link} to="/new/location/">
+  //   Click Me
+  // </Button>
+
   return (
     <Container>
       <AppBar position="static">

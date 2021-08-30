@@ -27,7 +27,7 @@ const [Event, setEvent] = useState(initState);
       {/* <EventForm/>
       <Upcoming/> */}
       <Homepage/>
-      {/* <NewUser/> */}
+      <NewUser/>
       <ReturningUser/>
       {/* <Context.Provider value={{setEvent,Event}}>
         <EventForm/>
