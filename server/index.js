@@ -12,7 +12,7 @@ const api = require('./api/index.js');
 const app = express();
 
 // Set what we are listening on.
-app.set('port', 3000);
+app.set('port', 3001);
 
 // Use CORS
 app.use(cors());
@@ -27,9 +27,6 @@ app.use('/api', api);
 app.get('/test', (req, res) => {
   res.send('success');
 });
-
-// Serve the client files
-// app.use(express.static(path.join(__dirname, '../public')));
 
 // Serve build folder when in production environment
 if (process.env.NODE.ENV === 'production') {

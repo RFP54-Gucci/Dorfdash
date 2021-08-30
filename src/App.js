@@ -1,4 +1,15 @@
 import './App.css';
+import EventForm from './components/event-lists/EventForm';
+import Mylist from './components/event-lists/Mylist';
+import Upcoming from './components/event-lists/Upcoming';
+import Map from './components/map_ui/Map';
+import DriverForm from './components/DriverForm';
+import RiderForm from './components/RiderFrom';
+import EventDetails from './components/EventDetails';
+import ReturningUser from './components/ReturningUser';
+import NewUser from './components/NewUser';
+import HomePage from './components/HomePage';
+
 import {
   Switch,
   Route
@@ -10,7 +21,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route path="/myList">
-          <MyList />
+          <Mylist />
         </Route>
 
         <Route path="/upcoming">
@@ -21,8 +32,12 @@ function App() {
           <EventForm />
         </Route>
 
+        <Route path="/map">
+          <Map />
+        </Route>
+
         <Route path="/eventDetails">
-          <eventDetails />
+          <EventDetails />
         </Route>
 
         <Route path="/riderForm">
