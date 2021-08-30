@@ -24,7 +24,7 @@ To run this single page application on your local machine:
       ```bash
       yarn run build
       ```
-  
+
     - Watch:
       ```bash
       yarn run dev
