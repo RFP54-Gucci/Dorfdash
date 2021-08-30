@@ -29,6 +29,7 @@ const SignUpForm = () => {
   let handleSubmit = (e) => {
     e.preventDefault();
     console.log(firstName + ' ' + lastName + ' ' + email);
+    // set up an axios post request to backend
   }
 
   return (
