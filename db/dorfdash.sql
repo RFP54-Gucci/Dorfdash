@@ -23,6 +23,8 @@ CREATE TABLE riders (
   rider_id INTEGER,
   event_id INTEGER,
   driver_id INTEGER,
+  location VARCHAR (50),
+  phone VARCHAR (10),
   CONSTRAINT "FK_Riders.event_id"
     FOREIGN KEY (event_id)
       REFERENCES events(event_id),
@@ -39,7 +41,7 @@ CREATE TABLE drivers (
   user_id INTEGER,
   event_id INTEGER,
   phone VARCHAR (10),
-  address VARCHAR (50),
+  location VARCHAR (50),
   CONSTRAINT "FK_Drivers.user_id"
     FOREIGN KEY (user_id)
       REFERENCES users(user_id)
