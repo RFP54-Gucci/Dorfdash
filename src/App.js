@@ -1,3 +1,4 @@
+import { Switch, Route } from "react-router-dom";
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
 import Mylist from './components/event-lists/Mylist';
@@ -10,10 +11,6 @@ import ReturningUser from './components/ReturningUser';
 import NewUser from './components/NewUser';
 import HomePage from './components/HomePage';
 
-import {
-  Switch,
-  Route
-} from "react-router-dom";
 
 
 function App() {
