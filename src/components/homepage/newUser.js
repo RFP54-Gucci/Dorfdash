@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, AppBar, Typography } from '@material-ui/react';
+import { Container, AppBar, Typography } from '@material-ui/core';
 
 const NewUser = () => {
   <Container>
