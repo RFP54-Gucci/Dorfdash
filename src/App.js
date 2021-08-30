@@ -2,7 +2,7 @@ import './App.css';
 import {useState} from 'react'
 import EventForm from './components/event-lists/EventForm.js';
 import Upcoming from './components/event-lists/Upcoming.js';
-import Map from './components/Map_ui/Map.js';
+import Map from './components/Map_ui/Map/Map.js';
 import {Context} from './_Context/Context.js';
 const initState = {
   name:'dorf/s world', host:'Dorf',date:'08/30/21',
