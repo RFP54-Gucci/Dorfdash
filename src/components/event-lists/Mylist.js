@@ -46,13 +46,21 @@ const Mylist = (props) => {
 
   const classes = useStyles();
 
+  // ------------ removing event --------------
+  const removeEvent = (eventId) => {
+    for (var i = 0; i < props.myEventList.length; i++) {
+      if (props.myEventList[i].event_id === eventId) {
+        props.setMyList(props.myEventList.slice(0, i).concat(props.myEventList.slice(i + 1)));
+      }
+    }
+  };
+
   return (
     <Container maxWidth="sm" className={classes.root}>
       <h1>Dorfdash</h1>
       <Button size="small" className={classes.button}>Create new event</Button>
       <h3>My events</h3>
       <div className="container-slide">
-        {/* {console.log(props.myEventList)} */}
         {props.myEventList.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
@@ -71,7 +79,7 @@ const Mylist = (props) => {
                 </Typography>
               </CardContent>
               <CardActions className={classes.action}>
-                <Button size="small" className={classes.remove}>Remove</Button>
+                <Button size="small" className={classes.remove} onClick={() => removeEvent(event.event_id)}>Remove</Button>
               </CardActions>
             </CardActionArea>
           </Card>

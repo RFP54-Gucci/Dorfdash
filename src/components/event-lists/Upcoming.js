@@ -88,7 +88,7 @@ const Upcoming = (props) => {
           ))}
         </div>
       </Container>
-      <Mylist myEventList={myEventList}/>
+      <Mylist myEventList={myEventList} setMyList={setMyList}/>
     </div>
   );
 };
