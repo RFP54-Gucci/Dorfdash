@@ -112,7 +112,6 @@ const RiderForm = () => {
 </Button>
   </Container>
   )
-//sta
 }
-//fe
+
 export default RiderForm;

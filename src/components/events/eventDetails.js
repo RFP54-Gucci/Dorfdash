@@ -3,6 +3,7 @@ import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import samples from './sample.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -10,10 +11,8 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1
   },
   paper: {
-    height: 400,
-    width: 360,
-    lineHeight:1.5,
-    margin:"auto",
+    lineHeight:1.6,
+    marginLeft:10,
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
     backgroundColor:'#ECECEC'
@@ -21,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
   container: {
      borderColor: '#ECECEC',
      borderStyle: 'solid',
-     marginTop:20
+     marginTop:20,
+     lineHeight:2
+
   },
   span: {
     color: '#037041',
@@ -31,71 +32,71 @@ const useStyles = makeStyles((theme) => ({
   },
   spanDivs: {
     marginBottom:10,
-    // marginRight:10,
-    // justifyContent:'center'
   },
   gridStyle: {
-  justify:"center",
-  margin:"auto"
+    paddingTop:5,
+   backgroundColor:'#ECECEC'
   }
 }));
 
-const EventDetails = () => {
+const EventDetails = (props) => {
   const classes = useStyles();
+
   return (
-    <Container maxWidth="xs" className={classes.container}>
+      <Container maxWidth="xs" className={classes.container} >
       <h1>Dorfdash</h1>
-      <Grid container justify="center" alignItems="center">
-        <Grid item xs={12}>
-          <Paper className={classes.paper} style ={{marginRight:40}}>
+      {samples.map(item => (
+      <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
+        <Grid item xs={10}>
             <div className={classes.spanDivs}>
             <span className={classes.span}>Event: </span>
-            <span >Pollich-Wehner</span>
+            <span >{item.event_name}</span>
             </div>
 
             <div className={classes.spanDivs}>
             <span className={classes.span}>Host: </span>
-            <span>Jud Boule</span>
+            <span>{item.event_host}</span>
             </div>
 
             <div className={classes.spanDivs}>
               <span className={classes.span}>Date: </span>
-              <span>10/26/2020</span>
+              <span>{item.event_date}</span>
             </div>
 
             <div className={classes.spanDivs}>
               <span className={classes.span}>Time: </span>
-              <span>10:20 AM</span>
+              <span>{item.event_time}</span>
             </div>
 
             <div className={classes.spanDivs}>
               <span className={classes.span}>Location: </span>
-              <span>22 Fordem Place</span>
+              <span>{item.event_location}</span>
             </div>
 
             <div className={classes.spanDivs}>
               <span className={classes.span}>Description: </span>
-              <span>Integer ac leo.
-             Pellentesque ultrices mattis odio. Donec vitae nisi.
-             \n\nNam ultrices, libero non mattis pulvinar,
-             nulla pede ullamcorper augue, a suscipit nulla elit ac nulla.
-             Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit
-             ligula in lacus.</span>
+              <span>{item.event_des}</span>
             </div>
-             </Paper>
+            </Grid>
+             {/* {/* </Paper> */}
+
         </Grid>
-        </Grid>
+        ))}
+        <Button variant="contained"  className={classes.root}
+         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}>
+  Back
+</Button>
         <Button variant="contained" color="primary" className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF',margin:30}}>
+         style={{backgroundColor: '#12824C', color: '#FFFFFF',margin:20}}>
   Rider
 </Button>
 <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 30}}>
+         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}>
   Driver
 </Button>
 
+
+
     </Container>
-  )
-}
-//
+    )}
 export default EventDetails;
