@@ -8,8 +8,8 @@ import Homepage from './components/homepage/homePage.js';
 import NewUser from './components/homepage/newUser.js';
 import Upcoming from './components/event-lists/Upcoming.js';
 import Map from './components/Map_ui/Map/Map.js';
-
 import {Context} from './_Context/Context.js';
+
 const initState = {
   name:'dorf/s world', host:'Dorf',date:'08/30/21',
   time:'04:00pm',
