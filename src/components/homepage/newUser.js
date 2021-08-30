@@ -1,5 +1,6 @@
 import { Container, AppBar, Typography, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   div: {
@@ -33,29 +34,26 @@ const useStyles = makeStyles({
     flexDirection: 'column'
   },
   createButton: {
-    padding: '5%',
+    padding: '6%',
     backgroundColor: '#20A46B',
     color: '#fff',
     marginBottom: '10%'
   },
   attendButton: {
-    padding: '5%',
+    padding: '6%',
     backgroundColor: '#20A46B',
     color: '#fff',
     marginTop: '10%'
+  },
+  link: {
+    color: '#fff',
+    fontSize: '1.1rem',
+    textDecoration: 'none'
   }
 });
 
 const NewUser = () => {
   const classes = useStyles();
-
-  // ROUTING EXAMPLE FOR BUTTON CLICKS
-  // import { Link } from 'react-router-dom'
-  // import Button from '@material-ui/core/Button';
-
-  // <Button component={Link} to="/new/location/">
-  //   Click Me
-  // </Button>
 
   return (
     <Container className={classes.div}>
@@ -66,10 +64,14 @@ const NewUser = () => {
       </AppBar>
       <Container className={classes.card} maxWidth="xs">
         <Button className={classes.createButton}>
-          Create Event
+          <Link to="/eventForm" className={classes.link}>
+            Create Event
+          </Link>
         </Button>
         <Button className={classes.attendButton}>
-          Attend Event
+          <Link to="/upcoming" className={classes.link}>
+            Attend Event
+          </Link>
         </Button>
       </Container>
       <Container className={classes.footer}>
