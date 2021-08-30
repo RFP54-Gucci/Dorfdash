@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft:10,
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
-    backgroundColor:'#ECECEC'
+     backgroundColor:'#ECECEC'
   },
   container: {
      borderColor: '#ECECEC',
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridStyle: {
     paddingTop:5,
+    // borderStyle:'solid'
    backgroundColor:'#ECECEC'
   }
 }));

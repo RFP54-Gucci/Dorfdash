@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Container, Paper, Grid, Button, TextField} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,26 +65,41 @@ const RiderForm = () => {
     location: ''
   })
 
-  const[validateName, setValidateName] = useState('')
+  const[validatePhone, setValidatePhone] = useState('')
   const[validateAddress, setValidateAddress] = useState('')
 
 
   const handleSubmit = () => {
     if(addRider.phone === '' && addRider.location === '') {
-      setValidateName('Input Required');
+      setValidatePhone('Input Required');
       setValidateAddress('Input Required');
     }
+
+    // axios.post('/', {
+    //   phone: ,
+    //   lastName: 'Flintstone'
+    // })
+    // .then(function (response) {
+    //   console.log(response);
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
   }
 
-  const handleNameChange = (e) => {
-    setAddRider(e.target.value);
-    setValidateName('');
+  const handlePhoneChange = (e) => {
+    setAddRider({
+      phone: e.target.value
+    });
+    setValidatePhone('');
   }
 
 
   const handleAddressChange = (e) => {
-    setAddRider(e.target.value);
-    setValidateAddress(true);
+    setAddRider({
+      location: e.target.value
+    });
+    setValidateAddress('');
   }
   const classes = useStyles();
   return (
@@ -91,15 +107,14 @@ const RiderForm = () => {
       <h1>Dorfdash</h1>
     <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
         <Grid item xs={12}>
-
             <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
-          <form className={classes.root} Validate autoComplete="off">
-            <TextField id="outlined-basic" label="Contact Number"
+          <form className={classes.root} Validate autoComplete="phone">
+            <TextField id="outlined-basic" type="tel" label="Contact Number"
              variant="outlined" className={classes.textField} required
-              onChange ={handleNameChange}/>
+              onChange ={handlePhoneChange}/>
 
              <br />
-             {validateName !== ''?validateName : ''}
+             {validatePhone !== ''?validatePhone : ''}
              <TextField id="outlined-basic" multiline maxRows={4} label="Location"
              variant="outlined" className={classes.textField} required
              onChange ={handleAddressChange}/>

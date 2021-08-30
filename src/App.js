@@ -15,14 +15,12 @@ import Homepage from './components/homepage/homePage';
 
 
 
+
 function App() {
 const [Event, setEvent] = useState({});
 
   return (
     <div className="App">
-      <EventDetails />
-      <RiderForm />
-      <DriverForm />
       <Context.Provider value={{setEvent,Event}}>
         <Switch>
           <Route path="/myList">
