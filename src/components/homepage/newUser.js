@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Container, AppBar, Typography } from '@material-ui/core';
+import { Container, AppBar, Typography, Button } from '@material-ui/core';
 
 const NewUser = () => {
   return (
@@ -9,6 +9,14 @@ const NewUser = () => {
           Dorfdash
         </Typography>
       </AppBar>
+      <Container className="outline userContainer" display="flex" flexDirection="column">
+        <Button className="userBtn">
+          Create Event
+        </Button>
+        <Button className="userBtn">
+          Attend Event
+        </Button>
+      </Container>
       <Container className="footer">
         <p>Designed by Team GUCCI @ 2021</p>
       </Container>
