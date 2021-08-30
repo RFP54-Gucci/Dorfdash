@@ -72,12 +72,8 @@ typings/
 .env
 .env.test
 
-<<<<<<< HEAD
 # database login config file
 config.js
-=======
-
->>>>>>> main
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
