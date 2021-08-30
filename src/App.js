@@ -7,8 +7,8 @@ import Homepage from './components/homepage/homePage.js';
 function App() {
   return (
     <div className="App">
-      <EventForm/>
-      <Upcoming/>
+      {/* <EventForm/>
+      <Upcoming/> */}
       <Homepage/>
     </div>
   );

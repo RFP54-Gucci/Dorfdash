@@ -17,6 +17,21 @@ code {
   background-color: #20A46B;
 }
 
+.outline {
+  outline: 1px solid red;
+}
+
+.form {
+  padding: 5%;
+  margin: 2%;
+}
+
+.signupBtn {
+  background-color: #20A46B !important;
+  color: #fff !important;
+  margin-top: 20% !important;
+}
+
 .header-title {
   margin: 0;
   padding: 3%;
@@ -32,9 +47,4 @@ code {
 .homepage_div {
   width: 100vw;
   height: 100vh;
-}
-
-.signup_div {
-  height: 75%;
-  outline: 2px solid red;
 }
