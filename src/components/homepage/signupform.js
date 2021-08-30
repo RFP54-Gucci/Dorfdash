@@ -33,7 +33,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <Container className="form outline" maxWidth="xs">
+    <Container className="form" maxWidth="xs">
       <h2>New Here?</h2>
       <TextField fullWidth={true} id="filled-basic" label="First Name" variant="filled" required margin="normal"
         onChange={(e) => {handleFirstName(e)}}/>
@@ -44,6 +44,8 @@ const SignUpForm = () => {
       <Button className="signupBtn" variant="contained" disableElevation
         onClick={(e) => {handleSubmit(e)}}
       >Sign Up</Button>
+      <p>Already have an account?</p>
+      <Button>Log In</Button>
     </Container>
   )
 
