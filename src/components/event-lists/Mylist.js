@@ -53,7 +53,7 @@ const Mylist = () => {
   const classes = useStyles();
 
   // ------------ removing event --------------
-  const { myEventList, setMyList } = useContext(Context);
+  const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
 
   const removeEvent = (eventId) => {
     for (var i = 0; i < myEventList.length; i++) {
@@ -61,6 +61,8 @@ const Mylist = () => {
         setMyList(myEventList.slice(0, i).concat(myEventList.slice(i + 1)));
       }
     }
+    var removedIndex = eventIdArr.indexOf(eventId);
+    setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
   };
 
   // ------------ switch routes ---------------

@@ -16,10 +16,14 @@ import Homepage from './components/homepage/homePage';
 
 function App() {
   const [ myEventList, setMyList ] = useState([]);
+  const [ eventIdArr, setEventIdArr ] = useState([]);
 
   return (
     <div className="App">
-      <Context.Provider value={{ myEventList, setMyList }}>
+      <Context.Provider value={{
+        myEventList, setMyList,
+        eventIdArr, setEventIdArr
+        }}>
         <Switch>
           <Route path="/myList">
             <Mylist />

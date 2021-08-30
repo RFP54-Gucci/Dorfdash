@@ -48,13 +48,18 @@ const Upcoming = (props) => {
   const classes = useStyles();
 
   // ------------- states -----------------
-  const { myEventList, setMyList } = useContext(Context);
+  const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
 
   const addEvent = (evt) => {
     let myList = [];
-    myList.push(evt);
-    setMyList(myEventList.concat(myList));
-    // console.log(myList);
+    let idArr = [];
+    if (eventIdArr.indexOf(evt.event_id) < 0) {
+      idArr.push(evt.event_id);
+      setEventIdArr(eventIdArr.concat(idArr));
+      myList.push(evt);
+      setMyList(myEventList.concat(myList));
+    }
+    // console.log(eventIdArr);
   };
 
   // ------------ switch routes ---------------
@@ -68,10 +73,10 @@ const Upcoming = (props) => {
     history.push('/myList');
   };
 
-  const attend = (e) => {
-    addEvent(e);
-    handleAttendEvent();
-  }
+  // const attend = (e) => {
+  //   addEvent(e);
+  //   handleAttendEvent();
+  // }
 
   return (
     <div>
@@ -97,7 +102,7 @@ const Upcoming = (props) => {
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.action}>
-                  <Button size="small" className={classes.button} onClick={() => attend(event)} >Attend</Button>
+                  <Button size="small" className={classes.button} onClick={() => { addEvent(event); handleAttendEvent(); }} >Attend</Button>
                 </CardActions>
               </CardActionArea>
             </Card>

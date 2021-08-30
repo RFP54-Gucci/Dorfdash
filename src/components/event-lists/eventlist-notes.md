@@ -1,6 +1,6 @@
 ## TODO LIST:
 
-[ ] check duplicates
+[ ] remove duplicates
 [ ] upcoming event list - get request
 [ ] add to my event list - post request
 [ ] my event list - get request
