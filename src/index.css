@@ -13,19 +13,6 @@ code {
     monospace;
 }
 
-.form {
-  padding: 5%;
-  margin: 2%;
-  border-radius: 25px !important;
-  box-shadow: 0px 5px 22px 0px rgba(0,0,0,0.65);
-}
-
-.signupBtn {
-  background-color: #20A46B !important;
-  color: #fff !important;
-  margin-top: 20% !important;
-}
-
 .userContainer {
   display: flex !important;
   flex-direction: column !important;
@@ -39,13 +26,6 @@ code {
   background-color: #20A46B !important;
   color: #fff !important;
   margin-top: 5% !important;
-}
-
-.footer {
-  background-color: #3F3F3F;
-  padding: 5%;
-  text-align: center;
-  color: #fff;
 }
 
 .homepage_div {
