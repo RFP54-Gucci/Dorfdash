@@ -11,16 +11,16 @@ const useStyles = makeStyles({
     boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
   },
   title: {
-    fontSize: '2.5rem'
+    fontSize: '2.2rem'
   },
   signupBtn: {
     backgroundColor: '#20A46B',
     color: '#fff',
-    marginTop: '20%',
+    marginTop: '10%',
     fontSize: '1.2rem'
   },
   returningContainer: {
-    marginTop: '25%'
+    marginTop: '20%'
   },
   loginBtn: {
     color: '#20A46B',
@@ -75,7 +75,7 @@ const SignUpForm = () => {
       >Sign Up</Button>
       <Container className={classes.returningContainer}>
         <p>Already have an account?</p>
-        <Button className={classes.loginBtn}>Log In</Button>
+        <Button className={classes.loginBtn} >Log In</Button>
       </Container>
     </Container>
   )

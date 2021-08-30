@@ -16,13 +16,13 @@ const useStyles = makeStyles({
   },
   headerTitle: {
     margin: '0',
-    padding: '3%',
+    padding: '2%',
   },
   footer: {
     width: '100vw',
     maxWidth: '100vw',
     backgroundColor: '#3F3F3F',
-    padding: '5%',
+    padding: '2% 2% 5% 2%',
     textAlign: 'center',
     color: '#fff'
   }
