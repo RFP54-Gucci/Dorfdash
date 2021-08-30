@@ -6,14 +6,6 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 
 const EventForm = () => {
-  const [ eventName, setEventName ] = useState('');
-  const [ eventHost, setEventHost ] = useState('');
-  // const [ eventDate, setEventDate] = useState('');
-  // const [ eventTime, setEventTime ] = useState('');
-  const [ eventLocation, setEventLocation ] = useState('');
-  const [ eventDes, setEventDes ] = useState('');
-
-  // ------------ styling -------------
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -22,8 +14,8 @@ const EventForm = () => {
       },
     },
     container: {
-      maxWidth: 345,
-      maxHeight: 600,
+      maxWidth: 375,
+      maxHeight: 770,
       borderColor: '#ECECEC',
       borderStyle: 'solid',
       marginBottom: 25,
@@ -36,6 +28,14 @@ const EventForm = () => {
   }));
 
   const classes = useStyles();
+
+  // --------------- states --------------------
+  const [ eventName, setEventName ] = useState('');
+  const [ eventHost, setEventHost ] = useState('');
+  // const [ eventDate, setEventDate] = useState('');
+  // const [ eventTime, setEventTime ] = useState('');
+  const [ eventLocation, setEventLocation ] = useState('');
+  const [ eventDes, setEventDes ] = useState('');
 
   // ---------- onChange funcs ------------
   const handleEventName = (e) => {
