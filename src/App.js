@@ -1,11 +1,11 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
-import { Context } from './_Context/Context'
+import { Context } from './_Context/Context';
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
 import Mylist from './components/event-lists/Mylist';
 import Upcoming from './components/event-lists/Upcoming';
-import Map from './components/Map_ui/Map/Map';
+import MapContainer from './components/Map_ui/MapContainer/MapContainer';
 import DriverForm from './components/events/driverForm';
 import RiderForm from './components/events/riderForm';
 import EventDetails from './components/events/eventDetails';
@@ -13,14 +13,12 @@ import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
 
-
-
 function App() {
-const [Event, setEvent] = useState({});
+  const [ myEventList, setMyList ] = useState({});
 
   return (
     <div className="App">
-      <Context.Provider value={{setEvent,Event}}>
+      <Context.Provider value={{ myEventList, setMyList }}>
         <Switch>
           <Route path="/myList">
             <Mylist />
@@ -35,7 +33,7 @@ const [Event, setEvent] = useState({});
           </Route>
 
           <Route path="/map">
-            <Map />
+            <MapContainer />
           </Route>
 
           <Route path="/eventDetails">
