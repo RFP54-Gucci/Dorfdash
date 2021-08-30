@@ -64,6 +64,15 @@ const Upcoming = (props) => {
     history.push('/eventDetails');
   };
 
+  const handleAttendEvent = () => {
+    history.push('/myList');
+  };
+
+  const attend = (e) => {
+    addEvent(e);
+    handleAttendEvent();
+  }
+
   return (
     <div>
       <Container maxWidth="sm" className={classes.root}>
@@ -88,7 +97,7 @@ const Upcoming = (props) => {
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.action}>
-                  <Button size="small" className={classes.button} onClick={() => addEvent(event)}>Attend</Button>
+                  <Button size="small" className={classes.button} onClick={() => attend(event)} >Attend</Button>
                 </CardActions>
               </CardActionArea>
             </Card>

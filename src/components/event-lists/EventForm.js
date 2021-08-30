@@ -1,11 +1,10 @@
-import { useState, useContext} from 'react';
-import axios from 'axios';
+import { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+// import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-
-
 
 const EventForm = () => {
   const useStyles = makeStyles((theme) => ({
@@ -42,6 +41,13 @@ const EventForm = () => {
   // const [ eventTime, setEventTime ] = useState('');
   const [ eventLocation, setEventLocation ] = useState('');
   const [ eventDes, setEventDes ] = useState('');
+
+  // ------------ switch routes ---------------
+  let history = useHistory();
+
+  const handleNewEvent = () => {
+    history.push('/myList');
+  };
 
   // ---------- onChange funcs ------------
   const handleEventName = (e) => {
@@ -156,7 +162,7 @@ const EventForm = () => {
             onChange={handleEventDes}
           />
         </div>
-        <Button className={classes.button}/* onSubmit={handleSubmit} */>Create event</Button>
+        <Button className={classes.button}/* onSubmit={handleSubmit} */ onClick={handleNewEvent}>Create event</Button>
       </form>
     </Container>
   );
