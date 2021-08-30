@@ -2,10 +2,10 @@ const db = require('../../db/index.js');
 
 module.exports = {
   getEvent: async (req, callback) => {
-    const { eventname } = req.headers;
-    console.log(eventname);
+    const { event_name } = req.headers;
+    console.log(event_name);
 
-    const queryStr = `SELECT * FROM events WHERE event_name='${eventname}'`;
+    const queryStr = `SELECT * FROM events WHERE event_name='${event_name}'`;
 
     try {
       const event = await db.query(queryStr);
