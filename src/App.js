@@ -35,7 +35,7 @@ const [Event, setEvent] = useState({});
           </Route>
 
           <Route path="/map">
-            <MapTest />
+            <MapTest /> {/* Reject PR if this is not <Map /> */}
           </Route>
 
           <Route path="/eventDetails">
