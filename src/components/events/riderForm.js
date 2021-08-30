@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:'center',
     marginBottom:10,
     backgroundColor:'#ECECEC',
-    paddingTop:80
+    // paddingTop:80
   },
   control: {
     padding: theme.spacing(2),
@@ -32,26 +32,26 @@ const useStyles = makeStyles((theme) => ({
    padding:13,
    width:300
  },
- city: {
-   width:140,
-   paddingRight:5,
-   padding:10
- },
- state: {
-   width:60,
-   padding:10
- },
+//  city: {
+//    width:140,
+//    paddingRight:5,
+//    padding:10
+//  },
+//  state: {
+//    width:60,
+//    padding:10
+//  },
  header: {
    backgroundColor:'#20A46B',
    height:40
  },
- zip: {
-   width:80,
-   padding:10
- },
+//  zip: {
+//    width:80,
+//    padding:10
+//  },
  gridStyle: {
    height:400,
-  paddingTop:5,
+  paddingBottom:70,
  backgroundColor:'#ECECEC'
 }
 }));
@@ -61,12 +61,30 @@ const RiderForm = () => {
 
   const[addRider, setAddRider] = useState({
     phone: '',
-    addressLine1: '',
-    addressLine2: '',
-    city: '',
-    state: '',
-    zipcode: '',
+    location: ''
   })
+
+  const[validateName, setValidateName] = useState('')
+  const[validateAddress, setValidateAddress] = useState('')
+
+
+  const handleSubmit = () => {
+    if(addRider.phone === '' && addRider.location === '') {
+      setValidateName('Input Required');
+      setValidateAddress('Input Required');
+    }
+  }
+
+  const handleNameChange = (e) => {
+    setAddRider(e.target.value);
+    setValidateName('');
+  }
+
+
+  const handleAddressChange = (e) => {
+    setAddRider(e.target.value);
+    setValidateAddress(true);
+  }
   const classes = useStyles();
   return (
     <Container maxWidth="xs" className={classes.container}>
@@ -76,25 +94,29 @@ const RiderForm = () => {
 
             <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
           <form className={classes.root} Validate autoComplete="off">
-            <TextField id="outlined-basic" label="Contact Number *"
-             variant="outlined" className={classes.textField}/>
-             <br />
+            <TextField id="outlined-basic" label="Contact Number"
+             variant="outlined" className={classes.textField} required
+              onChange ={handleNameChange}/>
 
-             <TextField id="outlined-basic" label="Address Line 1 *"
-             variant="outlined" className={classes.textField} />
              <br />
-
-             <TextField id="outlined-basic" label="Address Line 2"
+             {validateName !== ''?validateName : ''}
+             <TextField id="outlined-basic" multiline maxRows={4} label="Location"
+             variant="outlined" className={classes.textField} required
+             onChange ={handleAddressChange}/>
+             <br />
+             {validateAddress!== '' ? validateAddress : ''}
+{/*  onChange = {() => setValidate(true)} */}
+             {/* <TextField id="outlined-basic" label="Address Line 2"
              variant="outlined" className={classes.textField} />
-              <br />
-             <TextField id="outlined-basic" label="City *"
+              <br /> */}
+             {/* <TextField id="outlined-basic" label="City *"
              variant="outlined" className={classes.city}/>
 
              <TextField id="outlined-basic" label="State *"
              variant="outlined" className={classes.state} />
 
             <TextField id="outlined-basic" label="Zip code *"
-             variant="outlined" className={classes.zip} />
+             variant="outlined" className={classes.zip} /> */}
           </form>
 
         </Grid>
@@ -107,7 +129,7 @@ const RiderForm = () => {
 
     <Button variant="contained"  className={classes.root}
          style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 40}}
-         onClick = {() => alert(addRider.phone)}>
+         onClick = {handleSubmit}>
   Submit
 </Button>
   </Container>
