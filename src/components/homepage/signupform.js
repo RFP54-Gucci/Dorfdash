@@ -83,7 +83,7 @@ const SignUpForm = () => {
       {/* <Button className={classes.signupBtn} variant="contained" disableElevation
         onClick={(e) => {handleSubmit(e)}}
       >Sign Up</Button> */}
-      <Button className={classes.signupBtn}>
+      <Button className={classes.signupBtn} onClick={(e) => {handleSubmit(e)}}>
         <Link className={classes.link} to="/newUser">Sign Up</Link>
       </Button>
       <Container className={classes.returningContainer}>

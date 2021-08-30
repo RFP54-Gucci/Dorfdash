@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Container, AppBar, Typography, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   div: {
@@ -35,7 +36,12 @@ const useStyles = makeStyles({
     backgroundColor: '#20A46B',
     color: '#fff',
     marginTop: '10%',
-    fontSize: '1.2rem'
+    fontSize: '1.2rem',
+    padding: '5%'
+  },
+  link: {
+    color: '#fff',
+    textDecoration: 'none'
   }
 });
 
@@ -68,9 +74,14 @@ const ReturningUser = () => {
       <h2>Welcome Back!</h2>
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
         onChange={(e) => {handleEmail(e)}}/>
-      <Button className={classes.button} variant="contained" disableElevation
+      {/* <Button className={classes.button}
         onClick={(e) => {handleSubmit(e)}}
-      >Log In</Button>
+      >Log In</Button> */}
+      <Button className={classes.button} onClick={(e) => handleSubmit(e)}>
+        <Link to="/myList" className={classes.link}>
+          Log in
+        </Link>
+      </Button>
     </Container>
       <Container className={classes.footer}>
         <p>Designed by Team GUCCI @ 2021</p>
