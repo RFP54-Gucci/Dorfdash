@@ -32,11 +32,13 @@ app.get('/test', (req, res) => {
 // app.use(express.static(path.join(__dirname, '../public')));
 
 // Serve build folder when in production environment
-app.use(express.static(path.join(__dirname, 'build')));
-// More info here => https://create-react-app.dev/docs/deployment/#serving-apps-with-client-side-routing
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build', 'index.html'));
-});
+if (process.env.NODE.ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../build')));
+  // More info here => https://create-react-app.dev/docs/deployment/#serving-apps-with-client-side-routing
+  app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build', 'index.html'));
+  });
+}
 
 // Run the server
 app.listen(app.get('port'));
