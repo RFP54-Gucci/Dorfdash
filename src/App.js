@@ -12,7 +12,7 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
-
+import MapTest from './components/Map.js'
 
 
 function App() {
@@ -35,7 +35,7 @@ const [Event, setEvent] = useState({});
           </Route>
 
           <Route path="/map">
-            <Map />
+            <MapTest />
           </Route>
 
           <Route path="/eventDetails">
