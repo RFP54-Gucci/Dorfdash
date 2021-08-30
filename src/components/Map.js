@@ -9,7 +9,7 @@ const mapStyles = {
 };
 
 const origin = '30920 Dyer St, Union City, CA 94587';
-const mapOrigin = origin.replace(/ /g, '+');
+// const mapOrigin = origin.replace(/ /g, '+');
 const geoOrigin = origin.replace(/ /g, '%20');
 
 export class MapContainer extends Component {
