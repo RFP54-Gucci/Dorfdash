@@ -23,8 +23,11 @@ const EventForm = () => {
     button: {
       backgroundColor: '#20A46B',
       color: 'white',
-      marginTop: 15,
+      marginTop: 25,
       marginBottom: 15,
+    },
+    input: {
+      marginBottom: 20,
     }
   }));
 
@@ -89,9 +92,9 @@ const EventForm = () => {
   return (
     <Container maxWidth="sm" className={classes.container}>
       <h1>Dorfdash</h1>
-      <h3>Create a new event</h3>
+      <h3 styles={{ marginTop: 20 }}>Create a new event</h3>
       <form className={classes.root} noValidate autoComplete="off">
-        <div>
+        <div className={classes.input}>
           <TextField
             id="outlined-size-small"
             label="Event name"
@@ -101,7 +104,7 @@ const EventForm = () => {
             onChange={handleEventName}
           />
         </div>
-        <div>
+        <div className={classes.input}>
           <TextField
             id="outlined-size-small"
             label="Event host"
@@ -111,7 +114,7 @@ const EventForm = () => {
             onChange={handleEventHost}
           />
         </div>
-        <div>
+        <div className={classes.input}>
         <TextField
             id="outlined-size-small"
             variant="outlined"
@@ -119,7 +122,7 @@ const EventForm = () => {
             type="date"
           />
         </div>
-        <div>
+        <div className={classes.input}>
           <TextField
             id="outlined-size-small"
             variant="outlined"
@@ -127,7 +130,7 @@ const EventForm = () => {
             type="time"
           />
         </div>
-        <div>
+        <div className={classes.input}>
           <TextField
             id="outlined-size-small"
             label="Event location"
@@ -139,7 +142,7 @@ const EventForm = () => {
             onChange={handleEventLocation}
           />
         </div>
-        <div>
+        <div className={classes.input}>
           <TextField
             id="outlined-size-small"
             label="Event description"
