@@ -1,9 +1,9 @@
-var api = require('express').Router();
+const api = require('express').Router();
 
-//Connect controller methods to their corresponding routes
+// Connect controller methods to their corresponding routes
 api.get('/directions', (req, res) => {
-  //do something with api
+  // do something with api
+  res.send('test');
 });
-
 
 module.exports = api;
