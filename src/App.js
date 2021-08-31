@@ -15,8 +15,6 @@ import Homepage from './components/homepage/homePage';
 import EventSummary from './components/events/eventSummary.js';
 
 
-
-
 function App() {
   const [ myEventList, setMyList ] = useState([]);
   const [ eventIdArr, setEventIdArr ] = useState([]);
