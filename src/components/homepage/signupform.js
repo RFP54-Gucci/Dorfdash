@@ -19,10 +19,10 @@ const axios = require('axios');
 
 const useStyles = makeStyles({
   form: {
-    padding: '5%',
+    padding: '5% 5% 2% 5%',
     margin: '2% auto',
-    borderRadius: '25px',
-    boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
+    // borderRadius: '25px',
+    // boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
   },
   title: {
     fontSize: '2.2rem'

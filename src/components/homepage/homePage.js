@@ -5,33 +5,42 @@ import Footer from '../Footer/Footer.js';
 import { Container, AppBar, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-// const useStyles = makeStyles({
-//   div: {
-//     width: '100vw',
-//     maxWidth: '100vw',
-//     padding: '0',
-//     height: '100vh'
-//   },
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 375,
+    height: 770,
+    borderColor: '#ECECEC',
+    borderStyle: 'solid',
+    overflowX: 'scroll',
+    marginBottom: 25,
+    padding: 0
+  },
+  div: {
+    width: '100vw',
+    maxWidth: '100vw',
+    padding: '0',
+    height: '100vh'
+  },
 
-//   header: {
-//     backgroundColor: '#20A46B'
-//   },
-//   headerTitle: {
-//     margin: '0',
-//     padding: '2%',
-//   },
-//   footer: {
-//     width: '100vw',
-//     maxWidth: '100vw',
-//     backgroundColor: '#3F3F3F',
-//     padding: '2% 2% 5% 2%',
-//     textAlign: 'center',
-//     color: '#fff'
-//   }
-// });
+  header: {
+    backgroundColor: '#20A46B'
+  },
+  headerTitle: {
+    margin: '0',
+    padding: '2%',
+  },
+  footer: {
+    width: '100vw',
+    maxWidth: '100vw',
+    backgroundColor: '#3F3F3F',
+    padding: '2% 2% 5% 2%',
+    textAlign: 'center',
+    color: '#fff'
+  }
+});
 
 const Homepage = () => {
-  // const classes = useStyles();
+  const classes = useStyles();
   return (
     // <Container className={classes.div}>
     //   <AppBar position="static" className={classes.header}>
@@ -44,11 +53,11 @@ const Homepage = () => {
     //     <p>Designed by Team GUCCI @ 2021</p>
     //   </Container>
     // </Container>
-    <div>
+    <Container className={classes.root}>
       <Header />
       <SignUpForm />
       <Footer />
-    </div>
+    </Container>
   )
 }
 

@@ -6,6 +6,16 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
+  root: {
+    maxWidth: 375,
+    height: 770,
+    borderColor: '#ECECEC',
+    borderStyle: 'solid',
+    overflowX: 'scroll',
+    marginBottom: 25,
+    display: 'flex',
+    flexDirection: 'column'
+  },
   div: {
     width: '100vw',
     maxWidth: '100vw',
@@ -54,24 +64,21 @@ const useStyles = makeStyles({
     textDecoration: 'none'
   },
   createButton2: {
-    width: '40%',
+    width: '80%',
     margin: 'auto',
     padding: '6%',
     backgroundColor: '#20A46B',
     color: '#fff',
-    marginTop: '10%'
+    // marginTop: '10%',
+    marginTop: '40%'
   },
   attendButton2: {
-    width: '40%',
+    width: '80%',
     margin: 'auto',
     padding: '6%',
     backgroundColor: '#20A46B',
     color: '#fff',
     marginTop: '10%'
-  },
-  mobileDiv: {
-    display: 'flex',
-    flexDirection: 'column'
   }
 });
 
@@ -101,7 +108,7 @@ const NewUser = () => {
     //     <p>Designed by Team GUCCI @ 2021</p>
     //   </Container>
     // </Container>
-    <div className={classes.mobileDiv}>
+    <Container className={classes.root}>
       <Header />
       <Button className={classes.createButton2}>
          <Link to="/eventForm" className={classes.link}>
@@ -114,7 +121,7 @@ const NewUser = () => {
          </Link>
        </Button>
        <Footer/>
-    </div>
+    </Container>
   )
 }
 

@@ -7,6 +7,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
+  root: {
+    maxWidth: 375,
+    height: 770,
+    borderColor: '#ECECEC',
+    borderStyle: 'solid',
+    overflowX: 'scroll',
+    marginBottom: 25,
+  },
   div: {
     width: '100vw',
     maxWidth: '100vw',
@@ -31,9 +39,10 @@ const useStyles = makeStyles({
   },
   form: {
     padding: '5%',
-    margin: '13% auto',
-    borderRadius: '25px',
-    boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
+    // margin: '13% auto',
+    margin: '53% auto',
+    // borderRadius: '25px',
+    // boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
   },
   button: {
     backgroundColor: '#20A46B',
@@ -90,7 +99,7 @@ const ReturningUser = () => {
     //     <p>Designed by Team GUCCI @ 2021</p>
     //   </Container>
     // </Container>
-    <div>
+    <Container className={classes.root}>
       <Header />
       <Container className={classes.form} maxWidth="xs">
         <h2>Welcome Back!</h2>
@@ -101,7 +110,7 @@ const ReturningUser = () => {
         </Button>
       </Container>
       <Footer />
-    </div>
+    </Container>
   )
 }
 
