@@ -1,7 +1,19 @@
-import { useState } from 'react';
-import {  Container, TextField, Button } from '@material-ui/core';
+import { useState, useEffect } from 'react';
+import {  Container, TextField, Button, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+
+/*
+  for rider, it should lead to event page with driver
+
+  for driver, it should lead to map page with people who they're picking up
+
+  - when they sign back in, they should have access this page
+
+  they should also be able to keep track of if they're driver/rider
+  and the buttons should either be displayed or not depending on who they are
+
+*/
 
 const axios = require('axios');
 
@@ -51,26 +63,54 @@ const SignUpForm = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
 
+  const [validInfo, setValidInfo] = useState(false);
+
   let handleFirstName = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setFirstName(e.target.value);
   }
 
   let handleLastName = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setLastName(e.target.value);
   }
 
   let handleEmail = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setEmail(e.target.value);
+
+
   }
 
   let handleSubmit = (e) => {
     e.preventDefault();
     console.log(firstName + ' ' + lastName + ' ' + email);
     // set up an axios post request to backend
+    // axios.post()
+    if (firstName && lastName && handleEmail(email)) {
+      setValidInfo(true);
+    }
   }
+
+  let emailValidation = (email) => {
+    let validRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (email.value.match(validRegex)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  let handleValidation = () => {
+    if (firstName && lastName && emailValidation(email)) {
+      setValidInfo(true);
+    }
+  }
+
+  useEffect(() => {
+    handleValidation();
+  }, []);
 
   return (
     <Container className={classes.form} maxWidth="xs">
@@ -84,9 +124,9 @@ const SignUpForm = () => {
       {/* <Button className={classes.signupBtn} variant="contained" disableElevation
         onClick={(e) => {handleSubmit(e)}}
       >Sign Up</Button> */}
-      <Button className={classes.signupBtn} onClick={(e) => {handleSubmit(e)}}>
+     <Button className={classes.signupBtn} onClick={(e) => {handleSubmit(e)}}>
         <Link className={classes.link} to="/newUser">Sign Up</Link>
-      </Button>
+     </Button>
       <Container className={classes.returningContainer}>
         <p>Already have an account?</p>
         <Button className={classes.loginBtn}>
