@@ -9,6 +9,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Header from './../Header/Header.js';
+import Footer from './../Footer/Footer.js';
 
 const Mylist = () => {
   const useStyles = makeStyles((theme) => ({
@@ -82,7 +84,7 @@ const Mylist = () => {
 
   return (
     <Container maxWidth="sm" className={classes.root}>
-      <h1>Dorfdash</h1>
+      {Header()}
       <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button>
       <h3>My events</h3>
       <div className="container-slide">
@@ -112,6 +114,7 @@ const Mylist = () => {
         ))}
       </div>
       <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
+      {Footer()}
     </Container>
   );
 };

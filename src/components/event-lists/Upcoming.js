@@ -10,6 +10,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import samples from './samples.js';
+import Header from './../Header/Header.js';
+import Footer from './../Footer/Footer.js';
 
 const Upcoming = (props) => {
   const useStyles = makeStyles((theme) => ({
@@ -88,7 +90,7 @@ const Upcoming = (props) => {
   return (
     <div>
       <Container maxWidth="sm" className={classes.root}>
-        <h1>Dorfdash</h1>
+        {Header()}
         <h3>Upcoming events</h3>
         <div className="container-slide">
           {samples.map((event) => (
@@ -115,6 +117,7 @@ const Upcoming = (props) => {
             </Card>
           ))}
         </div>
+        {Footer()}
       </Container>
     </div>
   );

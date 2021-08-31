@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
+import Header from './../Header/Header.js';
+import Footer from './../Footer/Footer.js';
 
 const EventForm = () => {
   const useStyles = makeStyles((theme) => ({
@@ -18,22 +20,21 @@ const EventForm = () => {
       height: 770,
       borderColor: '#ECECEC',
       borderStyle: 'solid',
-      marginBottom: 25,
+      marginBottom: 10,
     },
     button: {
       backgroundColor: '#20A46B',
       color: 'white',
-      marginTop: 10,
-      marginBottom: 15,
+      marginTop: 2,
     },
     input: {
-      marginBottom: 15,
+      marginBottom: 4,
     },
     validate: {
       color: 'red',
       fontStyle: 'italic',
       fontSize: 12,
-      marginBottom: 5,
+      marginBottom: 2,
     },
   }));
 
@@ -55,14 +56,6 @@ const EventForm = () => {
 
   // ------------ switch routes ---------------
   let history = useHistory();
-
-  // const handleSubmit = () => {
-  //   axios.post('', {})
-  //     .then((res) => {
-  //       history.push('/myList');
-  //     })
-  //     .catch((err) => {})
-  // };
 
   // ---------- onChange funcs ------------
   const handleValidation = () => {
@@ -134,13 +127,14 @@ const EventForm = () => {
   //   })
   //     .then((res) => {
   //       res.send('successfully create new event!');
+  //       history.push('/myList');
   //     })
   //     .catch((err) => { console.log(err) });
   // }
 
   return (
     <Container maxWidth="sm" className={classes.container}>
-      <h1>Dorfdash</h1>
+      {Header()}
       <h3 styles={{ marginTop: 20 }}>Create a new event</h3>
       <form className={classes.root} noValidate autoComplete="off">
         <div className={classes.input}>
@@ -212,6 +206,7 @@ const EventForm = () => {
         </div>
         <Button className={classes.button} onClick={handleValidation} >Create event</Button>
       </form>
+      {Footer()}
     </Container>
   );
 };
