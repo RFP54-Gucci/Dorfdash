@@ -8,8 +8,8 @@ import {Context} from '../../_Context/Context.js';
 
 
 const EventForm = () => {
-  const {setEvent,Event} = useContext(Context);
-  console.log("what is Event?: ", Event)
+  const {} = useContext(Context);
+  
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {

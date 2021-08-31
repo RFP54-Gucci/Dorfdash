@@ -12,15 +12,22 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
+import {users, riders, events, drivers} from './_staticData/data.js';
+console.log(users, riders, events, drivers)
 
 
 
 function App() {
-const [Event, setEvent] = useState({});
+  const [userData, setUserData] = useState(users);
+  const [riderData, setRiderData] = useState(riders);
+  const [eventData, setEventData] = useState(events);
+  const [driverData, setDriverData] = useState(drivers);
 
   return (
     <div className="App">
-      <Context.Provider value={{setEvent,Event}}>
+      <Context.Provider
+        value={{ userData, riderData, eventData,  driverData, }}
+      >
         <Switch>
           <Route path="/myList">
             <Mylist />

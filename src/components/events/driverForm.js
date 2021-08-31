@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
   container: {
     borderColor: '#ECECEC',
     borderStyle: 'solid',
-    // borderWidth:1,
+    borderWidth:1,
     marginTop:20,
     alignItems:'center'
  },
