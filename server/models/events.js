@@ -2,12 +2,22 @@ const db = require('../../db/index.js');
 
 module.exports = {
   getEvent: async (req, callback) => {
-    const { event_name } = req.query;
-    const queryStr = `SELECT * FROM events WHERE event_name='${event_name}'`;
+    const { eventName } = req.params;
+    const queryStr = `SELECT * FROM events WHERE event_name='${eventName}'`;
 
     try {
       const event = await db.query(queryStr);
       callback(null, event);
+    } catch (err) {
+      callback(err);
+    }
+  },
+  getAllEvents: async (req, callback) => {
+    const queryStr = `SELECT * FROM events`;
+
+    try {
+      const events = await db.query(queryStr);
+      callback(null, events);
     } catch (err) {
       callback(err);
     }

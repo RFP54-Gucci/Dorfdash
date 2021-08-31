@@ -10,6 +10,15 @@ module.exports = {
       }
     })
   },
+  getAll: (req, res) => {
+    models.events.getAllEvents(req, (err, events) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(events);
+      }
+    })
+  },
   post: (req, res) => {
     models.events.postEvent(req, (err) => {
       if (err) {
