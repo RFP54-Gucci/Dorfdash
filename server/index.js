@@ -12,7 +12,7 @@ const api = require('./api/index.js');
 const app = express();
 
 // Set what we are listening on.
-app.set('port', 3001);
+app.set('port', 3100);
 
 // Use CORS
 app.use(cors());
