@@ -16,11 +16,8 @@ const EventForm = () => {
       },
     },
     container: {
-      maxWidth: 375,
-      height: 770,
-      borderColor: '#ECECEC',
-      borderStyle: 'solid',
-      marginBottom: 10,
+      height: 803.9,
+      padding: 0,
     },
     button: {
       backgroundColor: '#20A46B',
@@ -133,8 +130,8 @@ const EventForm = () => {
   // }
 
   return (
-    <Container maxWidth="sm" className={classes.container}>
-      {Header()}
+    <Container maxWidth="xs" className={classes.container}>
+      <Header/>
       <h3 styles={{ marginTop: 20 }}>Create a new event</h3>
       <form className={classes.root} noValidate autoComplete="off">
         <div className={classes.input}>
@@ -206,7 +203,7 @@ const EventForm = () => {
         </div>
         <Button className={classes.button} onClick={handleValidation} >Create event</Button>
       </form>
-      {Footer()}
+      <Footer/>
     </Container>
   );
 };

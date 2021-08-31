@@ -16,15 +16,14 @@ import Footer from './../Footer/Footer.js';
 const Upcoming = (props) => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 375,
-      height: 770,
-      borderColor: '#ECECEC',
-      borderStyle: 'solid',
+      padding: 0,
+    },
+    container: {
+      height: 650,
       overflowX: 'scroll',
-      marginBottom: 25,
     },
     card: {
-      marginBottom: 20,
+      margin: 20,
     },
     content: {
       paddingBottom: 2,
@@ -89,8 +88,9 @@ const Upcoming = (props) => {
 
   return (
     <div>
-      <Container maxWidth="sm" className={classes.root}>
-        {Header()}
+      <Container maxWidth="xs" className={classes.root}>
+        <Header/>
+        <Container maxWidth="xs" className={classes.container}>
         <h3>Upcoming events</h3>
         <div className="container-slide">
           {samples.map((event) => (
@@ -117,7 +117,8 @@ const Upcoming = (props) => {
             </Card>
           ))}
         </div>
-        {Footer()}
+        </Container>
+        <Footer/>
       </Container>
     </div>
   );
