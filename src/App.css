@@ -37,13 +37,12 @@
   }
 }
 
-h1 {
+/* h1 {
   background-color: #20A46B;
   color: white;
   margin-top: 25px;
-}
+} */
 
-#map {
-  height: 100vh;
-  width: 100vw;
+.container-slide {
+  margin-bottom: 15px;
 }
