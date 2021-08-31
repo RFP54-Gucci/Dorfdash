@@ -1,39 +1,67 @@
-import React from 'react';
-import dotenv from 'dotenv';
-import GoogleMapReact from 'google-map-react';
-import { Paper, Typography, useMediaQuery } from '@material-ui/core';
-import {LocationOutlinedIcon} from '@material-ui/icons';
-import Rating from '@material-ui/lab';
-import useStyles from './styles';
-dotenv.config();
-const API_KEY = process.env.REACT_APP_API_KEY
-console.log('what is API_KEY?? ',API_KEY);
+import React, { useState, useEffect, useRef } from 'react';
+import { Loader } from '@googlemaps/js-api-loader';
+import { MAPS_KEY } from '../../../config.js';
 
+const Map = (props) => {
+  const [origin, setOrigin] = useState(
+    '2240 Golden Gate Ave, San Francisco, CA 94118'
+  );
+  const [destination, setDestination] = useState(
+    '44 Tehama St, San Francisco, CA 94105'
+  );
+  const [riders, setRiders] = useState([
+    { location: '2229 Union St, San Francisco, CA 94123' },
+    { location: '350 Turk St, San Francisco, CA 94102' },
+  ]);
+  const googlemap = useRef(null);
 
-const Map = () => {
-  const classes = useStyles();
-  const isMobile = useMediaQuery('(min-width:600px)');
-  const coordinates = {lat:45.421532,lng:-75.6971189};
+  useEffect(() => {
+    const loader = new Loader({
+      apiKey: MAPS_KEY,
+      version: 'weekly',
+    });
+    let map;
+    loader.load().then((google) => {
+      map = new google.maps.Map(googlemap.current, {
+        center: new google.maps.LatLng(39.8097343, -98.5556199),
+        zoom: 5,
+      });
+
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address: origin }, (results, status) => {
+        if (status === 'OK') {
+          map.setCenter(results[0].geometry.location);
+        } else {
+          console.error(status);
+        }
+      });
+
+      var directionsService = new google.maps.DirectionsService();
+      var directionsRenderer = new google.maps.DirectionsRenderer();
+      directionsRenderer.setMap(map);
+      directionsService.route(
+        {
+          origin: { query: origin },
+          destination: { query: destination },
+          waypoints: riders,
+          travelMode: 'DRIVING',
+        },
+        function (response, status) {
+          if (status === 'OK') {
+            directionsRenderer.setDirections(response);
+          } else {
+            console.error(status);
+          }
+        }
+      );
+    });
+  }, [riders, destination, origin]);
+
   return (
-    <div className={classes.mapContainer}>
-      <GoogleMapReact
-        bootstrapURLKeys={{key:API_KEY}}
-        defaultCenter={coordinates}
-        center={coordinates}
-        defaultZoom={14}
-        margin={[50,50,50,50]}
-        options={''}
-        onChange={''}
-        onChildClick={''}
-      >
-      </GoogleMapReact>
+    <div>
+      <div id="map" ref={googlemap} />
     </div>
   );
 };
-
-
-
-
-
 
 export default Map;

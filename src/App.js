@@ -5,14 +5,13 @@ import './App.css';
 import EventForm from './components/event-lists/EventForm';
 import Mylist from './components/event-lists/Mylist';
 import Upcoming from './components/event-lists/Upcoming';
-import Map from './components/Map_ui/Map/Map';
+import Map from './components/Map_ui/Map/Map.js';
 import DriverForm from './components/events/driverForm';
 import RiderForm from './components/events/riderForm';
 import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
-import MapTest from './components/Map.js';
 
 function App() {
   const [Event, setEvent] = useState({});
@@ -35,7 +34,7 @@ function App() {
 
           <Route path="/map">
             {/* Reject PR if this is not <Map /> */}
-            <MapTest />
+            <Map />
           </Route>
 
           <Route path="/eventDetails">
