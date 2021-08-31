@@ -28,7 +28,11 @@ const EventForm = () => {
     },
     input: {
       marginBottom: 20,
-    }
+    },
+    validate: {
+      color: 'red',
+      fontStyle: 'italic',
+    },
   }));
 
   const classes = useStyles();
@@ -36,10 +40,16 @@ const EventForm = () => {
   // --------------- states --------------------
   const [ eventName, setEventName ] = useState('');
   const [ eventHost, setEventHost ] = useState('');
-  const [ eventDate, setEventDate] = useState(null);
-  const [ eventTime, setEventTime ] = useState(null);
+  const [ eventDate, setEventDate] = useState('');
+  const [ eventTime, setEventTime ] = useState('');
   const [ eventLocation, setEventLocation ] = useState('');
   const [ eventDes, setEventDes ] = useState('');
+
+  const [ validateName, setValidateName ] = useState('');
+  const [ validateHost, setValidateHost ] = useState('');
+  const [ validateDate, setValidateDate ] = useState('');
+  const [ validateTime, setValidateTime ] = useState('');
+  const [ validateLocation, setValidateLocation ] = useState('');
 
   // ------------ switch routes ---------------
   let history = useHistory();
@@ -50,34 +60,50 @@ const EventForm = () => {
   };
 
   // ---------- onChange funcs ------------
+  const handleSubmit = () => {
+    if (eventName === '' &&
+      eventHost === '' && eventDate === '' &&
+      eventTime === '' && eventLocation === ''
+    ) {
+      setValidateName('Please enter the event name!');
+      setValidateHost('Please enter the event host!');
+      setValidateDate('Please enter the event date!');
+      setValidateTime('Please enter the event time!');
+      setValidateLocation('Please enter the event location!');
+    }
+  }
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
-    // console.log(eventName);
+    setValidateName('');
   };
 
   const handleEventHost = (e) => {
     e.preventDefault();
     setEventHost(e.target.value);
     // console.log(eventHost);
+    setValidateHost('');
   };
 
   const handleEventDate = (date) => {
     date.preventDefault();
     setEventDate(date);
-    console.log(date);
+    // console.log(date);
+    setValidateDate('');
   };
 
   const handleEventTime = (time) => {
     time.preventDefault();
     setEventTime(time);
-    console.log(time);
+    // console.log(time);
+    setValidateTime('');
   };
 
   const handleEventLocation = (e) => {
     e.preventDefault();
     setEventLocation(e.target.value);
     // console.log(eventLocation);
+    setValidateLocation('');
   };
 
   const handleEventDes = (e) => {
@@ -109,22 +135,24 @@ const EventForm = () => {
         <div className={classes.input}>
           <TextField
             id="outlined-size-small"
-            label="Event name"
+            label="Event name*"
             variant="outlined"
             size="small"
             fullWidth
             onChange={handleEventName}
           />
+          <div className={classes.validate}>{validateName}</div>
         </div>
         <div className={classes.input}>
           <TextField
             id="outlined-size-small"
-            label="Event host"
+            label="Event host*"
             variant="outlined"
             size="small"
             fullWidth
             onChange={handleEventHost}
           />
+          <div className={classes.validate}>{validateHost}</div>
         </div>
         <div className={classes.input}>
         <TextField
@@ -134,6 +162,7 @@ const EventForm = () => {
             type="date"
             onChange={handleEventDate}
           />
+          <div className={classes.validate}>{validateDate}</div>
         </div>
         <div className={classes.input}>
           <TextField
@@ -143,11 +172,12 @@ const EventForm = () => {
             type="time"
             onChange={handleEventTime}
           />
+          <div className={classes.validate}>{validateTime}</div>
         </div>
         <div className={classes.input}>
           <TextField
             id="outlined-size-small"
-            label="Event location"
+            label="Event location*"
             multiline
             rows={2}
             variant="outlined"
@@ -155,6 +185,7 @@ const EventForm = () => {
             fullWidth
             onChange={handleEventLocation}
           />
+          <div className={classes.validate}>{validateLocation}</div>
         </div>
         <div className={classes.input}>
           <TextField
@@ -168,7 +199,7 @@ const EventForm = () => {
             onChange={handleEventDes}
           />
         </div>
-        <Button className={classes.button}/* onSubmit={handleSubmit} */ onClick={handleNewEvent}>Create event</Button>
+        <Button className={classes.button} onClick={handleSubmit} /*onClick={handleNewEvent}*/ >Create event</Button>
       </form>
     </Container>
   );
