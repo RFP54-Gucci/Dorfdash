@@ -8,8 +8,8 @@ module.exports = {
     const users = await db.query(queryStr).catch((err) => callback(err));
     callback(null, users);
 },
-  create: async (body, callback) => {
-    const { name, email } = body;
+  create: async (req, callback) => {
+    const { name, email } = req.body;
     const queryStr = `INSERT INTO users (name, email) VALUES ('${name}', '${email}') RETURNING user_id, name, email`;
 
     const userInfo = await db.query(queryStr).catch((err) => callback(err));

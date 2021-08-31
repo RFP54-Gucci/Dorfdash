@@ -13,9 +13,9 @@ code {
     monospace;
 }
 
-.header {
+/* .header {
   background-color: #20A46B;
-}
+} */
 
 .outline {
   outline: 1px solid red;
@@ -39,12 +39,12 @@ code {
   padding: 3%;
 }
 
-.footer {
+/* .footer {
   background-color: #3F3F3F;
   padding: 5%;
   text-align: center;
   color: #fff;
-}
+} */
 
 .homepage_div {
   width: 100vw;
