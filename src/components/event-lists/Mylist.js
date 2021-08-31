@@ -1,3 +1,6 @@
+import { Context } from '../../_Context/Context.js';
+import { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
@@ -6,8 +9,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Header from './../Header/Header.js';
+import Footer from './../Footer/Footer.js';
 
-const Mylist = (props) => {
+const Mylist = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
       maxWidth: 375,
@@ -41,30 +46,53 @@ const Mylist = (props) => {
     },
     remove: {
       color: '#20A46B',
-    }
+    },
+    browse: {
+      marginBottom: 15,
+    },
   }));
 
   const classes = useStyles();
 
+  const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
+
   // ------------ removing event --------------
   const removeEvent = (eventId) => {
-    for (var i = 0; i < props.myEventList.length; i++) {
-      if (props.myEventList[i].event_id === eventId) {
-        props.setMyList(props.myEventList.slice(0, i).concat(props.myEventList.slice(i + 1)));
+    for (var i = 0; i < myEventList.length; i++) {
+      if (myEventList[i].event_id === eventId) {
+        setMyList(myEventList.slice(0, i).concat(myEventList.slice(i + 1)));
       }
     }
+    var removedIndex = eventIdArr.indexOf(eventId);
+    setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
+  };
+
+  // ------------ switching routes --------------
+  let history = useHistory();
+
+  const handleCreate = () => {
+    history.push('/eventForm');
+  };
+
+  const handleBrowse = () => {
+    history.push('/upcoming');
+  };
+
+  const handleAttendedEvent = () => {
+    // history.push('/eventSummary');
   };
 
   return (
     <Container maxWidth="sm" className={classes.root}>
-      <h1>Dorfdash</h1>
-      <Button size="small" className={classes.button}>Create new event</Button>
+      {Header()}
+      <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button>
       <h3>My events</h3>
       <div className="container-slide">
-        {props.myEventList.map((event) => (
+       {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
+        myEventList.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
-              <CardContent className={classes.content}>
+              <CardContent className={classes.content} onClick={handleAttendedEvent}>
                 <Typography className={classes.title}>
                   {event.event_name}
                 </Typography>
@@ -85,6 +113,8 @@ const Mylist = (props) => {
           </Card>
         ))}
       </div>
+      <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
+      {Footer()}
     </Container>
   );
 };

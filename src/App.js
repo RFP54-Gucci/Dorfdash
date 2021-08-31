@@ -17,13 +17,16 @@ import EventSummary from './components/events/eventSummary.js';
 
 
 
-
 function App() {
-const [Event, setEvent] = useState({});
+  const [ myEventList, setMyList ] = useState([]);
+  const [ eventIdArr, setEventIdArr ] = useState([]);
 
   return (
     <div className="App">
-      <Context.Provider value={{setEvent,Event}}>
+      <Context.Provider value={{
+        myEventList, setMyList,
+        eventIdArr, setEventIdArr
+        }}>
         <Switch>
           <Route path="/myList">
             <Mylist />
