@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { useHistory } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import samples from './sample.js';
@@ -43,6 +44,18 @@ const useStyles = makeStyles((theme) => ({
 const EventDetails = (props) => {
   const classes = useStyles();
 
+  let history = useHistory();
+
+   const handleRiderPage =() => {
+    history.push("/riderForm");
+  }
+
+  const handleUpcomingEventPage =() => {
+    history.push("/upcoming");
+  }
+
+
+
   return (
       <Container maxWidth="xs" className={classes.container} >
       <h1>Dorfdash</h1>
@@ -51,7 +64,7 @@ const EventDetails = (props) => {
         <Grid item xs={10}>
             <div className={classes.spanDivs}>
             <span className={classes.span}>Event: </span>
-            <span >{item.event_name}</span>
+            <span style = {{fontWeight:900}}>{item.event_name}</span>
             </div>
 
             <div className={classes.spanDivs}>
@@ -84,16 +97,15 @@ const EventDetails = (props) => {
         </Grid>
         ))}
         <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}>
+         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
+         onClick = {handleUpcomingEventPage}>
   Back
 </Button>
-        <Button variant="contained" color="primary" className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF',margin:20}}>
-  Rider
-</Button>
+
 <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}>
-  Driver
+         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
+         onClick = {handleRiderPage}>
+  Attend
 </Button>
 
 
