@@ -1,3 +1,6 @@
+import Header from '../Header/Header.js';
+import Footer from '../Footer/Footer.js';
+
 import { useState } from 'react';
 import { Container, AppBar, Typography, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -64,29 +67,41 @@ const ReturningUser = () => {
   }
 
   return (
-    <Container className={classes.div}>
-      <AppBar position="static" className={classes.header}>
-        <Typography variant="h3" className={classes.headerTitle}>
-          Dorfdash
-        </Typography>
-      </AppBar>
+    // <Container className={classes.div}>
+    //   <AppBar position="static" className={classes.header}>
+    //     <Typography variant="h3" className={classes.headerTitle}>
+    //       Dorfdash
+    //     </Typography>
+    //   </AppBar>
+    //   <Container className={classes.form} maxWidth="xs">
+    //   <h2>Welcome Back!</h2>
+    //   <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
+    //     onChange={(e) => {handleEmail(e)}}/>
+    //   {/* <Button className={classes.button}
+    //     onClick={(e) => {handleSubmit(e)}}
+    //   >Log In</Button> */}
+    //   <Button className={classes.button} onClick={(e) => handleSubmit(e)}>
+    //     <Link to="/myList" className={classes.link}>
+    //       Log in
+    //     </Link>
+    //   </Button>
+    // </Container>
+    //   <Container className={classes.footer}>
+    //     <p>Designed by Team GUCCI @ 2021</p>
+    //   </Container>
+    // </Container>
+    <div>
+      <Header />
       <Container className={classes.form} maxWidth="xs">
-      <h2>Welcome Back!</h2>
-      <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
-        onChange={(e) => {handleEmail(e)}}/>
-      {/* <Button className={classes.button}
-        onClick={(e) => {handleSubmit(e)}}
-      >Log In</Button> */}
-      <Button className={classes.button} onClick={(e) => handleSubmit(e)}>
-        <Link to="/myList" className={classes.link}>
-          Log in
-        </Link>
-      </Button>
-    </Container>
-      <Container className={classes.footer}>
-        <p>Designed by Team GUCCI @ 2021</p>
+        <h2>Welcome Back!</h2>
+        <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
+          onChange={(e) => {handleEmail(e)}}/>
+        <Button className={classes.button} onClick={(e) => handleSubmit(e)}>
+          <Link to="/myList" className={classes.link}>Log in</Link>
+        </Button>
       </Container>
-    </Container>
+      <Footer />
+    </div>
   )
 }
 
