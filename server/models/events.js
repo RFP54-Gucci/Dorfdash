@@ -33,4 +33,9 @@ module.exports = {
       callback(err);
     }
   },
+
+  userEventsList: (email) => {
+    const query = `SELECT event_name FROM riders WHERE rider_email = ${email} OR driver_email = ${email} INNER JOIN events USING (event_name)`;
+    return db.query(query);
+  }
 }

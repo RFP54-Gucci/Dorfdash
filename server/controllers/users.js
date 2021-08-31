@@ -13,6 +13,12 @@ module.exports = {
 
   },
 
+  getAttendees: (req, res) => {
+    models.users.attendeeList(req.params.eventName)
+      .then((data) => res.send(data))
+      .catch((err) => res.send(err));
+  },
+
   post: /* models.users.create */ (req, res) => {
     models.users.create(req, (err, userInfo) => {
       if (err) {
