@@ -82,9 +82,9 @@ const EventSummary = (props) => {
               <span className={classes.span}>Location: </span>
               <span>{item.event_location}</span>
             </div>
-            <span style={{fontWeight:700}}>You Will Be Picked Up By :</span>
+            <span style={{fontWeight:700}}>You Will Be Notified Soon By Your Driver</span>
             <div style={{backgroundColor:'#ECECEC'}}>
-            <div><span style={{fontWeight:600}}>Helio</span></div>
+            <div><span style={{fontWeight:600, fontStyle:'italic'}}></span></div>
             <div><span style={{fontWeight:600}}>3M53AF2</span> </div>
             <div><span style={{fontWeight:600}}>Honda Civic- Silver</span></div>
             </div>
