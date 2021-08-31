@@ -43,6 +43,7 @@ CREATE TABLE drivers (
   event_id INTEGER,
   phone VARCHAR (10),
   location VARCHAR (50),
+  vehicle_info VARCHAR (50),
   CONSTRAINT "FK_Drivers.user_id"
     FOREIGN KEY (user_id)
       REFERENCES users(user_id)
