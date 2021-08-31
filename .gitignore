@@ -109,4 +109,5 @@ build
 build/
 package-lock.json
 
+events.env
 
