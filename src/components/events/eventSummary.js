@@ -39,9 +39,9 @@ const EventSummary = (props) => {
 
   let history = useHistory();
 
-   const handleRiderPage =() => {
-    history.push("/riderForm");
-  }
+  //  const handleHomePage =() => {
+  //   history.push("/");
+  // }
 
   const handleUpcomingEventPage =() => {
     history.push("/upcoming");
@@ -79,21 +79,24 @@ const EventSummary = (props) => {
               <span className={classes.span}>Location: </span>
               <span>{item.event_location}</span>
             </div>
-            <div>You Will Be Picked Up By : Helio </div>
+            <span style={{fontWeight:900}}>You Will Be Picked Up By :</span>
+            <div><span style={{fontWeight:600}}>Helio</span></div>
+            <div><span style={{fontWeight:600}}>3M53AF2</span> </div>
+            <div><span style={{fontWeight:600}}>Honda Civic- Silver</span></div>
             </Grid>
              {/* {/* </Paper> */}
 
         </Grid>
         ))}
-        <Button variant="contained"  className={classes.root}
+        {/* <Button variant="contained"  className={classes.root}
          style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
          onClick = {handleUpcomingEventPage}>
   Back
-</Button>
+</Button> */}
 <Button variant="contained"  className={classes.root}
          style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
-         onClick = {handleRiderPage}>
-  Home
+         onClick = {handleUpcomingEventPage}>
+  Back to Events
 </Button>
 
     </Container>
