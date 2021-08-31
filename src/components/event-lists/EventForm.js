@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -6,13 +6,13 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Header from './../Header/Header.js';
 import Footer from './../Footer/Footer.js';
+import {Context} from '../../_Context/Context.js';
+
+
 
 const EventForm = () => {
-<<<<<<< HEAD
-  const {} = useContext(Context);
-  
-=======
->>>>>>> main
+  const {eventData} = useContext(Context);
+
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {

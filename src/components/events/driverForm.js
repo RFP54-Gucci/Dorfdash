@@ -15,13 +15,9 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#ECECEC',
     borderStyle: 'solid',
     borderWidth:1,
-<<<<<<< HEAD
-    marginTop:20,
-=======
     padding:0,
     paddingLeft:5,
     paddingRight:5,
->>>>>>> main
     alignItems:'center'
  },
  paper: {
