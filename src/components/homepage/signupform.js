@@ -85,10 +85,20 @@ const SignUpForm = () => {
     e.preventDefault();
     console.log(firstName + ' ' + lastName + ' ' + email);
     // set up an axios post request to backend
-    // axios.post()
     if (firstName && lastName && emailValidation(email)) {
       setValidInfo(true);
     }
+
+    // axios.post('/', {
+    //   name: firstName + ' ' + lastName,
+    //   email: email
+    // })
+    // .then((data) => {
+    //   console.log(data);
+    // })
+    // .catch((err) => {
+    //   console.log('err', err);
+    // })
   }
 
   let emailValidation = (email) => {
@@ -112,9 +122,6 @@ const SignUpForm = () => {
         onChange={(e) => {handleLastName(e)}}/>
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
        onChange={(e) => {handleEmail(e)}}/>
-      {/* <Button className={classes.signupBtn} variant="contained" disableElevation
-        onClick={(e) => {handleSubmit(e)}}
-      >Sign Up</Button> */}
      <Button className={classes.signupBtn} onClick={(e) => handleSubmit(e)}>
         <Link className={classes.link} to={validLink}>Sign Up</Link>
      </Button>
