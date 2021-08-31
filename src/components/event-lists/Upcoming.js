@@ -10,7 +10,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import samples from './samples.js';
-import Mylist from './Mylist.js';
 
 const Upcoming = (props) => {
   const useStyles = makeStyles((theme) => ({
@@ -70,13 +69,8 @@ const Upcoming = (props) => {
   };
 
   const handleAttendEvent = () => {
-    history.push('/myList');
+    history.push('/riderForm');
   };
-
-  // const attend = (e) => {
-  //   addEvent(e);
-  //   handleAttendEvent();
-  // }
 
   return (
     <div>
@@ -109,7 +103,6 @@ const Upcoming = (props) => {
           ))}
         </div>
       </Container>
-      <Mylist myEventList={myEventList} setMyList={setMyList}/>
     </div>
   );
 };

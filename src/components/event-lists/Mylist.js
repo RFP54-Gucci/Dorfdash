@@ -52,9 +52,9 @@ const Mylist = () => {
 
   const classes = useStyles();
 
-  // ------------ removing event --------------
   const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
 
+  // ------------ removing event --------------
   const removeEvent = (eventId) => {
     for (var i = 0; i < myEventList.length; i++) {
       if (myEventList[i].event_id === eventId) {
@@ -65,7 +65,7 @@ const Mylist = () => {
     setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
   };
 
-  // ------------ switch routes ---------------
+  // ------------ switching routes --------------
   let history = useHistory();
 
   const handleCreate = () => {
@@ -82,8 +82,8 @@ const Mylist = () => {
       <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button>
       <h3>My events</h3>
       <div className="container-slide">
-        {/* {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> : */}
-        {myEventList.map((event) => (
+       {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
+        myEventList.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
               <CardContent className={classes.content}>

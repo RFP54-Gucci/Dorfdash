@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-// import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -37,8 +36,8 @@ const EventForm = () => {
   // --------------- states --------------------
   const [ eventName, setEventName ] = useState('');
   const [ eventHost, setEventHost ] = useState('');
-  // const [ eventDate, setEventDate] = useState('');
-  // const [ eventTime, setEventTime ] = useState('');
+  const [ eventDate, setEventDate] = useState(null);
+  const [ eventTime, setEventTime ] = useState(null);
   const [ eventLocation, setEventLocation ] = useState('');
   const [ eventDes, setEventDes ] = useState('');
 
@@ -47,6 +46,7 @@ const EventForm = () => {
 
   const handleNewEvent = () => {
     history.push('/myList');
+    // or should it routes to '/eventDetails'?
   };
 
   // ---------- onChange funcs ------------
@@ -62,13 +62,17 @@ const EventForm = () => {
     // console.log(eventHost);
   };
 
-  // const handleEventDate = (date) => {
-  //   setEventDate(date);
-  // };
+  const handleEventDate = (date) => {
+    date.preventDefault();
+    setEventDate(date);
+    console.log(date);
+  };
 
-    // const handleEventTime = (time) => {
-  //   setEventTime(time);
-  // };
+  const handleEventTime = (time) => {
+    time.preventDefault();
+    setEventTime(time);
+    console.log(time);
+  };
 
   const handleEventLocation = (e) => {
     e.preventDefault();
@@ -128,6 +132,7 @@ const EventForm = () => {
             variant="outlined"
             size="small"
             type="date"
+            onChange={handleEventDate}
           />
         </div>
         <div className={classes.input}>
@@ -136,6 +141,7 @@ const EventForm = () => {
             variant="outlined"
             size="small"
             type="time"
+            onChange={handleEventTime}
           />
         </div>
         <div className={classes.input}>
