@@ -14,8 +14,7 @@ module.exports = {
   },
 
   post: /* models.users.create */ (req, res) => {
-    console.log(req.body);
-    models.users.create(req.body, (err, userInfo) => {
+    models.users.create(req, (err, userInfo) => {
       if (err) {
         res.send(err);
       } else {

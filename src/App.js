@@ -5,7 +5,7 @@ import './App.css';
 import EventForm from './components/event-lists/EventForm';
 import Mylist from './components/event-lists/Mylist';
 import Upcoming from './components/event-lists/Upcoming';
-import MapContainer from './components/Map_ui/MapContainer/MapContainer';
+import MapContainer from './components/Map_ui/_MapContainer/MapContainer';
 import DriverForm from './components/events/driverForm';
 import RiderForm from './components/events/riderForm';
 import EventDetails from './components/events/eventDetails';
