@@ -12,6 +12,8 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
+import EventSummary from './components/events/eventSummary.js';
+
 
 
 
@@ -49,6 +51,10 @@ const [Event, setEvent] = useState({});
 
           <Route path="/driverForm">
             <DriverForm />
+          </Route>
+
+          <Route path="/eventSummary">
+            <EventSummary />
           </Route>
 
           <Route path="/returningUser">

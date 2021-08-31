@@ -1,6 +1,12 @@
 import React, {useState} from 'react';
 import { Container, Paper, Grid, Button, TextField} from '@material-ui/core';
+import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent:'center',
     marginBottom:10,
     backgroundColor:'#ECECEC',
-    // paddingTop:80
   },
   control: {
     padding: theme.spacing(2),
@@ -30,26 +35,16 @@ const useStyles = makeStyles((theme) => ({
    textAlign:'left'
  },
  textField: {
-   padding:13,
-   width:300
+   padding:12,
+   width:300,
+   margin:10
  },
-//  city: {
-//    width:140,
-//    paddingRight:5,
-//    padding:10
-//  },
-//  state: {
-//    width:60,
-//    padding:10
-//  },
+
  header: {
    backgroundColor:'#20A46B',
    height:40
  },
-//  zip: {
-//    width:80,
-//    padding:10
-//  },
+
  gridStyle: {
    height:400,
   paddingBottom:70,
@@ -59,32 +54,66 @@ const useStyles = makeStyles((theme) => ({
 
 
 const RiderForm = () => {
+  let history = useHistory();
 
   const[addRider, setAddRider] = useState({
     phone: '',
     location: ''
   })
+  const[validatePhone, setValidatePhone] = useState('');
+  const[validateAddress, setValidateAddress] = useState('');
+  const [value, setValue] = React.useState('Rider');
+  const[errorMessage, setErrorMessage] =  useState('');
+  const[buttonText, setButtonText] = useState('Confirm Ride');
 
-  const[validatePhone, setValidatePhone] = useState('')
-  const[validateAddress, setValidateAddress] = useState('')
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+    if(event.target.value === 'Rider') {
+      setButtonText('Confirm Ride');
+    } else {
+      setButtonText('Select Your Riders')
+    }
+    setErrorMessage('');
+  };
 
   const handleSubmit = () => {
     if(addRider.phone === '' && addRider.location === '') {
-      setValidatePhone('Input Required');
-      setValidateAddress('Input Required');
+      setValidatePhone('Please Enter Your Phone Number!');
+      setValidateAddress('Please Enter Your Location!');
+      return;
     }
 
-    // axios.post('/', {
-    //   phone: ,
-    //   lastName: 'Flintstone'
-    // })
-    // .then(function (response) {
-    //   console.log(response);
-    // })
-    // .catch(function (error) {
-    //   console.log(error);
-    // });
+// //----------------------------------
+    if(value === 'Rider'  ) {
+      history.push('/eventSummary');
+    } else {
+      history.push('/driverForm')
+    }
+//
+    // if(value === 'Rider') {
+    //   axios.post('/R', {
+    //     phone:addRider.phone ,
+    //     location: addRider.location
+    //   })
+    //   .then(() => {
+    //     history.push("/upcoming");
+    //   })
+    //   .catch((error) => {
+    //     setErrorMessage('Failed To Submit!');
+    //   });
+    // } else {
+    //   axios.post('/D', {
+    //     phone:addRider.phone ,
+    //     location: addRider.location
+    //   })
+    //   .then(() => {
+    //     history.push("/driverForm");
+    //   })
+    //   .catch( (error) => {
+    //     setErrorMessage('Failed To Submit!');
+    //   });
+    // }
   }
 
   const handlePhoneChange = (e) => {
@@ -101,52 +130,54 @@ const RiderForm = () => {
     });
     setValidateAddress('');
   }
+
   const classes = useStyles();
+
   return (
     <Container maxWidth="xs" className={classes.container}>
       <h1>Dorfdash</h1>
+      <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
+      {errorMessage!=='' ? errorMessage : ''}
+      </div>
+      <FormControl component="fieldset">
+      <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+        <span><FormControlLabel  value="Rider" control={<Radio style={{color:'green'}} />} label="Rider" />
+        <FormControlLabel value="Driver" control={<Radio style={{color:'green'}} />} label="Driver" /></span>
+      </RadioGroup>
+    </FormControl>
+
     <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
         <Grid item xs={12}>
             <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
+
           <form className={classes.root} Validate autoComplete="phone">
             <TextField id="outlined-basic" type="tel" label="Contact Number"
-             variant="outlined" className={classes.textField} required
+             variant="outlined" inputProps={{ maxLength: 12 }}className={classes.textField} required
               onChange ={handlePhoneChange}/>
 
              <br />
-             {validatePhone !== ''?validatePhone : ''}
+
+             <div style={{color:'red', fontStyle:'italic'}}>
+               {validatePhone !== ''?validatePhone : ''}</div>
+
              <TextField id="outlined-basic" multiline maxRows={4} label="Location"
              variant="outlined" className={classes.textField} required
              onChange ={handleAddressChange}/>
+
              <br />
-             {validateAddress!== '' ? validateAddress : ''}
-{/*  onChange = {() => setValidate(true)} */}
-             {/* <TextField id="outlined-basic" label="Address Line 2"
-             variant="outlined" className={classes.textField} />
-              <br /> */}
-             {/* <TextField id="outlined-basic" label="City *"
-             variant="outlined" className={classes.city}/>
 
-             <TextField id="outlined-basic" label="State *"
-             variant="outlined" className={classes.state} />
+             <div style={{color:'red', fontStyle:'italic'}}>
+               {validateAddress!== '' ? validateAddress : ''}</div>
 
-            <TextField id="outlined-basic" label="Zip code *"
-             variant="outlined" className={classes.zip} /> */}
           </form>
-
         </Grid>
     </Grid>
-
-    <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 40}}>
-  Back
-</Button>
-
     <Button variant="contained"  className={classes.root}
          style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 40}}
          onClick = {handleSubmit}>
-  Submit
+  {buttonText}
 </Button>
+
   </Container>
   )
 }
