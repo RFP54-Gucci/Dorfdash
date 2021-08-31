@@ -3,6 +3,8 @@ import {Container, Avatar, Grid, Paper,Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import Checkbox from '@material-ui/core/Checkbox';
+import Header from '../Header/Header.js';
+import Footer from '../Footer/Footer.js';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -12,8 +14,10 @@ const useStyles = makeStyles((theme) => ({
   container: {
     borderColor: '#ECECEC',
     borderStyle: 'solid',
-    // borderWidth:1,
-    marginTop:20,
+    borderWidth:1,
+    padding:0,
+    paddingLeft:5,
+    paddingRight:5,
     alignItems:'center'
  },
  paper: {
@@ -21,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   textAlign: 'center',
   color: "black",
   backgroundColor:'#ECECEC',
+  marginBottom:15
 
 },
 typography: {
@@ -53,7 +58,10 @@ const DriverForm = () => {
   }
   return (
     <Container maxWidth="xs" className={classes.container}>
-      <h1>Dorfdash</h1>
+      <Header />
+
+    <Container maxWidth="xs" >
+
       <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
 
       <Grid container spacing={2} style={{paddingBottom:8}}>
@@ -77,11 +85,11 @@ const DriverForm = () => {
       <div>1.1mi</div>
           </Grid>
 
-        <Grid container spacing={2} style={{paddingBottom:8}}>
+        <Grid container spacing={2} >
         <Grid>
         <Avatar className={classes.avatar} />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} style={{marginBottom:10}}>
           <Paper className={classes.paper} >
             <div className={classes.riderInfo}>Kair</div>
             <div className={classes.riderInfo}>(123)223-789</div>
@@ -89,7 +97,7 @@ const DriverForm = () => {
           </Paper>
         </Grid>
 
-        <Grid item xs={0}>
+        <Grid item xs={0} style={{marginTop:10}}>
           <Checkbox
         defaultChecked
         color="primary"
@@ -105,7 +113,12 @@ const DriverForm = () => {
          onClick={handleSubmit}>
   Finish
 </Button>
+
   </Container>
+  <Footer />
+  </Container>
+
+
   )
 }
 

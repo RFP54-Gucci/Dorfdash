@@ -6,7 +6,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
-
+import Header from '../Header/Header.js';
+import Footer from '../Footer/Footer.js';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -27,7 +28,8 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#ECECEC',
     borderStyle: 'solid',
     marginTop:20,
-    alignItems:'center'
+    alignItems:'center',
+    padding:0
  },
  label: {
    paddingRight:70,
@@ -37,7 +39,9 @@ const useStyles = makeStyles((theme) => ({
  textField: {
    padding:12,
    width:300,
-   margin:10
+   margin:10,
+   marginTop:30,
+   color:'#ECECEC'
  },
 
  header: {
@@ -48,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
  gridStyle: {
    height:400,
   paddingBottom:70,
- backgroundColor:'#ECECEC'
+//  backgroundColor:'#ECECEC'
 }
 }));
 
@@ -134,8 +138,10 @@ const RiderForm = () => {
   const classes = useStyles();
 
   return (
+
     <Container maxWidth="xs" className={classes.container}>
-      <h1>Dorfdash</h1>
+    <Header />
+    <Container maxWidth="xs">
       <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
       {errorMessage!=='' ? errorMessage : ''}
       </div>
@@ -151,8 +157,8 @@ const RiderForm = () => {
             <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
 
           <form className={classes.root} Validate autoComplete="phone">
-            <TextField id="outlined-basic" type="tel" label="Contact Number"
-             variant="outlined" inputProps={{ maxLength: 12 }}className={classes.textField} required
+            <TextField id="filled-basic" type="tel" label="Contact Number"
+             variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
               onChange ={handlePhoneChange}/>
 
              <br />
@@ -160,8 +166,8 @@ const RiderForm = () => {
              <div style={{color:'red', fontStyle:'italic'}}>
                {validatePhone !== ''?validatePhone : ''}</div>
 
-             <TextField id="outlined-basic" multiline maxRows={4} label="Location"
-             variant="outlined" className={classes.textField} required
+             <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
+             className={classes.textField} required
              onChange ={handleAddressChange}/>
 
              <br />
@@ -173,12 +179,16 @@ const RiderForm = () => {
         </Grid>
     </Grid>
     <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 40}}
+         style={{backgroundColor: '#12824C', color: '#FFFFFF', marginBottom:70}}
          onClick = {handleSubmit}>
   {buttonText}
 </Button>
 
   </Container>
+  <Footer />
+  </Container>
+
+
   )
 }
 

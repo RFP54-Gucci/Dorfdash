@@ -4,6 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Header from '../Header/Header.js';
+import Footer from '../Footer/Footer.js';
+
+
 import samples from './sample.js';
 
 
@@ -16,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
     marginLeft:10,
     margin: `${theme.spacing(1)}px auto`,
     padding: theme.spacing(2),
-     backgroundColor:'#ECECEC'
+    backgroundColor:'#ECECEC'
   },
   container: {
      borderColor: '#ECECEC',
      borderStyle: 'solid',
      marginTop:20,
-     lineHeight:2
-
+     lineHeight:2,
+     padding:0
   },
   span: {
     color: '#037041',
@@ -35,9 +39,9 @@ const useStyles = makeStyles((theme) => ({
     marginBottom:10,
   },
   gridStyle: {
-    paddingTop:5,
-    // borderStyle:'solid'
-   backgroundColor:'#ECECEC'
+    paddingTop:8,
+    marginTop:10,
+  //  backgroundColor:'#ECECEC'
   }
 }));
 
@@ -57,8 +61,10 @@ const EventDetails = (props) => {
 
 
   return (
-      <Container maxWidth="xs" className={classes.container} >
-      <h1>Dorfdash</h1>
+
+    <Container maxWidth="xs" className={classes.container}>
+    <Header />
+      <Container maxWidth="xs" >
       {samples.map(item => (
       <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
         <Grid item xs={10}>
@@ -108,8 +114,10 @@ const EventDetails = (props) => {
   Attend
 </Button>
 
-
-
     </Container>
+    <Footer />
+    </Container>
+
+
     )}
 export default EventDetails;
