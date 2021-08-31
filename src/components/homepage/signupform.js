@@ -78,8 +78,7 @@ const SignUpForm = () => {
   let handleEmail = (e) => {
     // console.log(e.target.value);
     setEmail(e.target.value);
-
-
+    setValidInfo(true);
   }
 
   let handleSubmit = (e) => {
@@ -87,7 +86,7 @@ const SignUpForm = () => {
     console.log(firstName + ' ' + lastName + ' ' + email);
     // set up an axios post request to backend
     // axios.post()
-    if (firstName && lastName && handleEmail(email)) {
+    if (firstName && lastName && emailValidation(email)) {
       setValidInfo(true);
     }
   }
@@ -95,22 +94,14 @@ const SignUpForm = () => {
   let emailValidation = (email) => {
     let validRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-    if (email.value.match(validRegex)) {
+    if (email.match(validRegex)) {
       return true;
     } else {
       return false;
     }
   }
 
-  let handleValidation = () => {
-    if (firstName && lastName && emailValidation(email)) {
-      setValidInfo(true);
-    }
-  }
-
-  useEffect(() => {
-    handleValidation();
-  }, []);
+  const validLink = validInfo ? '/newUser' : '#';
 
   return (
     <Container className={classes.form} maxWidth="xs">
@@ -124,8 +115,8 @@ const SignUpForm = () => {
       {/* <Button className={classes.signupBtn} variant="contained" disableElevation
         onClick={(e) => {handleSubmit(e)}}
       >Sign Up</Button> */}
-     <Button className={classes.signupBtn} onClick={(e) => {handleSubmit(e)}}>
-        <Link className={classes.link} to="/newUser">Sign Up</Link>
+     <Button className={classes.signupBtn} onClick={(e) => handleSubmit(e)}>
+        <Link className={classes.link} to={validLink}>Sign Up</Link>
      </Button>
       <Container className={classes.returningContainer}>
         <p>Already have an account?</p>
