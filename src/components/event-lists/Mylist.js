@@ -90,7 +90,7 @@ const Mylist = () => {
         myEventList.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
-              <CardContent className={classes.content} onClick={}>
+              <CardContent className={classes.content} onClick={handleAttendedEvent}>
                 <Typography className={classes.title}>
                   {event.event_name}
                 </Typography>
