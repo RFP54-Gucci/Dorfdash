@@ -46,7 +46,7 @@ const Upcoming = (props) => {
 
   const classes = useStyles();
 
-  // ------------- states -----------------
+  // ---------- adding events to my list ----------
   const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
 
   const addEvent = (evt) => {
@@ -68,8 +68,21 @@ const Upcoming = (props) => {
     history.push('/eventDetails');
   };
 
-  const handleAttendEvent = () => {
+  const handleAttendingEvent = () => {
     history.push('/riderForm');
+  };
+
+  const handleAttendedEvent = () => {
+    // history.push('/eventSummary');
+  };
+
+  // --------- checking if already attended --------
+  const checkAttended = (event) => {
+    if (eventIdArr.indexOf(event.event_id) < 0) {
+      addEvent(event);
+      handleAttendingEvent();
+    }
+    return handleAttendedEvent();
   };
 
   return (
@@ -96,7 +109,7 @@ const Upcoming = (props) => {
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.action}>
-                  <Button size="small" className={classes.button} onClick={() => { addEvent(event); handleAttendEvent(); }} >Attend</Button>
+                  <Button size="small" className={classes.button} onClick={() => checkAttended(event)}>Attend</Button>
                 </CardActions>
               </CardActionArea>
             </Card>

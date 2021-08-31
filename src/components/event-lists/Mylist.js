@@ -74,7 +74,11 @@ const Mylist = () => {
 
   const handleBrowse = () => {
     history.push('/upcoming');
-  }
+  };
+
+  const handleAttendedEvent = () => {
+    // history.push('/eventSummary');
+  };
 
   return (
     <Container maxWidth="sm" className={classes.root}>
@@ -86,7 +90,7 @@ const Mylist = () => {
         myEventList.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
-              <CardContent className={classes.content}>
+              <CardContent className={classes.content} onClick={}>
                 <Typography className={classes.title}>
                   {event.event_name}
                 </Typography>
