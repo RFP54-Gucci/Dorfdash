@@ -1,6 +1,6 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
-import { Context } from './_Context/Context'
+import { Context } from './_Context/Context';
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
 import Mylist from './components/event-lists/Mylist';
@@ -13,8 +13,6 @@ import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
 import EventSummary from './components/events/eventSummary.js';
-
-
 
 
 function App() {
