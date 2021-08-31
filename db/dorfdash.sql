@@ -6,13 +6,13 @@ CREATE DATABASE dorfdash;
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   name VARCHAR (20) NOT NULL,
-  email VARCHAR (30) NOT NULL
+  email VARCHAR (30) UNIQUE NOT NULL
 );
 
 CREATE TABLE events (
   event_id SERIAL PRIMARY KEY,
-  event_name VARCHAR (40),
-  host VARCHAR (20),
+  event_name VARCHAR (40) UNIQUE,
+  host_email VARCHAR (20),
   date VARCHAR (20),
   time VARCHAR (20),
   description VARCHAR (255),
@@ -21,32 +21,32 @@ CREATE TABLE events (
 
 CREATE TABLE riders (
   id SERIAL PRIMARY KEY,
-  rider_id INTEGER,
-  event_id INTEGER,
-  driver_id INTEGER,
+  rider_email VARCHAR (30),
+  event_name VARCHAR (40),
+  driver_email VARCHAR (30) DEFAULT NULL,
   location VARCHAR (50),
   phone VARCHAR (10),
-  CONSTRAINT "FK_Riders.event_id"
-    FOREIGN KEY (event_id)
-      REFERENCES events(event_id),
-  CONSTRAINT "FK_Riders.rider_id"
-    FOREIGN KEY (rider_id)
-      REFERENCES users(user_id),
-  CONSTRAINT "FK_Riders.driver_id"
-    FOREIGN KEY (driver_id)
-      REFERENCES users(user_id)
+  CONSTRAINT "FK_Riders.event_name"
+    FOREIGN KEY (event_name)
+      REFERENCES events(event_name),
+  CONSTRAINT "FK_Riders.rider_email"
+    FOREIGN KEY (rider_email)
+      REFERENCES users(email),
+  CONSTRAINT "FK_Riders.driver_email"
+    FOREIGN KEY (driver_email)
+      REFERENCES users(email)
 );
 
 CREATE TABLE drivers (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER,
-  event_id INTEGER,
+  driver_email VARCHAR (30),
+  event_name VARCHAR (40),
   phone VARCHAR (10),
   location VARCHAR (50),
   vehicle_info VARCHAR (50),
-  CONSTRAINT "FK_Drivers.user_id"
-    FOREIGN KEY (user_id)
-      REFERENCES users(user_id)
+  CONSTRAINT "FK_Drivers.driver_email"
+    FOREIGN KEY (driver_email)
+      REFERENCES users(email)
 );
 
 ALTER DATABASE dorfdash OWNER TO postgres;
