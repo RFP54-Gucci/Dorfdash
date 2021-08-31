@@ -1,6 +1,6 @@
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from 'react-router-dom';
 import { useState } from 'react';
-import { Context } from './_Context/Context'
+import { Context } from './_Context/Context';
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
 import Mylist from './components/event-lists/Mylist';
@@ -12,15 +12,14 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
-import MapTest from './components/Map.js'
-
+import MapTest from './components/Map.js';
 
 function App() {
-const [Event, setEvent] = useState({});
+  const [Event, setEvent] = useState({});
 
   return (
     <div className="App">
-      <Context.Provider value={{setEvent,Event}}>
+      <Context.Provider value={{ setEvent, Event }}>
         <Switch>
           <Route path="/myList">
             <Mylist />
@@ -35,7 +34,8 @@ const [Event, setEvent] = useState({});
           </Route>
 
           <Route path="/map">
-            <MapTest /> {/* Reject PR if this is not <Map /> */}
+            {/* Reject PR if this is not <Map /> */}
+            <MapTest />
           </Route>
 
           <Route path="/eventDetails">
