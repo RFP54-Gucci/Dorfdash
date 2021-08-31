@@ -23,16 +23,17 @@ const EventForm = () => {
     button: {
       backgroundColor: '#20A46B',
       color: 'white',
-      marginTop: 25,
+      marginTop: 10,
       marginBottom: 15,
     },
     input: {
-      marginBottom: 20,
+      marginBottom: 15,
     },
     validate: {
       color: 'red',
       fontStyle: 'italic',
-      fontSize: 14,
+      fontSize: 12,
+      marginBottom: 5,
     },
   }));
 
@@ -55,13 +56,16 @@ const EventForm = () => {
   // ------------ switch routes ---------------
   let history = useHistory();
 
-  const handleNewEvent = () => {
-    history.push('/myList');
-    // or should it routes to '/eventDetails'?
-  };
+  // const handleSubmit = () => {
+  //   axios.post('', {})
+  //     .then((res) => {
+  //       history.push('/myList');
+  //     })
+  //     .catch((err) => {})
+  // };
 
   // ---------- onChange funcs ------------
-  const handleSubmit = () => {
+  const handleValidation = () => {
     if (eventName === '') {
       setValidateName('Please enter the event name!');
     }
@@ -206,7 +210,7 @@ const EventForm = () => {
             onChange={handleEventDes}
           />
         </div>
-        <Button className={classes.button} onClick={handleSubmit} /*onClick={handleNewEvent}*/ >Create event</Button>
+        <Button className={classes.button} onClick={handleValidation} >Create event</Button>
       </form>
     </Container>
   );
