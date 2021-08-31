@@ -32,6 +32,7 @@ const EventForm = () => {
     validate: {
       color: 'red',
       fontStyle: 'italic',
+      fontSize: 14,
     },
   }));
 
@@ -61,17 +62,23 @@ const EventForm = () => {
 
   // ---------- onChange funcs ------------
   const handleSubmit = () => {
-    if (eventName === '' &&
-      eventHost === '' && eventDate === '' &&
-      eventTime === '' && eventLocation === ''
-    ) {
+    if (eventName === '') {
       setValidateName('Please enter the event name!');
+    }
+    if (eventHost === '') {
       setValidateHost('Please enter the event host!');
+    }
+    if (eventDate === '') {
       setValidateDate('Please enter the event date!');
+    }
+    if (eventTime === '') {
       setValidateTime('Please enter the event time!');
+    }
+    if (eventLocation === '') {
       setValidateLocation('Please enter the event location!');
     }
-  }
+  };
+
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
