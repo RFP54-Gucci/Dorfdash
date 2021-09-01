@@ -10,19 +10,19 @@ module.exports = {
 },
 
   attendeeList: (eventName) => {
-    const queryStr = `SELECT rider_email, driver_email FROM riders WHERE event_name = ${eventName}`;
+    const queryStr = `SELECT rider_email, driver_email FROM riders WHERE event_name = '${eventName}'`;
     return db.query(queryStr)
       .then((data) => {
-        const attendees = [];
-        data.map((event) => {
-          if (attendees.indexOf(event.rider_email) === -1) {
-            attendees.push(event.rider_email);
+        let promiseArr = data.reduce((acc, cur) => {
+          const queryRider = `SELECT name FROM users WHERE email = '${cur.rider_email}'`;
+          if (cur.driver_email) {
+            const queryDriver = `SELECT name FROM users WHERE email = '${cur.driver_email}'`;
+            return acc.concat([db.query(queryRider).then((data) => data[0].name), db.query(queryDriver).then((data) => data[0].name)]);
+          } else {
+            return acc.concat([db.query(queryRider).then((data) => data[0].name)]);
           }
-          if (event.driver_email && attendees.indexOf(event.driver_email) === -1) {
-            attendees.push(event.driver_email);
-          }
-          return attendees;
-        })
+        }, []);
+        return Promise.all(promiseArr);
       })
       .catch((err) => err);
   },
