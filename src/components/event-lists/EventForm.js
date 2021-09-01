@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { Context } from '../../_Context/Context';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
@@ -23,10 +24,11 @@ const EventForm = () => {
     button: {
       backgroundColor: '#20A46B',
       color: 'white',
-      marginTop: 2,
+      marginTop: 25,
+      marginBottom: 40,
     },
     input: {
-      marginBottom: 15,
+      marginBottom: 20,
     },
     validate: {
       color: 'red',
@@ -39,55 +41,48 @@ const EventForm = () => {
 
   // --------------- states --------------------
   const [ eventName, setEventName ] = useState('');
-  const [ eventHost, setEventHost ] = useState('');
   const [ eventDate, setEventDate] = useState('');
   const [ eventTime, setEventTime ] = useState('');
   const [ eventLocation, setEventLocation ] = useState('');
   const [ eventDes, setEventDes ] = useState('');
 
   const [ validateName, setValidateName ] = useState('.');
-  const [ validateHost, setValidateHost ] = useState('.');
   const [ validateDate, setValidateDate ] = useState('.');
   const [ validateTime, setValidateTime ] = useState('.');
   const [ validateLocation, setValidateLocation ] = useState('.');
+  const [ validate, setValidate ] = useState(true);
+
+  const { currentUser } = useContext(Context);
 
   // ------------ switch routes ---------------
   let history = useHistory();
-
-  const handleCreate = () => {
-    history.push('/upcoming');
-  }
 
   // ---------- onChange funcs ------------
   const handleValidation = () => {
     if (eventName === '') {
       setValidateName('Please enter the event name!');
-    }
-    if (eventHost === '') {
-      setValidateHost('Please enter the event host!');
+      setValidate(false);
     }
     if (eventDate === '') {
       setValidateDate('Please enter the event date!');
+      setValidate(false);
     }
     if (eventTime === '') {
       setValidateTime('Please enter the event time!');
+      setValidate(false);
     }
     if (eventLocation === '') {
       setValidateLocation('Please enter the event location!');
+      setValidate(false);
     }
+    return validate;
   };
 
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
     setValidateName('.');
-  };
-
-  const handleEventHost = (e) => {
-    e.preventDefault();
-    setEventHost(e.target.value);
-    // console.log(eventHost);
-    setValidateHost('.');
+    setValidate(true);
   };
 
   const handleEventDate = (date) => {
@@ -95,6 +90,7 @@ const EventForm = () => {
     setEventDate(date);
     // console.log(date);
     setValidateDate('.');
+    setValidate(true);
   };
 
   const handleEventTime = (time) => {
@@ -102,6 +98,7 @@ const EventForm = () => {
     setEventTime(time);
     // console.log(time);
     setValidateTime('.');
+    setValidate(true);
   };
 
   const handleEventLocation = (e) => {
@@ -109,6 +106,7 @@ const EventForm = () => {
     setEventLocation(e.target.value);
     // console.log(eventLocation);
     setValidateLocation('.');
+    setValidate(true);
   };
 
   const handleEventDes = (e) => {
@@ -117,21 +115,24 @@ const EventForm = () => {
     // console.log(eventDes);
   };
 
+  // -------- axios post new event ----------
   const handleSubmit = () => {
-    handleValidation()
-    axios.post('http://localhost:3100/data/users', {
-      // email: ,
-      event_name: eventName,
-      event_date: eventDate,
-      event_time: eventTime,
-      event_location: eventLocation,
-      event_des: eventDes
-    })
-      .then((res) => {
-        res.send('successfully create new event!');
-        history.push('/upcoming');
+    handleValidation();
+    if (validate) {
+      axios.post('http://localhost:3100/data/events', {
+        event_name: eventName,
+        host_email: currentUser.email,
+        date: eventDate,
+        time: eventTime,
+        description: eventDes,
+        location: eventLocation
       })
-      .catch((err) => { console.log(err) });
+        .then((res) => {
+          res.send('successfully create new event!');
+          history.push('/upcoming');
+        })
+        .catch((err) => { console.log(err) });
+    }
   }
 
   return (
@@ -149,17 +150,6 @@ const EventForm = () => {
             onChange={handleEventName}
           />
           <div className={classes.validate}>{validateName}</div>
-        </div>
-        <div className={classes.input}>
-          <TextField
-            id="outlined-size-small"
-            label="Event host*"
-            variant="outlined"
-            size="small"
-            fullWidth
-            onChange={handleEventHost}
-          />
-          <div className={classes.validate}>{validateHost}</div>
         </div>
         <div className={classes.input}>
         <TextField
@@ -206,7 +196,7 @@ const EventForm = () => {
             onChange={handleEventDes}
           />
         </div>
-        <Button className={classes.button} onClick={() => {handleCreate(); }}>Create event</Button>
+        <Button className={classes.button} onClick={() => handleSubmit()}>Create event</Button>
       </form>
       <Footer/>
     </Container>

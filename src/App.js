@@ -18,6 +18,7 @@ console.log(users, riders, events, drivers)
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
+  const [currentEvent, setCurrentEvent ] = useState({});
   const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
   const [eventData, setEventData] = useState(events);
@@ -31,7 +32,7 @@ function App() {
     <div className="App">
       <Context.Provider
         value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
-          eventIdArr, setEventIdArr, currentUser, setCurrentUser }}
+          eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
       >
         <Switch>
           <Route path="/myList">

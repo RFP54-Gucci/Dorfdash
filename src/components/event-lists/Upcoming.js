@@ -57,7 +57,8 @@ const Upcoming = (props) => {
   };
 
    // ---------- adding events to my list ----------
-   const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
+   const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
+    currentEvent, setCurrentEvent } = useContext(Context);
 
    const addEvent = (evt) => {
      let myList = [];
