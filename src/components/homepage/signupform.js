@@ -56,7 +56,7 @@ const SignUpForm = () => {
       setValidInfo(true);
     }
 
-    axios.post('/users', {
+    axios.post('/data/users', {
       name: firstName + ' ' + lastName,
       email: email
     })
