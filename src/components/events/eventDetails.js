@@ -1,13 +1,11 @@
 import React from 'react';
-import { Context } from '../../_Context/Context.js';
-import { useContext } from 'react';
 import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
+import TransitionsModal from './modal.js';
 
 
 import samples from './sample.js';
@@ -43,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
   gridStyle: {
     paddingTop:8,
     marginTop:10,
-  //  backgroundColor:'#ECECEC'
   }
 }));
 
@@ -55,38 +52,6 @@ const EventDetails = (props) => {
   const handleUpcomingEventPage =() => {
     history.push("/upcoming");
   }
-
-  // ---------- adding events to my list ----------
-  const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
-
-  const addEvent = (evt) => {
-    let myList = [];
-    let idArr = [];
-    if (eventIdArr.indexOf(evt.event_id) < 0) {
-      idArr.push(evt.event_id);
-      setEventIdArr(eventIdArr.concat(idArr));
-      myList.push(evt);
-      setMyList(myEventList.concat(myList));
-    }
-    // console.log(eventIdArr);
-  };
-
-  const handleAttendingEvent = () => {
-    history.push('/riderForm');
-  };
-
-  const handleAttendedEvent = () => {
-    history.push('/eventSummary');
-  };
-
-  // --------- checking if already attended --------
-  const checkAttended = (event) => {
-    if (eventIdArr.indexOf(event.event_id) < 0) {
-      addEvent(event);
-      handleAttendingEvent();
-    }
-    return handleAttendedEvent();
-  };
 
   return (
 
@@ -134,17 +99,9 @@ const EventDetails = (props) => {
          onClick = {handleUpcomingEventPage}>
   Back
 </Button>
-
-<Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
-         onClick = {() => checkAttended(samples[0])}>
-  Attend
-</Button>
-
+<Button><TransitionsModal /></Button>
     </Container>
     <Footer />
     </Container>
-
-
     )}
 export default EventDetails;
