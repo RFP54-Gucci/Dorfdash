@@ -14,7 +14,7 @@ const Attendees = () => {
 
   const [attendees, setAttendees] = useState([]);
 
-  const {currentEvent, setCurrentEvent} = useContext(Context);
+  const { currentEvent } = useContext(Context);
 
   // upon reload, it should get all of the attendees
   // useEffect(() => {
