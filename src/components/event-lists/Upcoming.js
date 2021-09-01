@@ -1,13 +1,9 @@
-import { Context } from '../../_Context/Context.js';
-import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import samples from './samples.js';
 import Header from './../Header/Header.js';
@@ -47,43 +43,11 @@ const Upcoming = (props) => {
 
   const classes = useStyles();
 
-  // ---------- adding events to my list ----------
-  const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
-
-  const addEvent = (evt) => {
-    let myList = [];
-    let idArr = [];
-    if (eventIdArr.indexOf(evt.event_id) < 0) {
-      idArr.push(evt.event_id);
-      setEventIdArr(eventIdArr.concat(idArr));
-      myList.push(evt);
-      setMyList(myEventList.concat(myList));
-    }
-    // console.log(eventIdArr);
-  };
-
   // ------------ switch routes ---------------
   let history = useHistory();
 
   const handleDetails = () => {
     history.push('/eventDetails');
-  };
-
-  const handleAttendingEvent = () => {
-    history.push('/riderForm');
-  };
-
-  const handleAttendedEvent = () => {
-    // history.push('/eventSummary');
-  };
-
-  // --------- checking if already attended --------
-  const checkAttended = (event) => {
-    if (eventIdArr.indexOf(event.event_id) < 0) {
-      addEvent(event);
-      handleAttendingEvent();
-    }
-    return handleAttendedEvent();
   };
 
   return (
@@ -110,9 +74,6 @@ const Upcoming = (props) => {
                     {event.event_location}
                   </Typography>
                 </CardContent>
-                <CardActions className={classes.action}>
-                  <Button size="small" className={classes.button} onClick={() => checkAttended(event)}>Attend</Button>
-                </CardActions>
               </CardActionArea>
             </Card>
           ))}

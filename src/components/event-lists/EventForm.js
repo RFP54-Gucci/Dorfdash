@@ -16,7 +16,7 @@ const EventForm = () => {
       },
     },
     container: {
-      height: 803.9,
+      height: 700,
       padding: 0,
     },
     button: {
@@ -25,13 +25,12 @@ const EventForm = () => {
       marginTop: 2,
     },
     input: {
-      marginBottom: 4,
+      marginBottom: 15,
     },
     validate: {
       color: 'red',
       fontStyle: 'italic',
       fontSize: 12,
-      marginBottom: 2,
     },
   }));
 
@@ -45,11 +44,11 @@ const EventForm = () => {
   const [ eventLocation, setEventLocation ] = useState('');
   const [ eventDes, setEventDes ] = useState('');
 
-  const [ validateName, setValidateName ] = useState('');
-  const [ validateHost, setValidateHost ] = useState('');
-  const [ validateDate, setValidateDate ] = useState('');
-  const [ validateTime, setValidateTime ] = useState('');
-  const [ validateLocation, setValidateLocation ] = useState('');
+  const [ validateName, setValidateName ] = useState('.');
+  const [ validateHost, setValidateHost ] = useState('.');
+  const [ validateDate, setValidateDate ] = useState('.');
+  const [ validateTime, setValidateTime ] = useState('.');
+  const [ validateLocation, setValidateLocation ] = useState('.');
 
   // ------------ switch routes ---------------
   let history = useHistory();
@@ -76,35 +75,35 @@ const EventForm = () => {
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
-    setValidateName('');
+    setValidateName('.');
   };
 
   const handleEventHost = (e) => {
     e.preventDefault();
     setEventHost(e.target.value);
     // console.log(eventHost);
-    setValidateHost('');
+    setValidateHost('.');
   };
 
   const handleEventDate = (date) => {
     date.preventDefault();
     setEventDate(date);
     // console.log(date);
-    setValidateDate('');
+    setValidateDate('.');
   };
 
   const handleEventTime = (time) => {
     time.preventDefault();
     setEventTime(time);
     // console.log(time);
-    setValidateTime('');
+    setValidateTime('.');
   };
 
   const handleEventLocation = (e) => {
     e.preventDefault();
     setEventLocation(e.target.value);
     // console.log(eventLocation);
-    setValidateLocation('');
+    setValidateLocation('.');
   };
 
   const handleEventDes = (e) => {
