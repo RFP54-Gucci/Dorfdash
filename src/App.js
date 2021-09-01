@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Context } from './_Context/Context';
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
+import EventSummary from './components/events/eventSummary'
 import Mylist from './components/event-lists/Mylist';
 import Upcoming from './components/event-lists/Upcoming';
 import MapContainer from './components/Map_ui/_MapContainer/MapContainer';
@@ -12,19 +13,20 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
-import EventSummary from './components/events/eventSummary.js';
-
+import {users, riders, events, drivers} from './_staticData/data.js';
+console.log(users, riders, events, drivers)
 
 function App() {
-  const [ myEventList, setMyList ] = useState([]);
-  const [ eventIdArr, setEventIdArr ] = useState([]);
+  const [userData, setUserData] = useState(users);
+  const [riderData, setRiderData] = useState(riders);
+  const [eventData, setEventData] = useState(events);
+  const [driverData, setDriverData] = useState(drivers);
 
   return (
     <div className="App">
-      <Context.Provider value={{
-        myEventList, setMyList,
-        eventIdArr, setEventIdArr
-        }}>
+      <Context.Provider
+        value={{ userData, riderData, eventData,  driverData, }}
+      >
         <Switch>
           <Route path="/myList">
             <Mylist />

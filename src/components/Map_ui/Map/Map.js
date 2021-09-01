@@ -1,18 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import { MAPS_KEY } from '../../../config.js';
+import {Context} from '../../../_Context/Context.js';
+
 
 const Map = (props) => {
-  const [origin, setOrigin] = useState(
-    '2240 Golden Gate Ave, San Francisco, CA 94118'
-  );
-  const [destination, setDestination] = useState(
-    '44 Tehama St, San Francisco, CA 94105'
-  );
-  const [riders, setRiders] = useState([
-    { location: '2229 Union St, San Francisco, CA 94123' },
-    { location: '350 Turk St, San Francisco, CA 94102' },
-  ]);
+  const { userData, riderData, eventData,  driverData,} = useContext(Context);
+  console.log('riderData: ',riderData, 'eventData:',eventData,  'driverData:',driverData,);
+  const origin = driverData[0].location;
+  console.log(origin)
+  const destination = eventData[0].location;
+  console.log(destination);
+  const riders = riderData.map(({location}) => ({location}) );
+  console.log(riders)
+
   const googlemap = useRef(null);
 
   useEffect(() => {
