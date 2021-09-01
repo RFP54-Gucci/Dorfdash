@@ -22,7 +22,7 @@ const ReturningUser = () => {
   let handleSubmit = (e) => {
     e.preventDefault();
     console.log('this is email', email);
-    // send post request to backedn
+    // this needs to simply set the current user information with what's passed in
   }
 
   return (
