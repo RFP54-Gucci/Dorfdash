@@ -3,7 +3,9 @@ const db = require('../../db/index.js');
 module.exports = {
   getAllRidersForDriver: async (req, callback) => {
     const { eventName, driverEmail } = req.params;
-    const queryStr = `SELECT * FROM riders WHERE event_name='${eventName}' AND driver_email='${driverEmail}'`;
+    const queryStr = `SELECT rider_email as email, name, location, phone
+                      FROM riders INNER JOIN users ON (riders.rider_email=users.email)
+                      WHERE event_name='${eventName}' AND driver_email='${driverEmail}'`;
 
     try {
       const event = await db.query(queryStr);
@@ -13,8 +15,10 @@ module.exports = {
     }
   },
   getAllRidersForEvent: async (req, callback) => {
-    const { eventName } = req.params
-    const queryStr = `SELECT * FROM riders WHERE event_name='${eventName}'`;
+    const { eventName } = req.params;
+    const queryStr = `SELECT name AS rider_name, rider_email, driver_email
+                      FROM riders INNER JOIN users ON (riders.rider_email=users.email)
+                      WHERE event_name='${eventName}'`;
 
     try {
       const riders = await db.query(queryStr);
