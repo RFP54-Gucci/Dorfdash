@@ -18,6 +18,7 @@ import axios from 'axios'
 
 function App() {
   const [eventName, setEventName] = useState();
+  const [currentUser, setCurrentUser] = useState({});
   const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
   const [eventData, setEventData] = useState(events);
@@ -37,10 +38,15 @@ function App() {
       fetchData();
   },[])
 
+  // -------- states for myList -----------
+  const [ myEventList, setMyList ] = useState([]);
+  const [ eventIdArr, setEventIdArr ] = useState([]);
+
   return (
     <div className="App">
       <Context.Provider
-        value={{ userData, riderData, eventData,  driverData, }}
+        value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
+          eventIdArr, setEventIdArr, currentUser, setCurrentUser }}
       >
         <Switch>
           <Route path="/myList">

@@ -2,10 +2,10 @@ import React from 'react';
 import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
+import TransitionsModal from './modal.js';
 
 
 import samples from './sample.js';
@@ -41,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
   gridStyle: {
     paddingTop:8,
     marginTop:10,
-  //  backgroundColor:'#ECECEC'
   }
 }));
 
@@ -50,15 +49,9 @@ const EventDetails = (props) => {
 
   let history = useHistory();
 
-   const handleRiderPage =() => {
-    history.push("/riderForm");
-  }
-
   const handleUpcomingEventPage =() => {
     history.push("/upcoming");
   }
-
-
 
   return (
 
@@ -98,26 +91,17 @@ const EventDetails = (props) => {
               <span>{item.event_des}</span>
             </div>
             </Grid>
-             {/* {/* </Paper> */}
 
         </Grid>
         ))}
         <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
+         style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 20}}
          onClick = {handleUpcomingEventPage}>
   Back
 </Button>
-
-<Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
-         onClick = {handleRiderPage}>
-  Attend
-</Button>
-
+<Button><TransitionsModal /></Button>
     </Container>
     <Footer />
     </Container>
-
-
     )}
 export default EventDetails;

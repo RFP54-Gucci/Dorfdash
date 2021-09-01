@@ -21,11 +21,8 @@ const EventForm = () => {
       },
     },
     container: {
-      maxWidth: 375,
-      height: 770,
-      borderColor: '#ECECEC',
-      borderStyle: 'solid',
-      marginBottom: 10,
+      height: 700,
+      padding: 0,
     },
     button: {
       backgroundColor: '#20A46B',
@@ -33,13 +30,12 @@ const EventForm = () => {
       marginTop: 2,
     },
     input: {
-      marginBottom: 4,
+      marginBottom: 15,
     },
     validate: {
       color: 'red',
       fontStyle: 'italic',
       fontSize: 12,
-      marginBottom: 2,
     },
   }));
 
@@ -53,11 +49,11 @@ const EventForm = () => {
   const [ eventLocation, setEventLocation ] = useState('');
   const [ eventDes, setEventDes ] = useState('');
 
-  const [ validateName, setValidateName ] = useState('');
-  const [ validateHost, setValidateHost ] = useState('');
-  const [ validateDate, setValidateDate ] = useState('');
-  const [ validateTime, setValidateTime ] = useState('');
-  const [ validateLocation, setValidateLocation ] = useState('');
+  const [ validateName, setValidateName ] = useState('.');
+  const [ validateHost, setValidateHost ] = useState('.');
+  const [ validateDate, setValidateDate ] = useState('.');
+  const [ validateTime, setValidateTime ] = useState('.');
+  const [ validateLocation, setValidateLocation ] = useState('.');
 
   // ------------ switch routes ---------------
   let history = useHistory();
@@ -84,35 +80,35 @@ const EventForm = () => {
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
-    setValidateName('');
+    setValidateName('.');
   };
 
   const handleEventHost = (e) => {
     e.preventDefault();
     setEventHost(e.target.value);
     // console.log(eventHost);
-    setValidateHost('');
+    setValidateHost('.');
   };
 
   const handleEventDate = (date) => {
     date.preventDefault();
     setEventDate(date);
     // console.log(date);
-    setValidateDate('');
+    setValidateDate('.');
   };
 
   const handleEventTime = (time) => {
     time.preventDefault();
     setEventTime(time);
     // console.log(time);
-    setValidateTime('');
+    setValidateTime('.');
   };
 
   const handleEventLocation = (e) => {
     e.preventDefault();
     setEventLocation(e.target.value);
     // console.log(eventLocation);
-    setValidateLocation('');
+    setValidateLocation('.');
   };
 
   const handleEventDes = (e) => {
@@ -138,8 +134,8 @@ const EventForm = () => {
   // }
 
   return (
-    <Container maxWidth="sm" className={classes.container}>
-      {Header()}
+    <Container maxWidth="xs" className={classes.container}>
+      <Header/>
       <h3 styles={{ marginTop: 20 }}>Create a new event</h3>
       <form className={classes.root} noValidate autoComplete="off">
         <div className={classes.input}>
@@ -211,7 +207,7 @@ const EventForm = () => {
         </div>
         <Button className={classes.button} onClick={handleValidation} >Create event</Button>
       </form>
-      {Footer()}
+      <Footer/>
     </Container>
   );
 };

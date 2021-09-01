@@ -15,15 +15,15 @@ import Footer from './../Footer/Footer.js';
 const Mylist = () => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 375,
-      height: 770,
-      borderColor: '#ECECEC',
-      borderStyle: 'solid',
+      padding: 0,
+      height: 700,
+    },
+    container: {
+      height: 650,
       overflowX: 'scroll',
-      marginBottom: 25,
     },
     card: {
-      marginBottom: 20,
+      margin: 20,
     },
     content: {
       paddingBottom: 2,
@@ -42,7 +42,6 @@ const Mylist = () => {
     },
     button: {
       color: '#20A46B',
-      marginLeft: 155,
     },
     remove: {
       color: '#20A46B',
@@ -79,10 +78,11 @@ const Mylist = () => {
   };
 
   const handleAttendedEvent = () => {
-    // history.push('/eventSummary');
+    history.push('/eventSummary');
   };
 
   return (
+<<<<<<< HEAD
     <Container maxWidth="sm" className={classes.root}>
       {Header()}
       <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button>
@@ -115,6 +115,42 @@ const Mylist = () => {
       </div>
       <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
       {Footer()}
+=======
+    <Container maxWidth="xs" className={classes.root}>
+      <Header/>
+      <Container maxWidth="xs" className={classes.container}>
+        <h3>My events</h3>
+        <div className="container-slide">
+        {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
+          myEventList.map((event) => (
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardContent className={classes.content} onClick={handleAttendedEvent}>
+                  <Typography className={classes.title}>
+                    {event.event_name}
+                  </Typography>
+                  <Typography className={classes.body}>
+                    {event.event_host}
+                  </Typography>
+                  <Typography className={classes.body}>
+                  {`${event.event_date}  ${event.event_time}`}
+                  </Typography>
+                  <Typography className={classes.body}>
+                    {event.event_location}
+                  </Typography>
+                </CardContent>
+                <CardActions className={classes.action}>
+                  <Button size="small" className={classes.remove} onClick={() => removeEvent(event.event_id)}>Remove</Button>
+                </CardActions>
+              </CardActionArea>
+            </Card>
+          ))}
+        </div>
+        <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button><br/>
+        <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
+      </Container>
+      <Footer/>
+>>>>>>> main
     </Container>
   );
 };
