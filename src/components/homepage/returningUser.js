@@ -2,7 +2,8 @@ import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
 import useStyles from './homepage_styles.js';
 
-import { useState } from 'react';
+import { Context } from '../../_Context/Context.js';
+import { useState, useContext } from 'react';
 import { Container, AppBar, Typography, TextField, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -14,14 +15,18 @@ const ReturningUser = () => {
 
   const [email, setEmail] = useState('');
 
+  // with the returning user, we want to set the GLOBAL CURRENT USER to be whatevr the user types in
+  const { currentUser, setCurrentUser } = useContext(Context);
+
   let handleEmail = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setEmail(e.target.value);
   }
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    console.log('this is email', email);
+    setCurrentUser(email);
+    // console.log('this is email', email);
     // this needs to simply set the current user information with what's passed in
   }
 

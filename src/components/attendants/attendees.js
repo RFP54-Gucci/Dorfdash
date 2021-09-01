@@ -12,7 +12,7 @@ const axios = require('axios');
 const Attendees = () => {
   const classes = useStyles();
 
-  const [attendees, setAttendees] = useState(['a', 'b', 'c']);
+  const [attendees, setAttendees] = useState([]);
 
   const {currentEvent, setCurrentEvent} = useContext(Context);
 
@@ -22,7 +22,7 @@ const Attendees = () => {
   // }, [attendees]);
 
   let getAttendees = () => {
-    // axios request to get all attendants
+    // axios request to get all attendants from the current event
 
     axios.get(`http://localhost:3100/data/users/${currentEvent}`)
     .then((response) => {
