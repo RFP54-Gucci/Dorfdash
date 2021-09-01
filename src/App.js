@@ -13,6 +13,7 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
+import Attendees from './components/attendants/attendees';
 import {users, riders, events, drivers} from './_staticData/data.js';
 console.log(users, riders, events, drivers)
 
@@ -34,6 +35,10 @@ function App() {
           eventIdArr, setEventIdArr, currentUser, setCurrentUser }}
       >
         <Switch>
+          <Route path="/attendees">
+            <Attendees />
+          </Route>
+
           <Route path="/myList">
             <Mylist />
           </Route>
