@@ -1,7 +1,11 @@
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import { Context } from '../../_Context/Context.js';
+import { useContext } from 'react';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
+import Button from '@material-ui/core/Button';
+import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
@@ -29,6 +33,14 @@ const Upcoming = (props) => {
     body: {
       fontSize: 12,
     },
+    attendBtn: {
+      color: '#20A46B',
+    },
+    myListBtn: {
+      color: '#20A46B',
+      marginLeft: 230,
+      marginTop: 10,
+    },
   }));
 
   const classes = useStyles();
@@ -40,11 +52,49 @@ const Upcoming = (props) => {
     history.push('/eventDetails');
   };
 
+  const handleMyList = () => {
+    history.push('/myList');
+  };
+
+   // ---------- adding events to my list ----------
+   const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
+
+   const addEvent = (evt) => {
+     let myList = [];
+     let idArr = [];
+     if (eventIdArr.indexOf(evt.event_id) < 0) {
+       idArr.push(evt.event_id);
+       setEventIdArr(eventIdArr.concat(idArr));
+       myList.push(evt);
+       setMyList(myEventList.concat(myList));
+     }
+     // console.log(eventIdArr);
+   };
+
+   const handleAttendingEvent = () => {
+     history.push('/riderForm');
+   };
+
+   const handleAttendedEvent = () => {
+     history.push('/eventSummary');
+   };
+
+   // --------- checking if already attended --------
+   const checkAttended = (event) => {
+     if (eventIdArr.indexOf(event.event_id) < 0) {
+       addEvent(event);
+       handleAttendingEvent();
+     } else {
+       handleAttendedEvent();
+     }
+   };
+
   return (
     <div>
       <Container maxWidth="xs" className={classes.root}>
         <Header/>
         <Container maxWidth="xs" className={classes.container}>
+        <Button className={classes.myListBtn} size="small" onClick={handleMyList}>My event list</Button>
         <h3>Upcoming events</h3>
         <div className="container-slide">
           {samples.map((event) => (
@@ -64,6 +114,9 @@ const Upcoming = (props) => {
                     {event.event_location}
                   </Typography>
                 </CardContent>
+                <CardActions>
+                  <Button className={classes.attendBtn} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
+                </CardActions>
               </CardActionArea>
             </Card>
           ))}

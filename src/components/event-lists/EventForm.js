@@ -58,6 +58,10 @@ const EventForm = () => {
   // ------------ switch routes ---------------
   let history = useHistory();
 
+  const handleCreate = () => {
+    history.push('/upcoming');
+  }
+
   // ---------- onChange funcs ------------
   const handleValidation = () => {
     if (eventName === '') {
@@ -126,9 +130,10 @@ const EventForm = () => {
   //     event_location: eventLocation,
   //     event_des: eventDes
   //   })
+  //     .then(handleValidation())
   //     .then((res) => {
   //       res.send('successfully create new event!');
-  //       history.push('/myList');
+  //       history.push('/upcoming');
   //     })
   //     .catch((err) => { console.log(err) });
   // }
@@ -205,7 +210,7 @@ const EventForm = () => {
             onChange={handleEventDes}
           />
         </div>
-        <Button className={classes.button} onClick={handleValidation} >Create event</Button>
+        <Button className={classes.button} onClick={() => {handleCreate(); }}>Create event</Button>
       </form>
       <Footer/>
     </Container>

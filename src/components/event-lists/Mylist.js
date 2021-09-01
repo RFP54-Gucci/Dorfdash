@@ -42,12 +42,15 @@ const Mylist = () => {
     },
     button: {
       color: '#20A46B',
+      marginTop: 10,
     },
     remove: {
       color: '#20A46B',
     },
     browse: {
       marginBottom: 15,
+      marginTop: 10,
+      color: '#20A46B',
     },
   }));
 
