@@ -4,4 +4,4 @@ exports.events = require('./events.js');
 
 exports.riders = require('./riders.js');
 
-exports.riders = require('./drivers.js');
+exports.drivers = require('./drivers.js');
