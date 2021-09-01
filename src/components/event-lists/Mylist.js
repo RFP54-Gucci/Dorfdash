@@ -88,8 +88,8 @@ const Mylist = () => {
       <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button>
       <h3>My events</h3>
       <div className="container-slide">
-       {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
-        myEventList.map((event) => (
+       {myEventList?.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
+        myEventList?.map((event) => (
           <Card className={classes.card}>
             <CardActionArea>
               <CardContent className={classes.content} onClick={handleAttendedEvent}>

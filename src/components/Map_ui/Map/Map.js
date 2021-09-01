@@ -6,13 +6,13 @@ import {Context} from '../../../_Context/Context.js';
 
 const Map = (props) => {
   const { userData, riderData, eventData,  driverData,} = useContext(Context);
-  console.log('riderData: ',riderData, 'eventData:',eventData,  'driverData:',driverData,);
+  // console.log('riderData: ',riderData, 'eventData:',eventData,  'driverData:',driverData,);
   const origin = driverData[0].location;
-  console.log(origin)
+  // console.log(origin)
   const destination = eventData[0].location;
-  console.log(destination);
+  // console.log(destination);
   const riders = riderData.map(({location}) => ({location}) );
-  console.log(riders)
+  // console.log(riders)
 
   const googlemap = useRef(null);
 

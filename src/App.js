@@ -1,5 +1,5 @@
 import { Switch, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Context } from './_Context/Context';
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
@@ -14,13 +14,28 @@ import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
 import {users, riders, events, drivers} from './_staticData/data.js';
-console.log(users, riders, events, drivers)
+import axios from 'axios'
 
 function App() {
+  const [eventName, setEventName] = useState();
   const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
   const [eventData, setEventData] = useState(events);
   const [driverData, setDriverData] = useState(drivers);
+  useEffect( () => {
+      async function fetchData() {
+       try{
+        const {data:events} = await axios.get('http://localhost:3100/data/events');
+        const {data:users} = await axios.get('http://localhost:3100/data/users');
+        console.log('users: ',users);
+        console.log('events: ',events);
+       }
+        catch(err){
+          console.log('ERROR:', err);
+        }
+      }
+      fetchData();
+  },[])
 
   return (
     <div className="App">
