@@ -17,6 +17,7 @@ import {users, riders, events, drivers} from './_staticData/data.js';
 console.log(users, riders, events, drivers)
 
 function App() {
+  const [currentUser, setCurrentUser] = useState({});
   const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
   const [eventData, setEventData] = useState(events);
@@ -30,7 +31,7 @@ function App() {
     <div className="App">
       <Context.Provider
         value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
-          eventIdArr, setEventIdArr }}
+          eventIdArr, setEventIdArr, currentUser, setCurrentUser }}
       >
         <Switch>
           <Route path="/myList">

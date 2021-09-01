@@ -1,63 +1,29 @@
 import SignUpForm from './signupform.js';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
+import useStyles from './homepage_styles.js';
 
 import { Container, AppBar, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 375,
-    height: 770,
-    borderColor: '#ECECEC',
-    borderStyle: 'solid',
-    overflowX: 'scroll',
-    marginBottom: 25,
-    padding: 0
-  },
-  div: {
-    width: '100vw',
-    maxWidth: '100vw',
-    padding: '0',
-    height: '100vh'
-  },
-
-  header: {
-    backgroundColor: '#20A46B'
-  },
-  headerTitle: {
-    margin: '0',
-    padding: '2%',
-  },
-  footer: {
-    width: '100vw',
-    maxWidth: '100vw',
-    backgroundColor: '#3F3F3F',
-    padding: '2% 2% 5% 2%',
-    textAlign: 'center',
-    color: '#fff'
-  }
-});
 
 const Homepage = () => {
   const classes = useStyles();
   return (
-    // <Container className={classes.div}>
-    //   <AppBar position="static" className={classes.header}>
-    //     <Typography variant="h3" className={classes.headerTitle}>
-    //       Dorfdash
-    //     </Typography>
-    //   </AppBar>
-    //   <SignUpForm />
-    //   <Container className={classes.footer}>
-    //     <p>Designed by Team GUCCI @ 2021</p>
-    //   </Container>
-    // </Container>
-    <Container className={classes.root}>
-      <Header />
+    <Container className={classes.div}>
+      <AppBar position="static" className={classes.header}>
+        <Typography variant="h3" className={classes.headerTitle}>
+          Dorfdash
+        </Typography>
+      </AppBar>
       <SignUpForm />
-      <Footer />
+      <Container className={classes.footer}>
+        <p>Designed by Team GUCCI @ 2021</p>
+      </Container>
     </Container>
+    // <Container className={classes.root}>
+    //   <Header />
+    //   <SignUpForm />
+    //   <Footer />
+    // </Container>
   )
 }
 
