@@ -30,6 +30,6 @@ router.put('/riders', controller.riders.put); // update a rider's driver for a s
 
 // drivers routes
 
-router.post('/drivers', controller.drivers.post);
+// router.post('/drivers', controller.drivers.post);
 
 module.exports = router;

@@ -3,17 +3,47 @@ import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
 import useStyles from './attendant_style.js';
 
-import { useState } from 'react';
+import { Context } from '../../_Context/Context.js';
+import { useState, useEffect, useContext } from 'react';
 import { Container } from '@material-ui/core';
+
+const axios = require('axios');
 
 const Attendees = () => {
   const classes = useStyles();
 
+  const [attendees, setAttendees] = useState([]);
+
+  const {currentEvent, setCurrentEvent} = useContext(Context);
+
+
+  // upon reload, it should get all of the attendees
+  // useEffect(() => {
+  //   getAttendees();
+  // });
+
+  let getAttendees = () => {
+    // axios request to get all attendants
+
+    axios.get(`http://localhost:3100/data/users/${currentEvent}`)
+    .then((response) => {
+      setAttendees(response.data);
+    })
+    .catch((err) => {
+      console.log('err', err);
+    })
+  };
+
   return (
     <Container className={classes.root}>
-      <Header></Header>
-
-      <Footer></Footer>
+      <Header />
+      <Container>
+        {attendees.map((item, i) => {
+          console.log(item);
+          return '';
+        })}
+      </Container>
+      <Footer />
     </Container>
   )
 
