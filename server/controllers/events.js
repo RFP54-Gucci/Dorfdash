@@ -10,6 +10,11 @@ module.exports = {
       }
     })
   },
+  getUserEvents: (req, res) => {
+    models.events.userEventsList(req.params.email)
+      .then((data) => res.send(data))
+      .catch((err) => res.send(err));
+  },
   getAll: (req, res) => {
     models.events.getAllEvents(req, (err, events) => {
       if (err) {
