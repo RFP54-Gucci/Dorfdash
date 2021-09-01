@@ -1,6 +1,7 @@
 import useStyles from './homepage_styles.js';
+import { Context } from '../../_Context/Context.js';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {  Container, TextField, Button, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -30,6 +31,9 @@ const SignUpForm = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
 
+  const { currentUser, setCurrentUser } = useContext(Context);
+  console.log(currentUser);
+
   const [validInfo, setValidInfo] = useState(false);
 
   let handleFirstName = (e) => {
@@ -46,6 +50,7 @@ const SignUpForm = () => {
     // console.log(e.target.value);
     setEmail(e.target.value);
     setValidInfo(true);
+    // setUserData[0].email = e.target.value;
   }
 
   let handleSubmit = (e) => {
@@ -56,27 +61,23 @@ const SignUpForm = () => {
       setValidInfo(true);
     }
 
+    setCurrentUser({
+      name: firstName + ' ' + lastName,
+      email: email
+    });
+
+    console.log('current', currentUser);
+
     axios({
       method: 'post',
       url: 'http://localhost:3100/data/users',
-      body: {
+      data: {
         name: firstName + ' ' + lastName,
         email: email
       }
     })
       .then((response) => console.log(response))
       .catch((err) => console.log('err', err));
-
-    // axios('localhost:3100/data/users', {
-    //   name: firstName + ' ' + lastName,
-    //   email: email
-    // })
-    // .then((data) => {
-    //   console.log(data);
-    // })
-    // .catch((err) => {
-    //   console.log('err', err);
-    // })
   }
 
   let emailValidation = (email) => {
