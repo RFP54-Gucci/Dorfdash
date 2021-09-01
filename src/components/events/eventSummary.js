@@ -46,7 +46,7 @@ const EventSummary = (props) => {
   // }
 
   const handleUpcomingEventPage =() => {
-    history.push("/upcoming");
+    history.push("/myList");
   }
 
 
@@ -98,7 +98,7 @@ const EventSummary = (props) => {
   Back
 </Button> */}
 <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
+         style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 20}}
          onClick = {handleUpcomingEventPage}>
   Back to Events
 </Button>
