@@ -14,7 +14,7 @@ export default makeStyles(() => ({
     color: 'white',
   },
   buttonContainer:{
-    marginTop:'5rem',
+    marginTop:'2rem',
     display: 'grid',
     gridTemplateRows: '3rem 3rem',
     gridGap: '1rem',

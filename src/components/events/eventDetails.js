@@ -1,4 +1,6 @@
-import React, {useContext} from 'react';
+import React from 'react';
+import { Context } from '../../_Context/Context.js';
+import { useContext } from 'react';
 import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
@@ -50,15 +52,41 @@ const EventDetails = (props) => {
 
   let history = useHistory();
 
-   const handleRiderPage =() => {
-    history.push("/riderForm");
-  }
-
   const handleUpcomingEventPage =() => {
     history.push("/upcoming");
   }
 
+  // ---------- adding events to my list ----------
+  const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
 
+  const addEvent = (evt) => {
+    let myList = [];
+    let idArr = [];
+    if (eventIdArr.indexOf(evt.event_id) < 0) {
+      idArr.push(evt.event_id);
+      setEventIdArr(eventIdArr.concat(idArr));
+      myList.push(evt);
+      setMyList(myEventList.concat(myList));
+    }
+    // console.log(eventIdArr);
+  };
+
+  const handleAttendingEvent = () => {
+    history.push('/riderForm');
+  };
+
+  const handleAttendedEvent = () => {
+    history.push('/eventSummary');
+  };
+
+  // --------- checking if already attended --------
+  const checkAttended = (event) => {
+    if (eventIdArr.indexOf(event.event_id) < 0) {
+      addEvent(event);
+      handleAttendingEvent();
+    }
+    return handleAttendedEvent();
+  };
 
   return (
 
@@ -108,8 +136,8 @@ const EventDetails = (props) => {
 </Button>
 
 <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 20}}
-         onClick = {handleRiderPage}>
+         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
+         onClick = {() => checkAttended(samples[0])}>
   Attend
 </Button>
 
