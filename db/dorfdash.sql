@@ -6,13 +6,13 @@ CREATE DATABASE dorfdash;
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   name VARCHAR (20) NOT NULL,
-  email VARCHAR (30) UNIQUE NOT NULL
+  email VARCHAR (40) UNIQUE NOT NULL
 );
 
 CREATE TABLE events (
   event_id SERIAL PRIMARY KEY,
   event_name VARCHAR (40) UNIQUE,
-  host_email VARCHAR (20),
+  host_email VARCHAR (40),
   date VARCHAR (20),
   time VARCHAR (20),
   description VARCHAR (255),
@@ -21,9 +21,9 @@ CREATE TABLE events (
 
 CREATE TABLE riders (
   id SERIAL PRIMARY KEY,
-  rider_email VARCHAR (30),
+  rider_email VARCHAR (40) UNIQUE,
   event_name VARCHAR (40),
-  driver_email VARCHAR (30) DEFAULT NULL,
+  driver_email VARCHAR (40) DEFAULT NULL,
   location VARCHAR (50),
   phone VARCHAR (10),
   CONSTRAINT "FK_Riders.event_name"
@@ -39,7 +39,7 @@ CREATE TABLE riders (
 
 CREATE TABLE drivers (
   id SERIAL PRIMARY KEY,
-  driver_email VARCHAR (30),
+  driver_email VARCHAR (40) UNIQUE,
   event_name VARCHAR (40),
   phone VARCHAR (10),
   location VARCHAR (50),
