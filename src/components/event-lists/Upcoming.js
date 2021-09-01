@@ -20,9 +20,7 @@ const Upcoming = (props) => {
     },
     card: {
       margin: 20,
-    },
-    content: {
-      paddingBottom: 2,
+      minHeight: 110,
     },
     title: {
       fontSize: 14,
@@ -31,14 +29,6 @@ const Upcoming = (props) => {
     body: {
       fontSize: 12,
     },
-    action: {
-      height: 30,
-      paddingBottom: 10,
-      paddingTop: 2,
-    },
-    button: {
-      color: '#20A46B',
-    }
   }));
 
   const classes = useStyles();
@@ -60,7 +50,7 @@ const Upcoming = (props) => {
           {samples.map((event) => (
             <Card className={classes.card} key={event.event_id}>
               <CardActionArea>
-                <CardContent className={classes.content} onClick={handleDetails}>
+                <CardContent onClick={handleDetails}>
                   <Typography className={classes.title}>
                     {event.event_name}
                   </Typography>

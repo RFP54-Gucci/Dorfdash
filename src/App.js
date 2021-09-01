@@ -22,10 +22,15 @@ function App() {
   const [eventData, setEventData] = useState(events);
   const [driverData, setDriverData] = useState(drivers);
 
+  // -------- states for myList -----------
+  const [ myEventList, setMyList ] = useState([]);
+  const [ eventIdArr, setEventIdArr ] = useState([]);
+
   return (
     <div className="App">
       <Context.Provider
-        value={{ userData, riderData, eventData,  driverData, }}
+        value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
+          eventIdArr, setEventIdArr }}
       >
         <Switch>
           <Route path="/myList">
