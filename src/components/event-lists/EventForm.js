@@ -1,18 +1,14 @@
-import { useState,useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Header from './../Header/Header.js';
 import Footer from './../Footer/Footer.js';
-import {Context} from '../../_Context/Context.js';
-
-
 
 const EventForm = () => {
-  const {eventData} = useContext(Context);
-
   const useStyles = makeStyles((theme) => ({
     root: {
       '& .MuiTextField-root': {
@@ -121,22 +117,22 @@ const EventForm = () => {
     // console.log(eventDes);
   };
 
-  // const handleSubmit = () => {
-  //   axios.post('', {
-  //     event_name: eventName,
-  //     event_host: eventHost,
-  //     event_date: eventDate,
-  //     event_time: eventTime,
-  //     event_location: eventLocation,
-  //     event_des: eventDes
-  //   })
-  //     .then(handleValidation())
-  //     .then((res) => {
-  //       res.send('successfully create new event!');
-  //       history.push('/upcoming');
-  //     })
-  //     .catch((err) => { console.log(err) });
-  // }
+  const handleSubmit = () => {
+    handleValidation()
+    axios.post('http://localhost:3100/data/users', {
+      // email: ,
+      event_name: eventName,
+      event_date: eventDate,
+      event_time: eventTime,
+      event_location: eventLocation,
+      event_des: eventDes
+    })
+      .then((res) => {
+        res.send('successfully create new event!');
+        history.push('/upcoming');
+      })
+      .catch((err) => { console.log(err) });
+  }
 
   return (
     <Container maxWidth="xs" className={classes.container}>
