@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react';
+import useStyles from './homepage_styles.js';
+import { Context } from '../../_Context/Context.js';
+
+import { useState, useEffect, useContext } from 'react';
 import {  Container, TextField, Button, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -17,41 +20,6 @@ import { Link } from 'react-router-dom';
 
 const axios = require('axios');
 
-const useStyles = makeStyles({
-  form: {
-    padding: '5% 5% 2% 5%',
-    margin: '2% auto',
-    // borderRadius: '25px',
-    // boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
-  },
-  title: {
-    fontSize: '2.2rem'
-  },
-  signupBtn: {
-    backgroundColor: '#20A46B',
-    color: '#fff',
-    marginTop: '10%',
-    fontSize: '1.2rem',
-    padding: '5%'
-  },
-  returningContainer: {
-    marginTop: '20%'
-  },
-  loginBtn: {
-    color: '#20A46B',
-    fontSize: '1.2rem'
-  },
-  link: {
-    color: '#fff',
-    textDecoration: 'none'
-  },
-  link2: {
-    color: '#20A46B',
-    textDecoration: 'none'
-  }
-})
-
-
 // This component will be what is displayed on the homepage
 // This is the log in form
 // inputs for : first name, lastname, email, username,
@@ -62,6 +30,9 @@ const SignUpForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+
+  const { currentUser, setCurrentUser } = useContext(Context);
+  console.log(currentUser);
 
   const [validInfo, setValidInfo] = useState(false);
 
@@ -79,16 +50,34 @@ const SignUpForm = () => {
     // console.log(e.target.value);
     setEmail(e.target.value);
     setValidInfo(true);
+    // setUserData[0].email = e.target.value;
   }
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firstName + ' ' + lastName + ' ' + email);
+    // console.log(firstName + ' ' + lastName + ' ' + email);
     // set up an axios post request to backend
-    // axios.post()
     if (firstName && lastName && emailValidation(email)) {
       setValidInfo(true);
     }
+
+    setCurrentUser({
+      name: firstName + ' ' + lastName,
+      email: email
+    });
+
+    console.log('current', currentUser);
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:3100/data/users',
+      data: {
+        name: firstName + ' ' + lastName,
+        email: email
+      }
+    })
+      .then((response) => console.log(response))
+      .catch((err) => console.log('err', err));
   }
 
   let emailValidation = (email) => {
@@ -112,9 +101,6 @@ const SignUpForm = () => {
         onChange={(e) => {handleLastName(e)}}/>
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
        onChange={(e) => {handleEmail(e)}}/>
-      {/* <Button className={classes.signupBtn} variant="contained" disableElevation
-        onClick={(e) => {handleSubmit(e)}}
-      >Sign Up</Button> */}
      <Button className={classes.signupBtn} onClick={(e) => handleSubmit(e)}>
         <Link className={classes.link} to={validLink}>Sign Up</Link>
      </Button>
