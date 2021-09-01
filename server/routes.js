@@ -14,6 +14,10 @@ router.get('/events', controller.events.getAll);
 
 router.post('/events', controller.events.post);
 
+router.get('/events/user/:email/', controller.events.getUserEvents);
+
+router.get('/users/:eventName/', controller.users.getAttendees);
+
 // riders routes
 
 router.get('/riders/:eventName', controller.riders.getAll); // get all riders for a specific event

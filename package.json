@@ -32,6 +32,7 @@
     "dev": "react-scripts start",
     "start": "nodemon ./server/index.js",
     "build": "react-scripts build",
+    "postbuild": "react-snap",
     "test": "jest --watch",
     "eject": "react-scripts eject"
   },
@@ -53,5 +54,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3100/",
+  "devDependencies": {
+    "react-snap": "^1.23.0"
+  }
 }
