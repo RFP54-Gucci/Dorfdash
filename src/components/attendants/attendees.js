@@ -12,15 +12,14 @@ const axios = require('axios');
 const Attendees = () => {
   const classes = useStyles();
 
-  const [attendees, setAttendees] = useState([]);
+  const [attendees, setAttendees] = useState(['a', 'b', 'c']);
 
   const {currentEvent, setCurrentEvent} = useContext(Context);
 
-
   // upon reload, it should get all of the attendees
   // useEffect(() => {
-  //   getAttendees();
-  // });
+  //   // getAttendees();
+  // }, [attendees]);
 
   let getAttendees = () => {
     // axios request to get all attendants
@@ -37,10 +36,10 @@ const Attendees = () => {
   return (
     <Container className={classes.root}>
       <Header />
+      <h1>List of Attendees</h1>
       <Container>
         {attendees.map((item, i) => {
-          console.log(item);
-          return '';
+          return <p>{item}</p>
         })}
       </Container>
       <Footer />
