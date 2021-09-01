@@ -1,3 +1,5 @@
+import useStyles from './homepage_styles.js';
+
 import { useState, useEffect } from 'react';
 import {  Container, TextField, Button, FormControl } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,41 +18,6 @@ import { Link } from 'react-router-dom';
 */
 
 const axios = require('axios');
-
-const useStyles = makeStyles({
-  form: {
-    padding: '5% 5% 2% 5%',
-    margin: '2% auto',
-    // borderRadius: '25px',
-    // boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
-  },
-  title: {
-    fontSize: '2.2rem'
-  },
-  signupBtn: {
-    backgroundColor: '#20A46B',
-    color: '#fff',
-    marginTop: '10%',
-    fontSize: '1.2rem',
-    padding: '5%'
-  },
-  returningContainer: {
-    marginTop: '20%'
-  },
-  loginBtn: {
-    color: '#20A46B',
-    fontSize: '1.2rem'
-  },
-  link: {
-    color: '#fff',
-    textDecoration: 'none'
-  },
-  link2: {
-    color: '#20A46B',
-    textDecoration: 'none'
-  }
-})
-
 
 // This component will be what is displayed on the homepage
 // This is the log in form
