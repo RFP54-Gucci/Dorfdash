@@ -50,22 +50,33 @@ const SignUpForm = () => {
 
   let handleSubmit = (e) => {
     e.preventDefault();
-    console.log(firstName + ' ' + lastName + ' ' + email);
+    // console.log(firstName + ' ' + lastName + ' ' + email);
     // set up an axios post request to backend
     if (firstName && lastName && emailValidation(email)) {
       setValidInfo(true);
     }
 
-    axios.post('/data/users', {
-      name: firstName + ' ' + lastName,
-      email: email
+    axios({
+      method: 'post',
+      url: 'http://localhost:3100/data/users',
+      body: {
+        name: firstName + ' ' + lastName,
+        email: email
+      }
     })
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((err) => {
-      console.log('err', err);
-    })
+      .then((response) => console.log(response))
+      .catch((err) => console.log('err', err));
+
+    // axios('localhost:3100/data/users', {
+    //   name: firstName + ' ' + lastName,
+    //   email: email
+    // })
+    // .then((data) => {
+    //   console.log(data);
+    // })
+    // .catch((err) => {
+    //   console.log('err', err);
+    // })
   }
 
   let emailValidation = (email) => {
