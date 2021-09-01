@@ -82,7 +82,6 @@ const Mylist = () => {
   };
 
   return (
-<<<<<<< HEAD
     <Container maxWidth="sm" className={classes.root}>
       {Header()}
       <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button>
@@ -115,7 +114,6 @@ const Mylist = () => {
       </div>
       <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
       {Footer()}
-=======
     <Container maxWidth="xs" className={classes.root}>
       <Header/>
       <Container maxWidth="xs" className={classes.container}>
@@ -150,7 +148,6 @@ const Mylist = () => {
         <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
       </Container>
       <Footer/>
->>>>>>> main
     </Container>
   );
 };
