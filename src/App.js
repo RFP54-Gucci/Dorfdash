@@ -13,23 +13,28 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
-import {users, riders, events, drivers} from './_staticData/data.js';
+import {users, riders, events, drivers, realEvent} from './_staticData/data.js';
 import axios from 'axios'
 
 function App() {
-  const [eventName, setEventName] = useState();
+  const [userData, setUserData] = useState([]);
+  const [eventData, setEventData] = useState([]);
+
+  const [currentEvent, setCurrentEvent] = useState(realEvent);
+  const [currentDriver, setCurrentDriver] = useState(riders[0]);
   const [currentUser, setCurrentUser] = useState({});
-  const [userData, setUserData] = useState(users);
+
   const [riderData, setRiderData] = useState(riders);
-  const [eventData, setEventData] = useState(events);
+
   const [driverData, setDriverData] = useState(drivers);
   useEffect( () => {
       async function fetchData() {
        try{
         const {data:events} = await axios.get('http://localhost:3100/data/events');
         const {data:users} = await axios.get('http://localhost:3100/data/users');
-        console.log('users: ',users);
-        console.log('events: ',events);
+        setUserData(users);
+        setEventData(events);
+
        }
         catch(err){
           console.log('ERROR:', err);
@@ -45,8 +50,11 @@ function App() {
   return (
     <div className="App">
       <Context.Provider
-        value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
-          eventIdArr, setEventIdArr, currentUser, setCurrentUser }}
+        value={{
+          userData, riderData, eventData, driverData, myEventList, setMyList,
+          eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent,
+          currentDriver,
+        }}
       >
         <Switch>
           <Route path="/myList">
