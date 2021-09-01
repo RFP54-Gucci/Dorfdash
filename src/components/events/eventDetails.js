@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
@@ -98,18 +98,17 @@ const EventDetails = (props) => {
               <span>{item.event_des}</span>
             </div>
             </Grid>
-             {/* {/* </Paper> */}
 
         </Grid>
         ))}
         <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
+         style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 20}}
          onClick = {handleUpcomingEventPage}>
   Back
 </Button>
 
 <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
+         style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 20}}
          onClick = {handleRiderPage}>
   Attend
 </Button>

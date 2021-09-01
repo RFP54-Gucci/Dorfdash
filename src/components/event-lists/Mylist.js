@@ -79,7 +79,7 @@ const Mylist = () => {
   };
 
   const handleAttendedEvent = () => {
-    // history.push('/eventSummary');
+    history.push('/eventSummary');
   };
 
   return (

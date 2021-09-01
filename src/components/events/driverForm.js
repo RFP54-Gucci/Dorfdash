@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
   color: "black",
   backgroundColor:'#ECECEC',
   marginBottom:15
-
 },
 typography: {
   backgroundColor:'#ECECEC',
@@ -109,7 +108,7 @@ const DriverForm = () => {
       </Grid>
       </Grid>
       <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 40}}
+         style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 40}}
          onClick={handleSubmit}>
   Finish
 </Button>
