@@ -8,6 +8,8 @@ import { Container, AppBar, Typography, TextField, Button } from '@material-ui/c
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 
+const axios = require('axios');
+
 
 const ReturningUser = () => {
 
@@ -16,16 +18,31 @@ const ReturningUser = () => {
   const [email, setEmail] = useState('');
 
   // with the returning user, we want to set the GLOBAL CURRENT USER to be whatevr the user types in
-  const { currentUser, setCurrentUser } = useContext(Context);
+  // userData should be an array of objects that hold all of the users information currently in the db
+  const { currentUser, setCurrentUser, userData } = useContext(Context);
 
   let handleEmail = (e) => {
     // console.log(e.target.value);
     setEmail(e.target.value);
   }
 
+  // function to check whether the signing in user already exists, if not then we throw an error
+  let validateEmail = () => {
+    for (let i = 0; i < userData.length; i++) {
+      console.log(userData[i].email);
+      // if the input email exists in the db, then return true
+      if (userData[i].email === email) {
+        return true;
+      }
+    }
+    // if we can't find the email, return false
+    return false;
+  }
+
   let handleSubmit = (e) => {
     e.preventDefault();
-    setCurrentUser(email);
+    validateEmail() ? console.log('found!') : console.log('error');
+    // setCurrentUser(email);
     // console.log('this is email', email);
     // this needs to simply set the current user information with what's passed in
   }
