@@ -15,7 +15,7 @@ module.exports = {
     }
   },
   getAllEvents: async (req, callback) => {
-    const queryStr = `SELECT * FROM events`;
+    const queryStr = `SELECT * FROM events INNER JOIN users ON (events.host_email=users.email)`;
 
     try {
       const events = await db.query(queryStr);
