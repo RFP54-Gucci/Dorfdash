@@ -1,5 +1,5 @@
 import { Switch, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Context } from './_Context/Context';
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
@@ -14,22 +14,39 @@ import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
 import Attendees from './components/attendants/attendees';
-import {users, riders, events, drivers} from './_staticData/data.js';
-console.log(users, riders, events, drivers);
+import {riders,drivers, realEvent} from './_staticData/data.js';
+import axios from 'axios'
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(
-    {email:"giaduccelli1@aol.com"});
-  const [currentEvent, setCurrentEvent] = useState(
-    {event_name:"tincidunt",
-    host_email: "hbresson0@arizona.edu",
-    date: "12/2/2020",
-    time: "5:00 AM",
-    location: "357 Buell Place"});
-  const [userData, setUserData] = useState(users);
+
+  const [userData, setUserData] = useState([]);
+  const [eventData, setEventData] = useState([]);
+
+  const [currentEvent, setCurrentEvent] = useState(realEvent);
+  const [currentDriver, setCurrentDriver] = useState(riders[0]);
+  const [currentUser, setCurrentUser] = useState({});
+
+
+//   const [userData, setUserData] = useState(users);
+
   const [riderData, setRiderData] = useState(riders);
-  const [eventData, setEventData] = useState(events);
   const [driverData, setDriverData] = useState(drivers);
+
+  useEffect( () => {
+      async function fetchData() {
+       try{
+        const {data:events} = await axios.get('http://localhost:3100/data/events');
+        const {data:users} = await axios.get('http://localhost:3100/data/users');
+        setUserData(users);
+        setEventData(events);
+
+       }
+        catch(err){
+          console.log('ERROR:', err);
+        }
+      }
+      fetchData();
+  },[])
 
   // -------- states for myList -----------
   const [ myEventList, setMyList ] = useState([]);
@@ -38,8 +55,16 @@ function App() {
   return (
     <div className="App">
       <Context.Provider
-        value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
-          eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
+
+        value={{
+          userData, riderData, eventData, driverData, myEventList, setMyList,
+          eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent,
+          currentDriver,
+        }}
+
+//         value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
+//           eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
+
       >
         <Switch>
           <Route path="/attendees">

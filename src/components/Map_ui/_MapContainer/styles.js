@@ -18,6 +18,8 @@ export default makeStyles(() => ({
     display: 'grid',
     gridTemplateRows: '3rem 3rem',
     gridGap: '1rem',
-  }
-
+  },
+  mapContainer: {
+    height: '45vh', width: '100%',
+  },
 }));

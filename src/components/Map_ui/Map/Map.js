@@ -1,18 +1,27 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import {Context} from '../../../_Context/Context.js';
-
+import axios from 'axios';
 
 const Map = (props) => {
-  const { userData, riderData, eventData,  driverData,} = useContext(Context);
-  console.log('riderData: ',riderData, 'eventData:',eventData,  'driverData:',driverData,);
-  const origin = driverData[0].location;
-  console.log(origin)
-  const destination = eventData[0].location;
-  console.log(destination);
-  const riders = riderData.map(({location}) => ({location}) );
-  console.log(riders)
+  const [riders, setRiders] = useState([]);
+  const {currentEvent, currentDriver} = useContext(Context);
+  useEffect(()=>{
+    async function fetchData() {
+      try{
+       const {data:riderArr} = await axios.get(`http://localhost:3100/data/riders/${currentEvent}`);
+       setRiders(riderArr)
+      }
+       catch(err){
+         console.log('ERROR:', err);
+       }
+     }
+     fetchData();
+  },[currentEvent])
 
+  const origin = currentDriver.location;
+  const destination = currentEvent.location;
+  const riderLocations = riders?.map(({location}) => ({location}) );
   const googlemap = useRef(null);
 
   useEffect(() => {
@@ -55,7 +64,7 @@ const Map = (props) => {
         }
       );
     });
-  }, [riders, destination, origin]);
+  }, [riderLocations, destination, origin]);
 
   return (
     <div>

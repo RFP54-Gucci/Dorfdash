@@ -11,7 +11,7 @@ import {Context} from '../../_Context/Context.js';
 
 
 const EventForm = () => {
-  const {eventData} = useContext(Context);
+  const {currentEvent,setCurrentEvent} = useContext(Context);
 
   const useStyles = makeStyles((theme) => ({
     root: {
