@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import samples from './samples.js';
 import Header from './../Header/Header.js';
 import Footer from './../Footer/Footer.js';
+import TransitionsModal from '../events/modal.js';
 
 const Upcoming = (props) => {
   const useStyles = makeStyles((theme) => ({
@@ -101,7 +102,7 @@ const Upcoming = (props) => {
           {samples.map((event) => (
             <Card className={classes.card} key={event.event_id}>
               <CardActionArea>
-                <CardContent onClick={handleDetails}>
+                <CardContent>
                   <Typography className={classes.title}>
                     {event.event_name}
                   </Typography>
@@ -117,6 +118,7 @@ const Upcoming = (props) => {
                 </CardContent>
                 <CardActions>
                   <Button className={classes.attendBtn} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
+                  <TransitionsModal/>
                 </CardActions>
               </CardActionArea>
             </Card>

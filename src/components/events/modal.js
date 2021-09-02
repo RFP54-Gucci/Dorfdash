@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
 import {Grid} from '@material-ui/core';
 
@@ -29,8 +30,11 @@ const useStyles = makeStyles((theme) => ({
   spanDivs: {
     marginBottom:10,
   },
+  button: {
+    color: '#20A46B',
+    marginLeft: 185,
+  },
 }));
-
 
 export default function TransitionsModal() {
   const classes = useStyles();
@@ -48,15 +52,9 @@ export default function TransitionsModal() {
     setOpen(false);
   };
 
-
-
-
-
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        Learn More!
-      </button>
+      <Button className={classes.button} size="small" onClick={handleOpen}>Details</Button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
