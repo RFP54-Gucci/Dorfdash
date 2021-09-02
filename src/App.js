@@ -25,8 +25,8 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
 
   const [riderData, setRiderData] = useState(riders);
-
   const [driverData, setDriverData] = useState(drivers);
+  
   useEffect( () => {
       async function fetchData() {
        try{
