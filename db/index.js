@@ -1,12 +1,11 @@
 const pgp = require('pg-promise')();
-const config = require('./config.js');
 
 const pgConfig = {
-  host: config.host,
-  port: config.port,
-  database: config.database,
-  user: config.user,
-  password: config.password
+  host: process.env.REACT_APP_DB_HOST,
+  port: process.env.REACT_APP_DB_PORT,
+  database: process.env.REACT_APP_DB_NAME,
+  user: process.env.REACT_APP_DB_USER,
+  password: process.env.REACT_APP_DB_SECRET
 }
 
 const db = pgp(pgConfig);
