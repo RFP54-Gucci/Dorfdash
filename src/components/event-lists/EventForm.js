@@ -16,6 +16,7 @@ const EventForm = () => {
         margin: theme.spacing(1),
         width: '25ch',
       },
+      marginTop: 40,
     },
     container: {
       height: 700,
@@ -24,7 +25,7 @@ const EventForm = () => {
     button: {
       backgroundColor: '#20A46B',
       color: 'white',
-      marginTop: 25,
+      marginTop: 20,
       marginBottom: 40,
     },
     input: {
