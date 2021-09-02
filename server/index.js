@@ -2,6 +2,7 @@ require('dotenv').config();
 var cors = require('cors');
 
 const express = require('express');
+const cors = require('cors')
 const path = require('path');
 const morgan = require('morgan');
 // eslint-disable-next-line no-unused-vars
