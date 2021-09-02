@@ -39,9 +39,25 @@ const ReturningUser = () => {
     return false;
   }
 
+  let validLink = '#';
+  let displayErrMessage = false;
+
   let handleSubmit = (e) => {
     e.preventDefault();
-    validateEmail() ? console.log('found!') : console.log('error');
+    // if the email is validated
+    // then setcurrentuser and move to link
+    // else give error
+
+    if (validateEmail()) {
+      setCurrentUser(email);
+      validLink = '/myList'
+    } else {
+      console.log('here');
+      console.log(displayErrMessage);
+      displayErrMessage = true;
+      console.log(displayErrMessage);
+    }
+
     // setCurrentUser(email);
     // console.log('this is email', email);
     // this needs to simply set the current user information with what's passed in
@@ -58,8 +74,9 @@ const ReturningUser = () => {
       <h2>Welcome Back!</h2>
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
         onChange={(e) => {handleEmail(e)}}/>
+        {displayErrMessage === true ? <p className={classes.error}>Please enter correct email</p> : <p></p>}
       <Button className={classes.returning_button} onClick={(e) => handleSubmit(e)}>
-        <Link to="/myList" className={classes.returning_link}>
+        <Link to={validLink} className={classes.returning_link}>
           Log in
         </Link>
       </Button>
