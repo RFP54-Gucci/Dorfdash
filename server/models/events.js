@@ -57,5 +57,11 @@ module.exports = {
                       WHERE users.email='${email}'`;
 
     return db.query(queryStr);
+  },
+  removeUserEvent: (email) => {
+    const queryRemoveRider = `DELETE FROM riders WHERE rider_email = '${email}'`;
+    const queryRemoveDriverFromRider = `UPDATE riders SET driver_email = null WHERE driver_email = '${email}'`;
+    const queryRemoveDriver = `DELETE FROM drivers WHERE driver_email = '${email}'`;
+    return Promise.all([db.query(queryRemoveRider), db.query(queryRemoveDriverFromRider), db.query(queryRemoveDriver)]);
   }
 }
