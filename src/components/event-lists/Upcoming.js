@@ -59,9 +59,9 @@ const Upcoming = (props) => {
 
    // ---------- adding events to my list ----------
    const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
-    currentEvent, setCurrentEvent } = useContext(Context);
+    currentEvent, setCurrentEvent, userData } = useContext(Context);
 
-    // console.log('this is event data', eventData);
+    console.log('this is event data', eventData);
 
    const addEvent = (evt) => {
      let myList = [];
@@ -110,7 +110,7 @@ const Upcoming = (props) => {
                     {event.event_name}
                   </Typography>
                   <Typography className={classes.body}>
-                   placeholder
+                  placeholder
                   </Typography>
                   <Typography className={classes.body}>
                   {`${event.date}  ${event.time}`}
