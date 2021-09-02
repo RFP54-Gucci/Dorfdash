@@ -7,6 +7,8 @@ import { useState, useContext } from 'react';
 import { Container, AppBar, Typography, TextField, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
+import logo2 from '../../assets/logo2.png';
+
 const ReturningUser = () => {
 
   const classes = useStyles();
@@ -43,7 +45,7 @@ const ReturningUser = () => {
     // else give error
 
     if (validateEmail()) {
-      setCurrentUser(email);
+      setCurrentUser({email: email});
       history.push('/upcoming')
     } else {
       console.log('here');
@@ -56,21 +58,22 @@ const ReturningUser = () => {
 
   return (
     <Container className={classes.div}>
-      <AppBar position="static" className={classes.header}>
+      {/* <AppBar position="static" className={classes.header}>
         <Typography variant="h3" className={classes.headerTitle}>
           Dorfdash
         </Typography>
-      </AppBar>
-      <Container className={classes.returning_form} maxWidth="xs">
-      <h2>Welcome Back!</h2>
+      </AppBar> */}
+      <Container className={classes.form} maxWidth="xs">
+      <img alt="logo2" className={classes.logo2} src={logo2}></img>
+      <h2 className={classes.title}>Welcome Back!</h2>
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
         onChange={(e) => {handleEmail(e)}}/>
         {/* {displayErrMessage === true ? <p className={classes.error}>Please enter correct email</p> : <p></p>} */}
-      <Button className={classes.returning_button} onClick={(e) => handleSubmit(e)}>Log in</Button>
+      <Button className={classes.solidBtn} onClick={(e) => handleSubmit(e)}>Log in</Button>
     </Container>
-      <Container className={classes.footer}>
+      {/* <Container className={classes.footer}>
         <p>Designed by Team GUCCI @ 2021</p>
-      </Container>
+      </Container> */}
     </Container>
     // <Container className={classes.root}>
     //   <Header />

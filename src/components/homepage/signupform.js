@@ -133,9 +133,9 @@ const SignUpForm = () => {
          validateEmail();
         }}/>
        {/* {validateEmail() ? <p></p> : <p className={classes.error}>Please enter proper email</p>} */}
-     <Button className={classes.signupBtn} onClick={(e) => handleSubmit(e)}>Sign Up</Button>
+     <Button className={classes.solidBtn} onClick={(e) => handleSubmit(e)}>Sign Up</Button>
       <Container className={classes.returningContainer}>
-        <p>Already have an account?</p>
+        <p class={classes.font}>Already have an account?</p>
         <Button className={classes.loginBtn} onClick={() => handleLogin()}>Log In</Button>
       </Container>
     </Container>
