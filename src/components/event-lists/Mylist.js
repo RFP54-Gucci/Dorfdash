@@ -2,6 +2,7 @@ import { Context } from '../../_Context/Context.js';
 import { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -56,7 +57,7 @@ const Mylist = () => {
 
   const classes = useStyles();
 
-  const { myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
+  const { myEventList, setMyList, eventIdArr, setEventIdArr, currentUser } = useContext(Context);
 
   // ------------ removing event --------------
   const removeEvent = (eventId) => {
@@ -68,6 +69,13 @@ const Mylist = () => {
     var removedIndex = eventIdArr.indexOf(eventId);
     setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
   };
+
+  // ----------- delete request --------------
+  const deleteEvent = (eventId) => {
+    axios.delete(`http://localhost:3100/data/events/user/${currentUser.email}`)
+      .then((res) => { console.log('successfully remove from my list!') })
+      .catch((err) => { console.log(err) });
+  }
 
   // ------------ switching routes --------------
   let history = useHistory();

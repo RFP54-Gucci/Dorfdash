@@ -78,6 +78,12 @@ const Upcoming = (props) => {
      // console.log(eventIdArr);
    };
 
+   // -------- get request for the user's attending event -------
+   const getAttendingEvents = () => {
+     axios.get('')
+      .then((res) => { setMyList(res.data) })
+   }
+
    // --------- checking if already attended --------
    const checkAttended = (event) => {
     setCurrentEvent(event);
