@@ -39,5 +39,12 @@ module.exports = {
   userEventsList: (email) => {
     const query = `SELECT * FROM riders INNER JOIN events USING (event_name) WHERE riders.rider_email = '${email}' OR riders.driver_email = '${email}'`;
     return db.query(query);
+  },
+
+  removeUserEvent: (email) => {
+    const queryRemoveRider = `DELETE FROM riders WHERE rider_email = '${email}'`;
+    const queryRemoveDriverFromRider = `UPDATE riders SET driver_email = null WHERE driver_email = '${email}'`;
+    const queryRemoveDriver = `DELETE FROM drivers WHERE driver_email = '${email}'`;
+    return Promise.all([db.query(queryRemoveRider), db.query(queryRemoveDriverFromRider), db.query(queryRemoveDriver)]);
   }
 }
