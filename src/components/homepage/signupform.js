@@ -32,7 +32,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
 
   const { currentUser, setCurrentUser } = useContext(Context);
-  console.log(currentUser);
+  // console.log(currentUser);
 
   const [validInfo, setValidInfo] = useState(false);
 
@@ -66,7 +66,7 @@ const SignUpForm = () => {
       email: email
     });
 
-    console.log('current', currentUser);
+    // console.log('current', currentUser);
 
     axios({
       method: 'post',

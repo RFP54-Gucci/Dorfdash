@@ -50,7 +50,7 @@ const EventForm = () => {
   const [ validateDate, setValidateDate ] = useState('.');
   const [ validateTime, setValidateTime ] = useState('.');
   const [ validateLocation, setValidateLocation ] = useState('.');
-  const [ validate, setValidate ] = useState(true);
+  const [ validate, setValidate ] = useState(false);
 
   const { currentUser } = useContext(Context);
 
@@ -61,21 +61,16 @@ const EventForm = () => {
   const handleValidation = () => {
     if (eventName === '') {
       setValidateName('Please enter the event name!');
-      setValidate(false);
     }
     if (eventDate === '') {
       setValidateDate('Please enter the event date!');
-      setValidate(false);
     }
     if (eventTime === '') {
       setValidateTime('Please enter the event time!');
-      setValidate(false);
     }
     if (eventLocation === '') {
       setValidateLocation('Please enter the event location!');
-      setValidate(false);
     }
-    return validate;
   };
 
   const handleEventName = (e) => {
@@ -88,7 +83,7 @@ const EventForm = () => {
   const handleEventDate = (date) => {
     date.preventDefault();
     setEventDate(date);
-    // console.log(date);
+    // console.log(new Date(date.timeStamp * 1000).toDateString());
     setValidateDate('.');
     setValidate(true);
   };
@@ -96,6 +91,7 @@ const EventForm = () => {
   const handleEventTime = (time) => {
     time.preventDefault();
     setEventTime(time);
+    // console.log(new Date(time.timeStamp * 1000));
     // console.log(time);
     setValidateTime('.');
     setValidate(true);
@@ -116,19 +112,22 @@ const EventForm = () => {
   };
 
   // -------- axios post new event ----------
+
   const handleSubmit = () => {
     handleValidation();
+    let hostEmail = currentUser.email;
+    console.log(currentUser, hostEmail);
     if (validate) {
       axios.post('http://localhost:3100/data/events', {
         event_name: eventName,
-        host_email: currentUser.email,
-        date: eventDate,
-        time: eventTime,
+        host_email: hostEmail,
+        date: eventDate.toString(),
+        time: eventTime.toString(),
         description: eventDes,
         location: eventLocation
       })
         .then((res) => {
-          res.send('successfully create new event!');
+          console.log('successfully create new event!');
           history.push('/upcoming');
         })
         .catch((err) => { console.log(err) });
@@ -154,9 +153,9 @@ const EventForm = () => {
         <div className={classes.input}>
         <TextField
             id="outlined-size-small"
+            label="Event date*"
             variant="outlined"
             size="small"
-            type="date"
             onChange={handleEventDate}
           />
           <div className={classes.validate}>{validateDate}</div>
@@ -164,9 +163,9 @@ const EventForm = () => {
         <div className={classes.input}>
           <TextField
             id="outlined-size-small"
+            label="Event time*"
             variant="outlined"
             size="small"
-            type="time"
             onChange={handleEventTime}
           />
           <div className={classes.validate}>{validateTime}</div>
