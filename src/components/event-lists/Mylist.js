@@ -84,6 +84,7 @@ const Mylist = () => {
     history.push('/eventSummary');
   };
 
+  // --------- get request -----------
   return (
     <Container maxWidth="xs" className={classes.root}>
       <Header/>

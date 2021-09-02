@@ -9,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-// import samples from './samples.js';
 import Header from './../Header/Header.js';
 import Footer from './../Footer/Footer.js';
 import TransitionsModal from '../events/modal.js';
@@ -49,17 +48,13 @@ const Upcoming = (props) => {
   // ------------ switch routes ---------------
   let history = useHistory();
 
-  const handleDetails = () => {
-    history.push('/eventDetails');
-  };
-
   const handleMyList = () => {
     history.push('/myList');
   };
 
    // ---------- adding events to my list ----------
    const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
-    currentEvent, setCurrentEvent, userData } = useContext(Context);
+    currentEvent, setCurrentEvent } = useContext(Context);
 
     console.log('this is event data', eventData);
 
@@ -110,7 +105,7 @@ const Upcoming = (props) => {
                     {event.event_name}
                   </Typography>
                   <Typography className={classes.body}>
-                  placeholder
+                    {event.name}
                   </Typography>
                   <Typography className={classes.body}>
                   {`${event.date}  ${event.time}`}
