@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import { Context } from '../../_Context/Context.js';
+import { useContext } from 'react';
 import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
@@ -7,6 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import samples from './sample.js';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -32,18 +35,31 @@ const useStyles = makeStyles((theme) => ({
   },
   gridStyle: {
     paddingTop:10,
-  //  backgroundColor:'#ECECEC'
   }
 }));
 
 const EventSummary = (props) => {
+
+  const { currentEvent, setCurrentEvent } = useContext(Context);
+
+  // const[eventDetails, setEventDetails] = useState([]);
+
+
+  // useEffect(() => {
+  //   axios.get( `http://localhost:3100/events/${currentEvent.event_name}`, {})
+  //   .then(response => {
+  //     console.log(response.data)
+  //     setEventDetails({
+  //       eventDetails:response.data
+  //     })
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //   })
+  // })
   const classes = useStyles();
 
   let history = useHistory();
-
-  //  const handleHomePage =() => {
-  //   history.push("/");
-  // }
 
   const handleUpcomingEventPage =() => {
     history.push("/myList");
@@ -55,32 +71,32 @@ const EventSummary = (props) => {
     <Container maxWidth="xs" className={classes.container}>
     <Header />
       <Container maxWidth="xs">
-      {samples.map(item => (
+      {/* {samples.map(item => ( */}
       <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
         <Grid item xs={10}>
             <div className={classes.spanDivs}>
             <span className={classes.span}>Event: </span>
-            <span style = {{fontWeight:900}}>{item.event_name}</span>
+            <span style = {{fontWeight:900}}>{currentEvent.event_name}</span>
             </div>
 
             <div className={classes.spanDivs}>
             <span className={classes.span}>Host: </span>
-            <span>{item.event_host}</span>
+            <span>{currentEvent.host_email}</span>
             </div>
 
             <div className={classes.spanDivs}>
               <span className={classes.span}>Date: </span>
-              <span>{item.event_date}</span>
+              <span>{currentEvent.date}</span>
             </div>
 
             <div className={classes.spanDivs}>
               <span className={classes.span}>Time: </span>
-              <span>{item.event_time}</span>
+              <span>{currentEvent.time}</span>
             </div>
 
             <div className={classes.spanDivs}>
               <span className={classes.span}>Location: </span>
-              <span>{item.event_location}</span>
+              <span>{currentEvent.location}</span>
             </div>
             <span style={{fontWeight:700}}>You Will Be Notified Soon By Your Driver</span>
             <div style={{backgroundColor:'#ECECEC'}}>
@@ -91,7 +107,7 @@ const EventSummary = (props) => {
             </Grid>
 
         </Grid>
-        ))}
+        {/* ))} */}
         {/* <Button variant="contained"  className={classes.root}
          style={{backgroundColor: '#12824C', color: '#FFFFFF', margin: 20}}
          onClick = {handleUpcomingEventPage}>

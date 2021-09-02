@@ -18,7 +18,14 @@ import {users, riders, events, drivers} from './_staticData/data.js';
 console.log(users, riders, events, drivers);
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState(
+    {email:"giaduccelli1@aol.com"});
+  const [currentEvent, setCurrentEvent] = useState(
+    {event_name:"tincidunt",
+    host_email: "hbresson0@arizona.edu",
+    date: "12/2/2020",
+    time: "5:00 AM",
+    location: "357 Buell Place"});
   const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
   const [eventData, setEventData] = useState(events);
@@ -32,7 +39,7 @@ function App() {
     <div className="App">
       <Context.Provider
         value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
-          eventIdArr, setEventIdArr, currentUser, setCurrentUser }}
+          eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
       >
         <Switch>
           <Route path="/attendees">
