@@ -45,12 +45,9 @@ riderInfo: {
 
 const DriverForm = () => {
   const {currentEvent:{event_name}} = useContext(Context);
-
   const classes = useStyles();
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(true);
   const [riders, setRiders] = useState([]);
-
-
   useEffect(() => {
     async function fetchData() {
       try{
@@ -73,85 +70,51 @@ const DriverForm = () => {
   let history = useHistory();
 
   const handleChange = (event,name) => {
-    console.log("what is",name)
-    const parentNode = event.target.parentNode;
-    console.log('parentNode:: ',parentNode);
-
-    console.log(event.target)
     setChecked(event.target.checked);
   };
   const handleSubmit = () => {
     history.push("/map");
   }
-
-const riderName = 'Max'
   return (
     <Container maxWidth="xs" className={classes.container}>
       <Header />
-
-    <Container maxWidth="xs" >
-
+      <Container maxWidth="xs" >
       <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
-      {/* {
-        riders.map(({}))
-      } */}
-
-      <Grid container spacing={2} style={{paddingBottom:8}}>
-        <Grid>
-        <Avatar className={classes.avatar} />
+      {
+        riders.map(({rider_email, location, phone}) => (
+        <Grid container spacing={2} style={{paddingBottom:8}}>
+            <Grid>
+              <Avatar className={classes.avatar} />
+            </Grid>
+            <Grid item xs={8}>
+              <Paper className={classes.paper} >
+                <div  className={classes.riderInfo}>{rider_email}</div>
+                <div className={classes.riderInfo}>{phone}</div>
+                <div className={classes.riderInfo}>{location}</div>
+              </Paper>
+            </Grid>
+            <Grid item xs={0}>
+              <Checkbox
+                    defaultChecked
+                    color="primary"
+                    onClick={(e) => handleChange(e,{rider_email,location})}
+                    inputProps={{ 'aria-label': 'secondary checkbox' }}
+                />
+               <div>1.1mi</div>
+            </Grid>
         </Grid>
-        <Grid item xs={8}>
-          <Paper className={classes.paper} >
-            <div  className={classes.riderInfo}>{riderName}</div>
-            <div className={classes.riderInfo}>(123)456-789</div>
-            <div className={classes.riderInfo}>21 Pike Place</div>
-          </Paper>
-        </Grid>
-        <Grid item xs={0}>
-          <Checkbox
-        defaultChecked
-        color="primary"
-        onClick={(e) => handleChange(e,{riderName})}
-        // onChange={(e) => handleChange(e,'Taurus')}
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-      />
-      <div>1.1mi</div>
-          </Grid>
-
-        <Grid container spacing={2} >
-        <Grid>
-        <Avatar className={classes.avatar} />
-        </Grid>
-        <Grid item xs={8} style={{marginBottom:10}}>
-          <Paper className={classes.paper} >
-            <div className={classes.riderInfo}>Kair</div>
-            <div className={classes.riderInfo}>(123)223-789</div>
-            <div className={classes.riderInfo}>21 Einstein Place</div>
-          </Paper>
-        </Grid>
-
-        <Grid item xs={0} style={{marginTop:10}}>
-          <Checkbox
-        defaultChecked
-        color="primary"
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'secondary checkbox' }}
-      />
-      <div>1.5mi</div>
-          </Grid>
-      </Grid>
-      </Grid>
-      <Button variant="contained"  className={classes.root}
-         style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 40}}
-         onClick={handleSubmit}>
-  Finish
-</Button>
-
+        ))
+      }
+      <Button
+        variant="contained"  className={classes.root}
+        style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 40}}
+        onClick={handleSubmit}
+      >
+        Finish
+      </Button>
+    </Container>
+    <Footer />
   </Container>
-  <Footer />
-  </Container>
-
-
   )
 }
 
