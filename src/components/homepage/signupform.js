@@ -40,15 +40,35 @@ const SignUpForm = () => {
     setFirstName(e.target.value);
   }
 
+  let validFName = () => {
+    return firstName === '' ? false : true;
+  }
+
   let handleLastName = (e) => {
     // console.log(e.target.value);
     setLastName(e.target.value);
+  }
+
+  let validLName = () => {
+    return lastName === '' ? false : true;
   }
 
   let handleEmail = (e) => {
     // console.log(e.target.value);
     setEmail(e.target.value);
   }
+
+  let validateEmail = () => {
+    let validRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+    if (email.match(validRegex)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
 
   let validateInformation = () => {
     if (firstName === '' || lastName === '' || validateEmail(email) === false) {
@@ -89,27 +109,29 @@ const SignUpForm = () => {
 
   }
 
-  let validateEmail = (email) => {
-    let validRegex =  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-    if (email.match(validRegex)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   const validLink = validInfo ? '/newUser' : '#';
 
   return (
     <Container className={classes.form} maxWidth="xs">
       <h2 className={classes.title}>New Here?</h2>
       <TextField fullWidth={true} id="filled-basic" label="First Name" variant="filled" required margin="normal"
-        onChange={(e) => {handleFirstName(e)}}/>
+        onChange={(e) => {
+          handleFirstName(e);
+          validFName();
+        }}/>
+        {validFName() ? <p></p> : <p className={classes.error}>Please enter first name</p>}
       <TextField fullWidth={true} id="filled-basic" label="Last Name" variant="filled" required margin="normal"
-        onChange={(e) => {handleLastName(e)}}/>
+        onChange={(e) => {
+          handleLastName(e);
+          validLName();
+        }}/>
+        {validLName() ? <p></p> : <p className={classes.error}>Please enter last name</p>}
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
-       onChange={(e) => {handleEmail(e)}}/>
+       onChange={(e) => {
+         handleEmail(e);
+         validateEmail();
+        }}/>
+       {validateEmail() ? <p></p> : <p className={classes.error}>Please enter proper email</p>}
      <Button className={classes.signupBtn} onClick={(e) => handleSubmit(e)}>
         <Link className={classes.link} to={validLink}>Sign Up</Link>
      </Button>

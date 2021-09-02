@@ -122,6 +122,11 @@ export default makeStyles((theme) => ({
   returning_link: {
     color: '#fff',
     textDecoration: 'none'
+  },
+  error: {
+    color: 'red',
+    margin: 0,
+    fontStyle: 'italic'
   }
 
 }));
