@@ -49,11 +49,6 @@ const EventForm = () => {
   const [ eventDes, setEventDes ] = useState('');
   const [ validation, setValidation ] = useState('');
 
-  // const [ validateName, setValidateName ] = useState('.');
-  // const [ validateDate, setValidateDate ] = useState('.');
-  // const [ validateTime, setValidateTime ] = useState('.');
-  // const [ validateLocation, setValidateLocation ] = useState('.');
-
   const { currentUser } = useContext(Context);
 
   // ------------ switch routes ---------------
@@ -63,28 +58,21 @@ const EventForm = () => {
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
-    // setValidateName('.');
   };
 
   const handleEventDate = (date) => {
     date.preventDefault();
     setEventDate(date.target.value);
-    // console.log(new Date(date.timeStamp * 1000).toDateString());
-    // setValidateDate('.');
   };
 
   const handleEventTime = (time) => {
     time.preventDefault();
     setEventTime(time.target.value);
-    // console.log(new Date(time.timeStamp * 1000));
-    // console.log(time);
-    // setValidateTime('.');
   };
 
   const handleEventLocation = (e) => {
     e.preventDefault();
     setEventLocation(e.target.value);
-    // setValidateLocation('.');
   };
 
   const handleEventDes = (e) => {
@@ -94,22 +82,12 @@ const EventForm = () => {
 
   // -------- axios post new event ----------
   const handleSubmit = () => {
-    // if (eventName === '') {
-    //   return setValidateName('Please enter the event name!');
-    // } else if (eventDate === '') {
-    //   return setValidateDate('Please enter the event date!');
-    // } else if (eventTime === '') {
-    //   return setValidateTime('Please enter the event time!');
-    // } else if (eventLocation === '') {
-    //   return setValidateLocation('Please enter the event location!');
-    // }
     if (eventName === '' || eventDate === '' ||
     eventTime === '' || eventLocation === '') {
-      return setValidation('Please enter all required (*) fileds!');
+      return setValidation('Please fill all required (*) fileds!');
     }
 
     let hostEmail = currentUser.email;
-    // console.log(eventName, hostEmail, eventDate, eventTime, eventDes, eventLocation);
     axios.post('http://localhost:3100/data/events', {
       event_name: eventName,
       host_email: hostEmail,
@@ -128,7 +106,7 @@ const EventForm = () => {
   return (
     <Container maxWidth="xs" className={classes.container}>
       <Header/>
-      <h3 styles={{ marginTop: 20 }}>Create a new event</h3>
+      <h3>Create a new event</h3>
       <form className={classes.root} noValidate autoComplete="off">
         <div className={classes.input}>
           <TextField
