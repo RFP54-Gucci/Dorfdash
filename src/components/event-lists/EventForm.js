@@ -50,7 +50,6 @@ const EventForm = () => {
   const [ validateDate, setValidateDate ] = useState('.');
   const [ validateTime, setValidateTime ] = useState('.');
   const [ validateLocation, setValidateLocation ] = useState('.');
-  const [ validate, setValidate ] = useState(false);
 
   const { currentUser } = useContext(Context);
 
@@ -58,26 +57,10 @@ const EventForm = () => {
   let history = useHistory();
 
   // ---------- onChange funcs ------------
-  const handleValidation = () => {
-    if (eventName === '') {
-      setValidateName('Please enter the event name!');
-    }
-    if (eventDate === '') {
-      setValidateDate('Please enter the event date!');
-    }
-    if (eventTime === '') {
-      setValidateTime('Please enter the event time!');
-    }
-    if (eventLocation === '') {
-      setValidateLocation('Please enter the event location!');
-    }
-  };
-
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
     setValidateName('.');
-    setValidate(true);
   };
 
   const handleEventDate = (date) => {
@@ -85,7 +68,6 @@ const EventForm = () => {
     setEventDate(date);
     // console.log(new Date(date.timeStamp * 1000).toDateString());
     setValidateDate('.');
-    setValidate(true);
   };
 
   const handleEventTime = (time) => {
@@ -94,44 +76,45 @@ const EventForm = () => {
     // console.log(new Date(time.timeStamp * 1000));
     // console.log(time);
     setValidateTime('.');
-    setValidate(true);
   };
 
   const handleEventLocation = (e) => {
     e.preventDefault();
     setEventLocation(e.target.value);
-    // console.log(eventLocation);
     setValidateLocation('.');
-    setValidate(true);
   };
 
   const handleEventDes = (e) => {
     e.preventDefault();
     setEventDes(e.target.value);
-    // console.log(eventDes);
   };
 
   // -------- axios post new event ----------
-
   const handleSubmit = () => {
-    handleValidation();
-    let hostEmail = currentUser.email;
-    console.log(currentUser, hostEmail);
-    if (validate) {
-      axios.post('http://localhost:3100/data/events', {
-        event_name: eventName,
-        host_email: hostEmail,
-        date: eventDate.toString(),
-        time: eventTime.toString(),
-        description: eventDes,
-        location: eventLocation
-      })
-        .then((res) => {
-          console.log('successfully create new event!');
-          history.push('/upcoming');
-        })
-        .catch((err) => { console.log(err) });
+    if (eventName === '') {
+      return setValidateName('Please enter the event name!');
+    } else if (eventDate === '') {
+      return setValidateDate('Please enter the event date!');
+    } else if (eventTime === '') {
+      return setValidateTime('Please enter the event time!');
+    } else if (eventLocation === '') {
+      return setValidateLocation('Please enter the event location!');
     }
+    
+    let hostEmail = currentUser.email;
+    axios.post('http://localhost:3100/data/events', {
+      event_name: eventName,
+      host_email: hostEmail,
+      date: eventDate,
+      time: eventTime,
+      description: eventDes,
+      location: eventLocation
+    })
+      .then((res) => {
+        console.log('successfully create new event!');
+        history.push('/upcoming');
+      })
+      .catch((err) => { console.log(err) });
   }
 
   return (
