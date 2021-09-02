@@ -34,6 +34,7 @@ const EventForm = () => {
       color: 'red',
       fontStyle: 'italic',
       fontSize: 12,
+      height: 10,
     },
   }));
 
@@ -45,11 +46,12 @@ const EventForm = () => {
   const [ eventTime, setEventTime ] = useState('');
   const [ eventLocation, setEventLocation ] = useState('');
   const [ eventDes, setEventDes ] = useState('');
+  const [ validation, setValidation ] = useState('');
 
-  const [ validateName, setValidateName ] = useState('.');
-  const [ validateDate, setValidateDate ] = useState('.');
-  const [ validateTime, setValidateTime ] = useState('.');
-  const [ validateLocation, setValidateLocation ] = useState('.');
+  // const [ validateName, setValidateName ] = useState('.');
+  // const [ validateDate, setValidateDate ] = useState('.');
+  // const [ validateTime, setValidateTime ] = useState('.');
+  // const [ validateLocation, setValidateLocation ] = useState('.');
 
   const { currentUser } = useContext(Context);
 
@@ -60,28 +62,28 @@ const EventForm = () => {
   const handleEventName = (e) => {
     e.preventDefault();
     setEventName(e.target.value);
-    setValidateName('.');
+    // setValidateName('.');
   };
 
   const handleEventDate = (date) => {
     date.preventDefault();
-    setEventDate(date);
+    setEventDate(date.target.value);
     // console.log(new Date(date.timeStamp * 1000).toDateString());
-    setValidateDate('.');
+    // setValidateDate('.');
   };
 
   const handleEventTime = (time) => {
     time.preventDefault();
-    setEventTime(time);
+    setEventTime(time.target.value);
     // console.log(new Date(time.timeStamp * 1000));
     // console.log(time);
-    setValidateTime('.');
+    // setValidateTime('.');
   };
 
   const handleEventLocation = (e) => {
     e.preventDefault();
     setEventLocation(e.target.value);
-    setValidateLocation('.');
+    // setValidateLocation('.');
   };
 
   const handleEventDes = (e) => {
@@ -91,17 +93,22 @@ const EventForm = () => {
 
   // -------- axios post new event ----------
   const handleSubmit = () => {
-    if (eventName === '') {
-      return setValidateName('Please enter the event name!');
-    } else if (eventDate === '') {
-      return setValidateDate('Please enter the event date!');
-    } else if (eventTime === '') {
-      return setValidateTime('Please enter the event time!');
-    } else if (eventLocation === '') {
-      return setValidateLocation('Please enter the event location!');
+    // if (eventName === '') {
+    //   return setValidateName('Please enter the event name!');
+    // } else if (eventDate === '') {
+    //   return setValidateDate('Please enter the event date!');
+    // } else if (eventTime === '') {
+    //   return setValidateTime('Please enter the event time!');
+    // } else if (eventLocation === '') {
+    //   return setValidateLocation('Please enter the event location!');
+    // }
+    if (eventName === '' || eventDate === '' ||
+    eventTime === '' || eventLocation === '') {
+      return setValidation('Please enter all required (*) fileds!');
     }
-    
+
     let hostEmail = currentUser.email;
+    // console.log(eventName, hostEmail, eventDate, eventTime, eventDes, eventLocation);
     axios.post('http://localhost:3100/data/events', {
       event_name: eventName,
       host_email: hostEmail,
@@ -131,27 +138,29 @@ const EventForm = () => {
             fullWidth
             onChange={handleEventName}
           />
-          <div className={classes.validate}>{validateName}</div>
+
         </div>
         <div className={classes.input}>
         <TextField
             id="outlined-size-small"
-            label="Event date*"
+            // label="Event date*"
             variant="outlined"
             size="small"
-            onChange={handleEventDate}
+            type="date"
+            onChange={(e) => handleEventDate(e)}
           />
-          <div className={classes.validate}>{validateDate}</div>
+          {/* <div className={classes.validate}>{validateDate}</div> */}
         </div>
         <div className={classes.input}>
           <TextField
             id="outlined-size-small"
-            label="Event time*"
+            // label="Event time*"
             variant="outlined"
             size="small"
-            onChange={handleEventTime}
+            type="time"
+            onChange={(e) => handleEventTime(e)}
           />
-          <div className={classes.validate}>{validateTime}</div>
+          {/* <div className={classes.validate}>{validateTime}</div> */}
         </div>
         <div className={classes.input}>
           <TextField
@@ -164,7 +173,7 @@ const EventForm = () => {
             fullWidth
             onChange={handleEventLocation}
           />
-          <div className={classes.validate}>{validateLocation}</div>
+          {/* <div className={classes.validate}>{validateLocation}</div> */}
         </div>
         <div className={classes.input}>
           <TextField
@@ -178,6 +187,7 @@ const EventForm = () => {
             onChange={handleEventDes}
           />
         </div>
+        <div className={classes.validate}>{validation}</div>
         <Button className={classes.button} onClick={() => handleSubmit()}>Create event</Button>
       </form>
       <Footer/>
