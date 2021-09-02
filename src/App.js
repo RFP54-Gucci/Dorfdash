@@ -13,7 +13,8 @@ import EventDetails from './components/events/eventDetails';
 import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
-import {users, riders, events, drivers, realEvent} from './_staticData/data.js';
+import Attendees from './components/attendants/attendees';
+import {riders,drivers, realEvent} from './_staticData/data.js';
 import axios from 'axios'
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
 
   const [riderData, setRiderData] = useState(riders);
   const [driverData, setDriverData] = useState(drivers);
-  
+
   useEffect( () => {
       async function fetchData() {
        try{
@@ -57,6 +58,10 @@ function App() {
         }}
       >
         <Switch>
+          <Route path="/attendees">
+            <Attendees />
+          </Route>
+
           <Route path="/myList">
             <Mylist />
           </Route>

@@ -81,15 +81,15 @@ const DriverForm = () => {
       <Container maxWidth="xs" >
       <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
       {
-        riders.map(({rider_email, location, phone}) => (
+        riders.map(({rider_name, location, phone}) => (
         <Grid container spacing={2} style={{paddingBottom:8}}>
             <Grid>
               <Avatar className={classes.avatar} />
             </Grid>
             <Grid item xs={8}>
               <Paper className={classes.paper} >
-                <div  className={classes.riderInfo}>{rider_email}</div>
-                <div className={classes.riderInfo}>{phone}</div>
+                <div  className={classes.riderInfo}>{rider_name}</div>
+                <div className={classes.riderInfo}>{'490-699-7444'}</div>
                 <div className={classes.riderInfo}>{location}</div>
               </Paper>
             </Grid>
@@ -97,7 +97,7 @@ const DriverForm = () => {
               <Checkbox
                     defaultChecked
                     color="primary"
-                    onClick={(e) => handleChange(e,{rider_email,location})}
+                    onClick={(e) => handleChange(e,{rider_name,location})}
                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                 />
                <div>1.1mi</div>
