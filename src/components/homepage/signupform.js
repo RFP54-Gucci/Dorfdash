@@ -1,10 +1,12 @@
 import useStyles from './homepage_styles.js';
 import { Context } from '../../_Context/Context.js';
 
-import { useState, useEffect, useContext } from 'react';
-import {  Container, TextField, Button, FormControl } from '@material-ui/core';
+import { useState, useContext } from 'react';
+import {  Container, TextField, Button } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from 'react-router-dom';
+
+import logo2 from '../../assets/logo2.png';
 
 /*
   for rider, it should lead to event page with driver
@@ -33,8 +35,6 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
 
   const { currentUser, setCurrentUser } = useContext(Context);
-
-  const [validInfo, setValidInfo] = useState(false);
 
   let handleFirstName = (e) => {
     // console.log(e.target.value);
@@ -69,13 +69,10 @@ const SignUpForm = () => {
     }
   }
 
-
-
   let validateInformation = () => {
     if (firstName === '' || lastName === '' || validateEmail(email) === false) {
       return false;
     }
-    setValidInfo(true);
     return true;
   }
 
@@ -110,31 +107,36 @@ const SignUpForm = () => {
 
   }
 
+  let handleLogin = () => {
+    history.push('/returningUser')
+  }
+
   return (
     <Container className={classes.form} maxWidth="xs">
+      <img alt="logo2" className={classes.logo2} src={logo2}></img>
       <h2 className={classes.title}>New Here?</h2>
       <TextField fullWidth={true} id="filled-basic" label="First Name" variant="filled" required margin="normal"
         onChange={(e) => {
           handleFirstName(e);
           validFName();
         }}/>
-        {validFName() ? <p></p> : <p className={classes.error}>Please enter first name</p>}
+        {/* {validFName() ? <p></p> : <p className={classes.error}>Please enter first name</p>} */}
       <TextField fullWidth={true} id="filled-basic" label="Last Name" variant="filled" required margin="normal"
         onChange={(e) => {
           handleLastName(e);
           validLName();
         }}/>
-        {validLName() ? <p></p> : <p className={classes.error}>Please enter last name</p>}
+        {/* {validLName() ? <p></p> : <p className={classes.error}>Please enter last name</p>} */}
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
        onChange={(e) => {
          handleEmail(e);
          validateEmail();
         }}/>
-       {validateEmail() ? <p></p> : <p className={classes.error}>Please enter proper email</p>}
+       {/* {validateEmail() ? <p></p> : <p className={classes.error}>Please enter proper email</p>} */}
      <Button className={classes.signupBtn} onClick={(e) => handleSubmit(e)}>Sign Up</Button>
       <Container className={classes.returningContainer}>
         <p>Already have an account?</p>
-        <Button className={classes.loginBtn}>Log In</Button>
+        <Button className={classes.loginBtn} onClick={() => handleLogin()}>Log In</Button>
       </Container>
     </Container>
   )

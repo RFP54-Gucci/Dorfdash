@@ -1,4 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
+import Image from '../../assets/background.png';
+import '../../App.css';
 
 export default makeStyles((theme) => ({
   root: {
@@ -13,12 +15,21 @@ export default makeStyles((theme) => ({
   div: {
     width: '100vw',
     maxWidth: '100vw',
-    padding: '0',
-    height: '100vh'
+    padding: '5%',
+    height: '100%',
+    backgroundColor: '#10BD82',
   },
-
+  logo: {
+    width: '250px',
+    height: '40px',
+    margin: '2%'
+  },
+  logo2: {
+    width: '250px'
+  },
   header: {
-    backgroundColor: '#20A46B'
+    backgroundColor: '#10BD82',
+    padding: '2%'
   },
   headerTitle: {
     margin: '0',
@@ -34,12 +45,14 @@ export default makeStyles((theme) => ({
   },
   form: {
     padding: '5% 5% 2% 5%',
-    margin: '2% auto',
-    borderRadius: '25px',
-    boxShadow: '0px 5px 22px 0px rgba(0,0,0,0.65)'
+    margin: 'auto',
+    borderRadius: '10px',
+    boxShadow: '0px 5px 12px 0px rgba(0,0,0,0.65)',
+    backgroundColor: '#fff'
   },
   title: {
-    fontSize: '2.2rem'
+    fontSize: '2.2rem',
+    fontFamily: 'Sora'
   },
   signupBtn: {
     backgroundColor: '#20A46B',
