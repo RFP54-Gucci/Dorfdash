@@ -52,6 +52,14 @@ const Upcoming = (props) => {
     history.push('/myList');
   };
 
+  const handleAttendingEvent = () => {
+    history.push('/riderForm');
+  };
+
+  const handleAttendedEvent = () => {
+    history.push('/eventSummary');
+  };
+
    // ---------- adding events to my list ----------
    const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
     currentEvent, setCurrentEvent } = useContext(Context);
@@ -68,14 +76,6 @@ const Upcoming = (props) => {
        setMyList(myEventList.concat(myList));
      }
      // console.log(eventIdArr);
-   };
-
-   const handleAttendingEvent = () => {
-     history.push('/riderForm');
-   };
-
-   const handleAttendedEvent = () => {
-     history.push('/eventSummary');
    };
 
    // --------- checking if already attended --------
