@@ -1,5 +1,5 @@
+require('dotenv').config()
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
 const morgan = require('morgan');
 // eslint-disable-next-line no-unused-vars
@@ -14,8 +14,6 @@ const app = express();
 // Set what we are listening on.
 app.set('port', 3100);
 
-// Use CORS
-app.use(cors());
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(express.json());

@@ -31,6 +31,7 @@ module.exports = {
     const { riderEmail, eventName, location, phone} = req.body;
     const queryStr = `INSERT INTO riders (rider_email, event_name, location, phone)
                       VALUES ('${riderEmail}', '${eventName}', '${location}', '${phone}')`;
+    // console.log(queryStr);
 
     try {
       await db.query(queryStr);

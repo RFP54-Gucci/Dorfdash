@@ -1,5 +1,5 @@
 import { Switch, Route } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Context } from './_Context/Context';
 import './App.css';
 import EventForm from './components/event-lists/EventForm';
@@ -14,16 +14,37 @@ import ReturningUser from './components/homepage/returningUser';
 import NewUser from './components/homepage/newUser';
 import Homepage from './components/homepage/homePage';
 import Attendees from './components/attendants/attendees';
-import {users, riders, events, drivers} from './_staticData/data.js';
-console.log(users, riders, events, drivers);
+import {riders,drivers, realEvent} from './_staticData/data.js';
+import axios from 'axios'
 
 function App() {
+
+  // const [userData, setUserData] = useState([]);
+  const [eventData, setEventData] = useState([]);
+
+  const [currentEvent, setCurrentEvent] = useState(realEvent);
+  const [currentDriver, setCurrentDriver] = useState(riders[0]);
   const [currentUser, setCurrentUser] = useState({});
-  const [currentEvent, setCurrentEvent ] = useState({});
+  // const [currentEvent, setCurrentEvent ] = useState({});
   const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
-  const [eventData, setEventData] = useState(events);
   const [driverData, setDriverData] = useState(drivers);
+
+  useEffect( () => {
+      async function fetchData() {
+       try{
+        const {data:events} = await axios.get('http://localhost:3100/data/events');
+        const {data:users} = await axios.get('http://localhost:3100/data/users');
+        setUserData(users);
+        setEventData(events);
+
+       }
+        catch(err){
+          console.log('ERROR:', err);
+        }
+      }
+      fetchData();
+  },[])
 
   // -------- states for myList -----------
   const [ myEventList, setMyList ] = useState([]);
@@ -33,6 +54,7 @@ function App() {
     <div className="App">
       <Context.Provider
         value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
+          currentDriver,
           eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
       >
         <Switch>
