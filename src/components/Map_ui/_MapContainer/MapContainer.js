@@ -11,7 +11,6 @@ import useStyles from './styles';
 
 const MapContainer = () => {
   const [displayMap, setDisplayMap] = useState(false);
-  console.log(displayMap)
   const classes = useStyles();
   return (
     <div>
