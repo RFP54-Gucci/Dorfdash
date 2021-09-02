@@ -37,7 +37,8 @@ module.exports = {
   },
 
   userEventsList: (email) => {
-    const query = `SELECT * FROM riders INNER JOIN events USING (event_name) WHERE riders.rider_email = '${email}' OR riders.driver_email = '${email}'`;
-    return db.query(query);
+    const queryStr = `SELECT * FROM riders INNER JOIN events USING (event_name)
+                   WHERE riders.rider_email = '${email}' OR riders.driver_email = '${email}'`;
+    return db.query(queryStr);
   }
 }
