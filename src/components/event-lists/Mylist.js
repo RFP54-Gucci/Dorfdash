@@ -42,7 +42,7 @@ const Mylist = () => {
       paddingTop: 2,
     },
     button: {
-      color: '#20A46B',
+      color: 'white',
       marginTop: 10,
     },
     remove: {
@@ -51,7 +51,7 @@ const Mylist = () => {
     browse: {
       marginBottom: 15,
       marginTop: 10,
-      color: '#20A46B',
+      color: 'white',
     },
   }));
 
@@ -125,7 +125,7 @@ const Mylist = () => {
           ))}
         </div>
         <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button><br/>
-        <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
+        <Button size="small" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
       </Container>
       <Footer/>
     </Container>

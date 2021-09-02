@@ -38,7 +38,7 @@ const Upcoming = (props) => {
       color: '#20A46B',
     },
     myListBtn: {
-      color: '#20A46B',
+      color: 'white',
       marginLeft: 230,
       marginTop: 10,
     },
