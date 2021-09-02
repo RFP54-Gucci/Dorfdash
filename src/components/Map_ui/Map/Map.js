@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import { MAPS_KEY } from '../../../config.js';
 import {Context} from '../../../_Context/Context.js';
 
 
@@ -18,7 +17,7 @@ const Map = (props) => {
 
   useEffect(() => {
     const loader = new Loader({
-      apiKey: MAPS_KEY,
+      apiKey: process.env.REACT_APP_API_KEY,
       version: 'weekly',
     });
     let map;

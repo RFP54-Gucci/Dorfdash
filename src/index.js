@@ -3,6 +3,7 @@ import { hydrate, render } from "react-dom";
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
+require('dotenv').config()
 
 // Using react-snap to pre-render static HTML, more info here => https://github.com/stereobooster/react-snap
 
