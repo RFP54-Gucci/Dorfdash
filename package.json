@@ -32,7 +32,6 @@
     "dev": "react-scripts start",
     "start": "nodemon ./server/index.js",
     "build": "react-scripts build",
-    "postbuild": "react-snap",
     "test": "jest --watch",
     "eject": "react-scripts eject"
   },

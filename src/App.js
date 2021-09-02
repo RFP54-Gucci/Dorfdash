@@ -18,12 +18,16 @@ import {riders,drivers, realEvent} from './_staticData/data.js';
 import axios from 'axios'
 
 function App() {
+
   const [userData, setUserData] = useState([]);
   const [eventData, setEventData] = useState([]);
 
   const [currentEvent, setCurrentEvent] = useState(realEvent);
   const [currentDriver, setCurrentDriver] = useState(riders[0]);
   const [currentUser, setCurrentUser] = useState({});
+
+
+//   const [userData, setUserData] = useState(users);
 
   const [riderData, setRiderData] = useState(riders);
   const [driverData, setDriverData] = useState(drivers);
@@ -51,11 +55,16 @@ function App() {
   return (
     <div className="App">
       <Context.Provider
+
         value={{
           userData, riderData, eventData, driverData, myEventList, setMyList,
           eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent,
           currentDriver,
         }}
+
+//         value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
+//           eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
+
       >
         <Switch>
           <Route path="/attendees">
