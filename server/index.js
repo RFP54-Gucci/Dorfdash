@@ -4,6 +4,7 @@ const path = require('path');
 const morgan = require('morgan');
 // eslint-disable-next-line no-unused-vars
 const db = require('../db/index.js');
+var cors = require('cors')
 
 // Router & API
 const router = require('./routes.js');
@@ -13,7 +14,7 @@ const app = express();
 
 // Set what we are listening on.
 app.set('port', 3100);
-
+app.use(cors());
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(express.json());

@@ -9,7 +9,7 @@ import CardActions from '@material-ui/core/CardActions';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import samples from './samples.js';
+// import samples from './samples.js';
 import Header from './../Header/Header.js';
 import Footer from './../Footer/Footer.js';
 import TransitionsModal from '../events/modal.js';
@@ -61,6 +61,8 @@ const Upcoming = (props) => {
    const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
     currentEvent, setCurrentEvent } = useContext(Context);
 
+    // console.log('this is event data', eventData);
+
    const addEvent = (evt) => {
      let myList = [];
      let idArr = [];
@@ -83,6 +85,7 @@ const Upcoming = (props) => {
 
    // --------- checking if already attended --------
    const checkAttended = (event) => {
+    setCurrentEvent(event);
      if (eventIdArr.indexOf(event.event_id) < 0) {
        addEvent(event);
        handleAttendingEvent();
@@ -99,26 +102,26 @@ const Upcoming = (props) => {
         <Button className={classes.myListBtn} size="small" onClick={handleMyList}>My event list</Button>
         <h3>Upcoming events</h3>
         <div className="container-slide">
-          {samples.map((event) => (
-            <Card className={classes.card} key={event.event_id}>
+          {eventData.map((event) => (
+            <Card className={classes.card} key={event.index}>
               <CardActionArea>
                 <CardContent>
                   <Typography className={classes.title}>
                     {event.event_name}
                   </Typography>
                   <Typography className={classes.body}>
-                    {event.event_host}
+                   placeholder
                   </Typography>
                   <Typography className={classes.body}>
-                  {`${event.event_date}  ${event.event_time}`}
+                  {`${event.date}  ${event.time}`}
                   </Typography>
                   <Typography className={classes.body}>
-                    {event.event_location}
+                    {event.location}
                   </Typography>
                 </CardContent>
                 <CardActions>
                   <Button className={classes.attendBtn} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
-                  <TransitionsModal/>
+                  <TransitionsModal selectedEvent={event}/>
                 </CardActions>
               </CardActionArea>
             </Card>
