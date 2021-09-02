@@ -1,4 +1,5 @@
-require('dotenv').config()
+require('dotenv').config();
+
 const express = require('express');
 const cors = require('cors')
 const path = require('path');
@@ -14,8 +15,7 @@ const app = express();
 
 // Set what we are listening on.
 app.set('port', 3100);
-app.use(cors())
-
+app.use(cors());
 // Logging and parsing
 app.use(morgan('dev'));
 app.use(express.json());
