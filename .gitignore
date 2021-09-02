@@ -113,3 +113,5 @@ package-lock.json
 events.env
 
 *DS_Store
+.DS_Store
+./.DS_Store
