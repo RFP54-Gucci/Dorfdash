@@ -36,8 +36,6 @@ const ReturningUser = () => {
     return false;
   }
 
-  let displayErrMessage = false;
-
   let handleSubmit = (e) => {
     e.preventDefault();
     // if the email is validated
@@ -49,9 +47,6 @@ const ReturningUser = () => {
       history.push('/upcoming')
     } else {
       console.log('here');
-      console.log(displayErrMessage);
-      displayErrMessage = true;
-      console.log(displayErrMessage);
     }
 
     // setCurrentUser(email);
@@ -70,7 +65,7 @@ const ReturningUser = () => {
       <h2>Welcome Back!</h2>
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
         onChange={(e) => {handleEmail(e)}}/>
-        {displayErrMessage === true ? <p className={classes.error}>Please enter correct email</p> : <p></p>}
+        {/* {displayErrMessage === true ? <p className={classes.error}>Please enter correct email</p> : <p></p>} */}
       <Button className={classes.returning_button} onClick={(e) => handleSubmit(e)}>Log in</Button>
     </Container>
       <Container className={classes.footer}>
