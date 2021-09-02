@@ -60,15 +60,15 @@ const Mylist = () => {
   const { myEventList, setMyList, eventIdArr, setEventIdArr, currentUser } = useContext(Context);
 
   // ------------ removing event --------------
-  const removeEvent = (eventId) => {
-    for (var i = 0; i < myEventList.length; i++) {
-      if (myEventList[i].event_id === eventId) {
-        setMyList(myEventList.slice(0, i).concat(myEventList.slice(i + 1)));
-      }
-    }
-    var removedIndex = eventIdArr.indexOf(eventId);
-    setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
-  };
+  // const removeEvent = (eventId) => {
+  //   for (var i = 0; i < myEventList.length; i++) {
+  //     if (myEventList[i].event_id === eventId) {
+  //       setMyList(myEventList.slice(0, i).concat(myEventList.slice(i + 1)));
+  //     }
+  //   }
+  //   var removedIndex = eventIdArr.indexOf(eventId);
+  //   setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
+  // };
 
   // ----------- delete request --------------
   const deleteEvent = (eventId) => {
@@ -118,7 +118,7 @@ const Mylist = () => {
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.action}>
-                  <Button size="small" className={classes.remove} onClick={() => removeEvent(event.event_id)}>Remove</Button>
+                  <Button size="small" className={classes.remove} onClick={deleteEvent}>Remove</Button>
                 </CardActions>
               </CardActionArea>
             </Card>
