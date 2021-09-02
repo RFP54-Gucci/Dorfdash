@@ -3,8 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
-import {Grid} from '@material-ui/core';
-
 import Fade from '@material-ui/core/Fade';
 import samples from './sample.js';
 
