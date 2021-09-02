@@ -37,10 +37,27 @@ module.exports = {
   },
 
   userEventsList: (email) => {
-    const query = `SELECT * FROM riders INNER JOIN events USING (event_name) WHERE riders.rider_email = '${email}' OR riders.driver_email = '${email}'`;
-    return db.query(query);
-  },
+    const queryStr = `SELECT json_build_object('user_name', name,
+                        'rider_events',
+                        (SELECT json_agg(json_build_object('event_id', event_id, 'event_name', events.event_name, 'date', date, 'time', time, 'description', description, 'location', events.location,
+                            'host_name',
+                            (SELECT name from users WHERE events.host_email=users.email) ))
+                         FROM events INNER JOIN riders ON (events.event_name=riders.event_name) WHERE riders.rider_email='${email}' ),
+                        'driver_events',
+                        (SELECT json_agg(json_build_object('event_id', event_id, 'event_name', events.event_name, 'date', date, 'time', time, 'description', description, 'location', events.location,
+                            'host_name',
+                            (SELECT name from users WHERE events.host_email=users.email) ))
+                         FROM events INNER JOIN drivers ON (events.event_name=drivers.event_name) WHERE drivers.driver_email='${email}' ),
+                        'host_events',
+                        (SELECT json_agg(json_build_object('event_id', event_id, 'event_name', events.event_name, 'date', date, 'time', time, 'description', description, 'location', events.location,
+                            'host_name',
+                            (SELECT name from users WHERE events.host_email=users.email) ))
+                         FROM events WHERE events.host_email='${email}' ) )
+                      FROM users
+                      WHERE users.email='${email}'`;
 
+    return db.query(queryStr);
+  },
   removeUserEvent: (email) => {
     const queryRemoveRider = `DELETE FROM riders WHERE rider_email = '${email}'`;
     const queryRemoveDriverFromRider = `UPDATE riders SET driver_email = null WHERE driver_email = '${email}'`;
