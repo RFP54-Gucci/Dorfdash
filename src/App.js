@@ -19,6 +19,7 @@ import axios from 'axios'
 
 function App() {
 
+  // this context will have users' information currently in the db
   const [userData, setUserData] = useState([]);
   const [eventData, setEventData] = useState([]);
 

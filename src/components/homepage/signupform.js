@@ -1,10 +1,12 @@
 import useStyles from './homepage_styles.js';
 import { Context } from '../../_Context/Context.js';
 
-import { useState, useEffect, useContext } from 'react';
-import {  Container, TextField, Button, FormControl } from '@material-ui/core';
+import { useState, useContext } from 'react';
+import {  Container, TextField, Button } from '@material-ui/core';
 // import { makeStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
+import logo2 from '../../assets/logo2.png';
 
 /*
   for rider, it should lead to event page with driver
@@ -26,14 +28,13 @@ const axios = require('axios');
 // sign up button
 const SignUpForm = () => {
   const classes = useStyles();
+  const history = useHistory();
 
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
 
   const { currentUser, setCurrentUser } = useContext(Context);
-
-  const [validInfo, setValidInfo] = useState(false);
 
   let handleFirstName = (e) => {
     // console.log(e.target.value);
@@ -68,19 +69,16 @@ const SignUpForm = () => {
     }
   }
 
-
-
   let validateInformation = () => {
     if (firstName === '' || lastName === '' || validateEmail(email) === false) {
       return false;
     }
-    setValidInfo(true);
     return true;
   }
 
   let handleSubmit = (e) => {
-    e.preventDefault();
-    validateInformation() ? console.log('true') : console.log('false');
+    // e.preventDefault();
+    // validateInformation() ? console.log('true') : console.log('false');
 
     // validate that information has been put in
     if (validateInformation()) {
@@ -98,7 +96,7 @@ const SignUpForm = () => {
           email: email
         }
       })
-        .then((response) => console.log(response))
+        .then((response) => history.push('/newUser'))
         .catch((err) => console.log('err', err));
     } else {
       console.log('please enter correct info');
@@ -109,37 +107,37 @@ const SignUpForm = () => {
 
   }
 
-  const validLink = validInfo ? '/newUser' : '#';
+  let handleLogin = () => {
+    history.push('/returningUser')
+  }
+
 
   return (
     <Container className={classes.form} maxWidth="xs">
+      <img alt="logo2" className={classes.logo2} src={logo2}/>
       <h2 className={classes.title}>New Here?</h2>
       <TextField fullWidth={true} id="filled-basic" label="First Name" variant="filled" required margin="normal"
         onChange={(e) => {
           handleFirstName(e);
           validFName();
         }}/>
-        {validFName() ? <p></p> : <p className={classes.error}>Please enter first name</p>}
+        {/* {validFName() ? <p></p> : <p className={classes.error}>Please enter first name</p>} */}
       <TextField fullWidth={true} id="filled-basic" label="Last Name" variant="filled" required margin="normal"
         onChange={(e) => {
           handleLastName(e);
           validLName();
         }}/>
-        {validLName() ? <p></p> : <p className={classes.error}>Please enter last name</p>}
+        {/* {validLName() ? <p></p> : <p className={classes.error}>Please enter last name</p>} */}
       <TextField fullWidth={true} id="filled-basic" label="Email" variant="filled" required margin="normal"
        onChange={(e) => {
          handleEmail(e);
          validateEmail();
         }}/>
-       {validateEmail() ? <p></p> : <p className={classes.error}>Please enter proper email</p>}
-     <Button className={classes.signupBtn} onClick={(e) => handleSubmit(e)}>
-        <Link className={classes.link} to={validLink}>Sign Up</Link>
-     </Button>
+       {/* {validateEmail() ? <p></p> : <p className={classes.error}>Please enter proper email</p>} */}
+     <Button className={classes.solidBtn} onClick={(e) => handleSubmit(e)}>Sign Up</Button>
       <Container className={classes.returningContainer}>
-        <p>Already have an account?</p>
-        <Button className={classes.loginBtn}>
-          <Link className={classes.link2} to="/returningUser">Log In</Link>
-        </Button>
+        <p class={classes.font}>Already have an account?</p>
+        <Button className={classes.loginBtn} onClick={() => handleLogin()}>Log In</Button>
       </Container>
     </Container>
   )
