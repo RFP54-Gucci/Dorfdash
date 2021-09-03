@@ -12,7 +12,10 @@ module.exports = {
   },
   getDriverInfo: (req, res) => {
     models.riders.getDriverInfo(req)
-      .then((data) => res.send(data[0]))
+      .then((data) =>{
+        console.log(data[0]);
+        res.send(data[0])
+      })
       .catch(err => res.send(err));
   },
   getAll: (req, res) => {
@@ -34,6 +37,7 @@ module.exports = {
     })
   },
   put: (req, res) => {
+    console.log(req.body);
     models.riders.putRider(req, (err) => {
       if (err) {
         res.send(err);

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Context } from '../../_Context/Context.js';
 import { useContext } from 'react';
 
-import { Container, Paper, Grid, Button, TextField} from '@material-ui/core';
+import { Container, Grid, Button, TextField} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -98,7 +98,6 @@ const RiderForm = () => {
   };
 
   const handleSubmit = () => {
-    alert(addRider.phone)
     if(addRider.phone === '' && addRider.location === '') {
       setValidatePhone('Please Enter Your Phone Number!');
       setValidateAddress('Please Enter Your Location!');
@@ -114,7 +113,7 @@ const RiderForm = () => {
     // }
 
     if(value === 'Rider') {
-      axios.post(' http://localhost:3100/data/riders', {
+      axios.post('/data/riders', {
         riderEmail: currentUser.email,
         eventName: currentEvent.event_name,
         phone:addRider.phone ,
@@ -139,9 +138,9 @@ const RiderForm = () => {
         console.log(error);
       });
     } else {
-      // driverEmail, eventName, phone, location, vehicleInfo
-      axios.post('http://localhost:3100/data/drivers', {
-        //driver_email, event_name, phone, location, vehicle_info
+
+      axios.post('/data/drivers', {
+
         driverEmail: currentUser.email,
         eventName: currentEvent.event_name,
         phone:addRider.phone ,
@@ -165,17 +164,6 @@ const RiderForm = () => {
         setErrorMessage('Failed To Submit!');
       });
     }
-
-    // axios.get( `http://localhost:3100/events/${currentEvent.event_name}`, {})
-    // .then(response => {
-    //   console.log(response.data)
-    //   setEventDetails({
-    //     eventDetails:response.data
-    //   })
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // })
   }
 
   const handlePhoneChange = (e) => {
@@ -204,56 +192,6 @@ const RiderForm = () => {
   // console.log(addRider.phone)
   if(value==='Rider') {
     return (
-
-  //     <Container maxWidth="xs" className={classes.container}>
-  //     <Header />
-  //     <Container maxWidth="xs">
-  //       <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
-  //       {errorMessage!=='' ? errorMessage : ''}
-  //       </div>
-  //       <FormControl component="fieldset">
-  //       <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-  //         <span><FormControlLabel  value="Rider" control={<Radio style={{color:'green'}} />} label="Rider" />
-  //         <FormControlLabel value="Driver" control={<Radio style={{color:'green'}} />} label="Driver" /></span>
-  //       </RadioGroup>
-  //     </FormControl>
-
-  //     <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
-  //         <Grid item xs={12}>
-  //             <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
-
-  //           <form className={classes.root} Validate autoComplete="phone">
-  //             <TextField id="filled-basic"  label="Contact Number"
-  //              variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
-  //               onChange ={handlePhoneChange}/>
-
-  //              <br />
-
-  //              <div style={{color:'red', fontStyle:'italic'}}>
-  //                {validatePhone !== ''?validatePhone : ''}</div>
-
-  //              <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
-  //              className={classes.textField} required
-  //              onChange ={handleAddressChange}/>
-
-  //              <br />
-
-  //              <div style={{color:'red', fontStyle:'italic'}}>
-  //                {validateAddress!== '' ? validateAddress : ''}</div>
-
-  //           </form>
-  //         </Grid>
-  //     </Grid>
-  //     <Button variant="contained"  className={classes.root}
-  //          style={{backgroundColor: '#20A46B', color: '#FFFFFF', marginBottom:70}}
-  //          onClick = {handleSubmit}>
-  //   {buttonText}
-  // </Button>
-
-  //   </Container>
-  //   <Footer />
-  //   </Container>
-
 
     // Jinhoo change
     <Container maxWidth="xs" className={classes.div2}>

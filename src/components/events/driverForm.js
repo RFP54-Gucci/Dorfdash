@@ -57,14 +57,18 @@ import useStyles from '../components_styles.js';
 // }))
 
 const DriverForm = () => {
+  const { currentUser, setCurrentUser } = useContext(Context);
   const {currentEvent:{event_name}} = useContext(Context);
+  const { currentEvent, setCurrentEvent } = useContext(Context);
   const classes = useStyles();
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   const [riders, setRiders] = useState([]);
+  const[onChange, setOnChange] = useState([]);
+  console.log(riders);
   useEffect(() => {
     async function fetchData() {
       try{
-       const {data:ridersArr} = await axios.get(`http://localhost:3100/data/riders/${event_name}`);
+       const {data:ridersArr} = await axios.get(`/data/riders/${event_name}`);
        const location = [
          '2229 Union St, San Francisco, CA 94123','350 Turk St, San Francisco, CA 94102',
          '35 Palm Ave # 2, San Francisco, CA 94118','500-514 Hayes Street',
@@ -84,58 +88,35 @@ const DriverForm = () => {
 
   const handleChange = (event,name) => {
     setChecked(event.target.checked);
+    setOnChange({name})
   };
+
+
+// put request to update the riders table (drivers-email)specific driver for a rider
   const handleSubmit = () => {
+    axios.put('/data/riders',{
+        riderEmail: onChange.name.rider_email,
+        eventName: currentEvent.event_name,
+        driverEmail: currentUser.email
+    })
+    .then((response) => {
+      console.log(response);
     history.push("/map");
+    })
+    .catch(err => {
+    console.log(err);
+    })
   }
+
   return (
-  //   <Container maxWidth="xs"  className={classes.container}>
-  //     <Header />
-  //     <Container maxWidth="xs" className={classes.formContainer} >
-  //     <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
-  //     {
-  //       riders.map(({rider_name, location, phone}) => (
-  //       <Grid container spacing={2} style={{paddingBottom:8}}>
-  //           <Grid>
-  //             <Avatar className={classes.avatar} />
-  //           </Grid>
-  //           <Grid item xs={8}>
-  //             <Paper className={classes.paper} >
-  //               <div  className={classes.riderInfo}>{rider_name}</div>
-  //               <div className={classes.riderInfo}>{'490-699-7444'}</div>
-  //               <div className={classes.riderInfo}>{location}</div>
-  //             </Paper>
-  //           </Grid>
-  //           <Grid item xs={0}>
-  //             <Checkbox
-  //                   defaultChecked
-  //                   color="primary"
-  //                   onClick={(e) => handleChange(e,{rider_name,location})}
-  //                   inputProps={{ 'aria-label': 'secondary checkbox' }}
-  //               />
-  //              <div>1.1mi</div>
-  //           </Grid>
-  //       </Grid>
-  //       ))
-  //     }
-  //     <Button
-  //       variant="contained"  className={classes.root}
-  //       style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 40}}
-  //       onClick={handleSubmit}
-  //     >
-  //       Finish
-  //     </Button>
-  //   </Container>
-  //   <Footer />
-  // </Container>
 
 
     // Jinhoo change
     <Container maxWidth="xs" className={classes.div2}>
       <img alt="logo2" className={classes.logo} src={logo}/>
       <Container maxWidth="xs" className={classes.form2} >
-      <p className={classes.font} style={{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
-      {riders.map(({rider_name, location, phone}) => (
+      <p className={classes.font} style={{fontStyle:'italic'}}>Hey <span style={{fontWeight:780}}>{currentUser.name}</span> Select your Riders</p>
+      {riders.map(({rider_name, location, phone, rider_email}) => (
         <Grid className={classes.riderCard} container spacing={2} style={{paddingBottom:8}}>
           <Grid className={classes.avatar}>
             <Avatar />
@@ -143,15 +124,14 @@ const DriverForm = () => {
           <Grid item xs={8}>
             <Paper className={classes.riderInfoDiv}>
               <div  className={classes.riderInfo}>{rider_name}</div>
-              <div className={classes.riderInfo}>{'490-699-7444'}</div>
+              <div className={classes.riderInfo}>{phone}</div>
               <div className={classes.riderInfo}>{location}</div>
             </Paper>
           </Grid>
           <Grid item xs={0}>
             <Checkbox
-              defaultChecked
               color='primary'
-              onClick={(e) => handleChange(e,{rider_name,location})}
+              onClick={(e) => handleChange(e,{rider_name,location,rider_email})}
               inputProps={{ 'aria-label': 'secondary checkbox' }}
             />
             <div>1.1mi</div>
@@ -161,6 +141,41 @@ const DriverForm = () => {
       <Button className={classes.solidBtn} onClick={handleSubmit}>Finish</Button>
       </Container>
     </Container>
+
+    //---------------------------
+
+    // <Container maxWidth="xs" className={classes.container}>
+    //   <Header />
+    //   <Container maxWidth="xs" >
+    //   <p style = {{fontStyle:'italic'}}>Hey <span style={{fontWeight:780}}>{currentUser.name}</span> Select your Riders</p>
+    //   {
+    //     riders.map(({rider_name, location, phone,rider_email}) => (
+    //     <Grid container spacing={2} style={{paddingBottom:8}}>
+    //         <Grid>
+    //           <Avatar className={classes.avatar} />
+    //         </Grid>
+    //         <Grid item xs={8}>
+    //           <Paper className={classes.paper} >
+    //             <div  className={classes.riderInfo}>{rider_name}</div>
+    //             <div className={classes.riderInfo}>{phone}</div>
+    //             <div className={classes.riderInfo}>{location}</div>
+
+    //           </Paper>
+    //         </Grid>
+    //         <Grid item xs={0}>
+    //           <Checkbox
+    //                 // defaultChecked
+    //                 color="primary"
+    //                 onClick={(e) => handleChange(e,{rider_name,location,rider_email})}
+    //                 inputProps={{ 'aria-label': 'secondary checkbox' }}
+    //             />
+    //            <div>1.1mi</div>
+    //         </Grid>
+    //     </Grid>
+    //   ))}
+    //   <Button className={classes.solidBtn} onClick={handleSubmit}>Finish</Button>
+    //   </Container>
+    // </Container>
   )
 }
 
