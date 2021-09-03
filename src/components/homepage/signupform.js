@@ -77,7 +77,7 @@ const SignUpForm = () => {
   }
 
   let handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     // validateInformation() ? console.log('true') : console.log('false');
 
     // validate that information has been put in
@@ -110,6 +110,7 @@ const SignUpForm = () => {
   let handleLogin = () => {
     history.push('/returningUser')
   }
+
 
   return (
     <Container className={classes.form} maxWidth="xs">
