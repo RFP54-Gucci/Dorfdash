@@ -178,5 +178,15 @@ export default makeStyles((theme) => ({
   },
   spanDivs: {
     marginBottom: 10
+  },
+  inputForm: {
+    marginTop: 40,
+    '& .MuiTextField-root': {
+      width: '30ch',
+      margin: theme.spacing(1)
+    }
+  },
+  input: {
+    marginBottom: 20
   }
 }));
