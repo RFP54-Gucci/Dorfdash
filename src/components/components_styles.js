@@ -233,5 +233,12 @@ export default makeStyles((theme) => ({
     fontSize: '0.9rem',
     fontFamily: 'Sora',
     backgroundColor: 'transparent'
+  },
+  mapBtnDiv: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  link: {
+    color: '#fff'
   }
 }));
