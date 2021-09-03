@@ -18,7 +18,7 @@ router.get('/events/user/:email/', controller.events.getUserEvents);
 
 router.get('/users/:eventName/', controller.users.getAttendees);
 
-router.delete('/events/:email', controller.events.deleteUserEvents);
+router.delete('/events/user', controller.events.deleteUserEvents);
 
 // riders routes
 
