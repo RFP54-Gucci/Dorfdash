@@ -50,26 +50,25 @@ const MapContainer = () => {
       <Container maxWidth="xs" className={classes.div}>
         <img alt="logo2" className={classes.logo} src={logo}/>
         <Container maxWidth="xs" className={classes.form}>
-        <h3 className={classes.title2}>Your Route</h3>
-         <div className={classes.mapContainer}>
-         {displayMap? <Map />: <p className={classes.font}>Click Start to see route</p>}
-         </div>
-         <div className={classes.mapBtnDiv}>
-           <Button
-           onClick={() => setDisplayMap(!displayMap) }
-            className={classes.solidBtn} >
-             Start
+          <h3 className={classes.title2}>Your Route</h3>
+          <div className={classes.mapContainer}>
+            {displayMap? <Map />: <p className={classes.font}>Click Start to see route</p>}
+          </div>
+          <div className={classes.mapBtnDiv}>
+            <Button
+              onClick={() => setDisplayMap(!displayMap) }
+              className={classes.solidBtn} >
+                Start
             </Button>
-           <Button className={classes.solidBtn}>
-                 <Link
-                  className={classes.link}
-                  href='/mylist'>
-                     My Events
-                  </Link>
-           </Button>
-         </div>
-       </Container>
-   </Container>
+            <Button className={classes.solidBtn}>
+              <Link className={classes.link}
+                href='/mylist'>
+                  My Events
+              </Link>
+            </Button>
+          </div>
+        </Container>
+      </Container>
   );
 }
 
