@@ -12,7 +12,7 @@ module.exports = {
   },
   getUserEvents: (req, res) => {
     models.events.userEventsList(req.params.email)
-      .then((data) => res.send(data))
+      .then((data) => res.send(data[0].json_build_object))
       .catch((err) => res.send(err));
   },
   getAll: (req, res) => {
@@ -33,4 +33,9 @@ module.exports = {
       }
     })
   },
+  deleteUserEvents: (req, res) => {
+    models.events.removeUserEvent(req.params.email)
+      .then((success) => res.send(success))
+      .catch((err) => err);
+  }
 }

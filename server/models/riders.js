@@ -31,7 +31,6 @@ module.exports = {
     const { riderEmail, eventName, location, phone} = req.body;
     const queryStr = `INSERT INTO riders (rider_email, event_name, location, phone)
                       VALUES ('${riderEmail}', '${eventName}', '${location}', '${phone}')`;
-    // console.log(queryStr);
 
     try {
       await db.query(queryStr);
@@ -53,5 +52,15 @@ module.exports = {
       callback(err);
     }
   },
+  getDriverInfo: async (req, callback) => {
+    const { riderEmail, eventName } = req.params;
+    const driverEmailQuery = `SELECT driver_email FROM riders WHERE riders.rider_email='${riderEmail}' AND riders.event_name='${eventName}'`;
+    const driverEmail = await db.query(driverEmailQuery);
+    const driverInfoQuery = `SELECT name as driver_name, event_name, phone, location as driver_location, vehicle_info
+                             FROM drivers INNER JOIN users ON (users.email=drivers.driver_email)
+                             WHERE drivers.driver_email='${driverEmail[0].driver_email}' AND drivers.event_name='${eventName}'`;
+
+    return await db.query(driverInfoQuery);
+  }
 }
 

@@ -19,16 +19,15 @@ import axios from 'axios'
 
 function App() {
 
+  // this context will have users' information currently in the db
   const [userData, setUserData] = useState([]);
   const [eventData, setEventData] = useState([]);
 
   const [currentEvent, setCurrentEvent] = useState(realEvent);
   const [currentDriver, setCurrentDriver] = useState(riders[0]);
   const [currentUser, setCurrentUser] = useState({});
-
-
-//   const [userData, setUserData] = useState(users);
-
+  // const [currentEvent, setCurrentEvent ] = useState({});
+  // const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
   const [driverData, setDriverData] = useState(drivers);
 
@@ -55,16 +54,9 @@ function App() {
   return (
     <div className="App">
       <Context.Provider
-
-        value={{
-          userData, riderData, eventData, driverData, myEventList, setMyList,
-          eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent,
+        value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
           currentDriver,
-        }}
-
-//         value={{ userData, riderData, eventData, driverData, myEventList, setMyList,
-//           eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
-
+          eventIdArr, setEventIdArr, currentUser, setCurrentUser, currentEvent, setCurrentEvent }}
       >
         <Switch>
           <Route path="/attendees">

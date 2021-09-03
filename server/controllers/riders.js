@@ -10,6 +10,11 @@ module.exports = {
       }
     })
   },
+  getDriverInfo: (req, res) => {
+    models.riders.getDriverInfo(req)
+      .then((data) => res.send(data[0]))
+      .catch(err => res.send(err));
+  },
   getAll: (req, res) => {
     models.riders.getAllRidersForEvent(req, (err, events) => {
       if (err) {

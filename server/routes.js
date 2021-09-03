@@ -18,15 +18,20 @@ router.get('/events/user/:email/', controller.events.getUserEvents);
 
 router.get('/users/:eventName/', controller.users.getAttendees);
 
+router.delete('/events/:email', controller.events.deleteUserEvents);
+
 // riders routes
 
 router.get('/riders/:eventName', controller.riders.getAll); // get all riders for a specific event
+
+router.get('/riders/driverInfo/:riderEmail/:eventName', controller.riders.getDriverInfo); // get driver info for specific rider
 
 router.get('/riders/:eventName/:driverEmail', controller.riders.get); // get all riders belonging to a specific driver for a specific event
 
 router.post('/riders', controller.riders.post); // create a new entry for a rider for a specific event
 
 router.put('/riders', controller.riders.put); // update a rider's driver for a specific event
+
 
 // drivers routes
 
