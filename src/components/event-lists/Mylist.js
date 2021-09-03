@@ -12,47 +12,52 @@ import Typography from '@material-ui/core/Typography';
 import Header from './../Header/Header.js';
 import Footer from './../Footer/Footer.js';
 
+
+// Jinhoo changes
+import useStyles from '../components_styles.js';
+import logo from '../../assets/logo.png';
+
 const Mylist = () => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      padding: 0,
-      height: 700,
-    },
-    container: {
-      height: 650,
-      overflowX: 'scroll',
-    },
-    card: {
-      margin: 20,
-    },
-    content: {
-      paddingBottom: 2,
-    },
-    title: {
-      fontSize: 14,
-      fontWeight: 'bold',
-    },
-    body: {
-      fontSize: 12,
-    },
-    action: {
-      height: 30,
-      paddingBottom: 10,
-      paddingTop: 2,
-    },
-    button: {
-      color: '#20A46B',
-      marginTop: 10,
-    },
-    remove: {
-      color: '#20A46B',
-    },
-    browse: {
-      marginBottom: 15,
-      marginTop: 10,
-      color: '#20A46B',
-    },
-  }));
+  // const useStyles = makeStyles((theme) => ({
+  //   root: {
+  //     padding: 0,
+  //     height: 700,
+  //   },
+  //   container: {
+  //     height: 650,
+  //     overflowX: 'scroll',
+  //   },
+  //   card: {
+  //     margin: 20,
+  //   },
+  //   content: {
+  //     paddingBottom: 2,
+  //   },
+  //   title: {
+  //     fontSize: 14,
+  //     fontWeight: 'bold',
+  //   },
+  //   body: {
+  //     fontSize: 12,
+  //   },
+  //   action: {
+  //     height: 30,
+  //     paddingBottom: 10,
+  //     paddingTop: 2,
+  //   },
+  //   button: {
+  //     color: '#20A46B',
+  //     marginTop: 10,
+  //   },
+  //   remove: {
+  //     color: '#20A46B',
+  //   },
+  //   browse: {
+  //     marginBottom: 15,
+  //     marginTop: 10,
+  //     color: '#20A46B',
+  //   },
+  // }));
 
   const classes = useStyles();
 
@@ -86,26 +91,65 @@ const Mylist = () => {
 
   // --------- get request -----------
   return (
-    <Container maxWidth="xs" className={classes.root}>
-      <Header/>
-      <Container maxWidth="xs" className={classes.container}>
-        <h3>My events</h3>
+    // <Container maxWidth="xs" className={classes.root}>
+    //   <Header/>
+    //   <Container maxWidth="xs" className={classes.container}>
+    //     <h3>My events</h3>
+    //     <div className="container-slide">
+    //     {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
+    //       myEventList.map((event) => (
+    //         <Card className={classes.card}>
+    //           <CardActionArea>
+    //             <CardContent className={classes.content} onClick={handleAttendedEvent}>
+    //               <Typography className={classes.title}>
+    //                 {event.event_name}
+    //               </Typography>
+    //               <Typography className={classes.body}>
+    //                 {event.event_host}
+    //               </Typography>
+    //               <Typography className={classes.body}>
+    //               {`${event.event_date}  ${event.event_time}`}
+    //               </Typography>
+    //               <Typography className={classes.body}>
+    //                 {event.event_location}
+    //               </Typography>
+    //             </CardContent>
+    //             <CardActions className={classes.action}>
+    //               <Button size="small" className={classes.remove} onClick={() => removeEvent(event.event_id)}>Remove</Button>
+    //             </CardActions>
+    //           </CardActionArea>
+    //         </Card>
+    //       ))}
+    //     </div>
+    //     <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button><br/>
+    //     <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
+    //   </Container>
+    //   <Footer/>
+    // </Container>
+
+
+
+    // update with new css
+    <Container maxWidth="xs" className={classes.div2}>
+      <img alt="logo2" className={classes.logo} src={logo}/>
+      <Container maxWidth="xs" className={classes.form3}>
+        <h1 className={classes.title}>My events</h1>
         <div className="container-slide">
         {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
           myEventList.map((event) => (
             <Card className={classes.card}>
               <CardActionArea>
                 <CardContent className={classes.content} onClick={handleAttendedEvent}>
-                  <Typography className={classes.title}>
+                  <Typography className={classes.title2}>
                     {event.event_name}
                   </Typography>
-                  <Typography className={classes.body}>
+                  <Typography className={classes.font}>
                     {event.event_host}
                   </Typography>
-                  <Typography className={classes.body}>
+                  <Typography className={classes.font}>
                   {`${event.event_date}  ${event.event_time}`}
                   </Typography>
-                  <Typography className={classes.body}>
+                  <Typography className={classes.font}>
                     {event.event_location}
                   </Typography>
                 </CardContent>
@@ -116,10 +160,9 @@ const Mylist = () => {
             </Card>
           ))}
         </div>
-        <Button size="small" className={classes.button} onClick={handleCreate}>Create new event</Button><br/>
-        <Button size="small" color="primary" className={classes.browse} onClick={handleBrowse}>Browse upcoming events</Button>
+        <Button size="small" className={classes.links} onClick={handleCreate}>Create new event</Button><br/>
+        <Button size="small" color="primary" className={classes.links} onClick={handleBrowse}>Browse upcoming events</Button>
       </Container>
-      <Footer/>
     </Container>
   );
 };
