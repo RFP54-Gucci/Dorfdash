@@ -240,5 +240,8 @@ export default makeStyles((theme) => ({
   },
   link: {
     color: '#fff'
+  },
+  mapContainer: {
+    height: '25.3rem'
   }
 }));
