@@ -90,8 +90,8 @@ const DriverForm = () => {
     setChecked(event.target.checked);
     setOnChange({name})
   };
-  console.log(onChange);
-  console.log(currentUser.email);
+
+
 // put request to update the riders table (drivers-email)specific driver for a rider
   const handleSubmit = () => {
     axios.put('/data/riders',{
@@ -107,41 +107,75 @@ const DriverForm = () => {
     console.log(err);
     })
   }
-  //----------------------------------
+
   return (
 
-    <Container maxWidth="xs" className={classes.container}>
-      <Header />
-      <Container maxWidth="xs" >
-      <p style = {{fontStyle:'italic'}}>Hey <span style={{fontWeight:780}}>{currentUser.name}</span> Select your Riders</p>
-      {
-        riders.map(({rider_name, location, phone,rider_email}) => (
-        <Grid container spacing={2} style={{paddingBottom:8}}>
-            <Grid>
-              <Avatar className={classes.avatar} />
-            </Grid>
-            <Grid item xs={8}>
-              <Paper className={classes.paper} >
-                <div  className={classes.riderInfo}>{rider_name}</div>
-                <div className={classes.riderInfo}>{phone}</div>
-                <div className={classes.riderInfo}>{location}</div>
 
-              </Paper>
-            </Grid>
-            <Grid item xs={0}>
-              <Checkbox
-                    // defaultChecked
-                    color="primary"
-                    onClick={(e) => handleChange(e,{rider_name,location,rider_email})}
-                    inputProps={{ 'aria-label': 'secondary checkbox' }}
-                />
-               <div>1.1mi</div>
-            </Grid>
+    // Jinhoo change
+    <Container maxWidth="xs" className={classes.div2}>
+      <img alt="logo2" className={classes.logo} src={logo}/>
+      <Container maxWidth="xs" className={classes.form2} >
+      <p className={classes.font} style={{fontStyle:'italic'}}>Hey <span style={{fontWeight:780}}>{currentUser.name}</span> Select your Riders</p>
+      {riders.map(({rider_name, location, phone, rider_email}) => (
+        <Grid className={classes.riderCard} container spacing={2} style={{paddingBottom:8}}>
+          <Grid className={classes.avatar}>
+            <Avatar />
+          </Grid>
+          <Grid item xs={8}>
+            <Paper className={classes.riderInfoDiv}>
+              <div  className={classes.riderInfo}>{rider_name}</div>
+              <div className={classes.riderInfo}>{phone}</div>
+              <div className={classes.riderInfo}>{location}</div>
+            </Paper>
+          </Grid>
+          <Grid item xs={0}>
+            <Checkbox
+              color='primary'
+              onClick={(e) => handleChange(e,{rider_name,location,rider_email})}
+              inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />
+            <div>1.1mi</div>
+          </Grid>
         </Grid>
       ))}
       <Button className={classes.solidBtn} onClick={handleSubmit}>Finish</Button>
       </Container>
     </Container>
+
+    //---------------------------
+
+    // <Container maxWidth="xs" className={classes.container}>
+    //   <Header />
+    //   <Container maxWidth="xs" >
+    //   <p style = {{fontStyle:'italic'}}>Hey <span style={{fontWeight:780}}>{currentUser.name}</span> Select your Riders</p>
+    //   {
+    //     riders.map(({rider_name, location, phone,rider_email}) => (
+    //     <Grid container spacing={2} style={{paddingBottom:8}}>
+    //         <Grid>
+    //           <Avatar className={classes.avatar} />
+    //         </Grid>
+    //         <Grid item xs={8}>
+    //           <Paper className={classes.paper} >
+    //             <div  className={classes.riderInfo}>{rider_name}</div>
+    //             <div className={classes.riderInfo}>{phone}</div>
+    //             <div className={classes.riderInfo}>{location}</div>
+
+    //           </Paper>
+    //         </Grid>
+    //         <Grid item xs={0}>
+    //           <Checkbox
+    //                 // defaultChecked
+    //                 color="primary"
+    //                 onClick={(e) => handleChange(e,{rider_name,location,rider_email})}
+    //                 inputProps={{ 'aria-label': 'secondary checkbox' }}
+    //             />
+    //            <div>1.1mi</div>
+    //         </Grid>
+    //     </Grid>
+    //   ))}
+    //   <Button className={classes.solidBtn} onClick={handleSubmit}>Finish</Button>
+    //   </Container>
+    // </Container>
   )
 }
 
