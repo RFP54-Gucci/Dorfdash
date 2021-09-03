@@ -15,6 +15,9 @@ export default makeStyles((theme) => ({
   font: {
     fontFamily: 'Sora'
   },
+  font2: {
+    fontWeight: 600
+  },
   div: {
     width: '100vw',
     maxWidth: '100vw',
@@ -137,6 +140,12 @@ export default makeStyles((theme) => ({
     backgroundColor: 'rgba(19,225,155, 0.1)',
     marginBottom: '5%'
   },
+  card3: {
+    backgroundColor: 'rgba(19,225,155,0.1)',
+    textAlign: 'center',
+    padding: '2%',
+    marginTop: '5%'
+  },
   links: {
     fontSize: '1rem',
     fontFamily: 'Sora',
@@ -182,11 +191,27 @@ export default makeStyles((theme) => ({
   inputForm: {
     marginTop: 40,
     '& .MuiTextField-root': {
-      width: '30ch',
+      width: '28ch',
       margin: theme.spacing(1)
     }
   },
   input: {
     marginBottom: 20
+  },
+  gridStyle: {
+    height: 400,
+    paddingBottom: 70
+  },
+  formSpan: {
+    fontStyle: 'italic',
+    fontWeight: 800,
+    fontFamily: 'Sora',
+    color: '#10BD82',
+  },
+  alignLeft: {
+    textAlign: 'left'
+  },
+  spanDivs2: {
+    margin: '7% auto'
   }
 }));
