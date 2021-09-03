@@ -118,7 +118,7 @@ const Mylist = () => {
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.action}>
-                  <Button size="small" className={classes.remove} onClick={(event) => removeEvent(event.event_id)}>Remove</Button>
+                  <Button size="small" className={classes.remove} onClick={() => removeEvent(event.event_id)}>Remove</Button>
                 </CardActions>
               </CardActionArea>
             </Card>
