@@ -1,8 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Context } from '../../_Context/Context.js';
-import { useContext } from 'react';
-import axios from 'axios';
+import { useContext, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -65,54 +64,54 @@ const Upcoming = (props) => {
   const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
     currentEvent, setCurrentEvent, currentUser } = useContext(Context);
 
-  // console.log('this is from upcoming', myEventList);
+  // console.log('this is from upcoming', myEventList, eventIdArr);
 
-  //  const addEvent = (evt) => {
-  //    let myList = [];
-  //    let idArr = [];
-  //    if (eventIdArr.indexOf(evt.event_id) < 0) {
-  //      idArr.push(evt.event_id);
-  //      setEventIdArr(eventIdArr.concat(idArr));
-  //      myList.push(evt);
-  //      setMyList(myEventList.concat(myList));
-  //    }
-  //  };
-
-   // -------- get request for the user's attending event -------
-   const getAttendingEvents = () => {
-     axios.get(`/data/events/user/${currentUser.email}`)
-      .then((res) => {
-        let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
-        setMyList(temp);
-        handleMyList();
-      })
-      // .then(() => {
-      //   myEventList.forEach((evt) => {
-      //     let idArr= [];
-      //     idArr.push(evt.event_id);
-      //     setEventIdArr(eventIdArr.concat(idArr));
-      //   });
-      // })
-      .catch((err) => { console.log(err) });
-   }
+   const addEvent = (evt) => {
+     let myList = [];
+     let idArr = [];
+     if (eventIdArr.indexOf(evt.event_id) < 0) {
+       idArr.push(evt.event_id);
+       setEventIdArr(eventIdArr.concat(idArr));
+       myList.push(evt);
+       setMyList(myEventList.concat(myList));
+     }
+   };
 
    // --------- checking if already attended --------
-   const checkAttended = (event) => {
+  //  const [ noDup, setDup ] = useState(true);
+  //  const checkAttended = (evt) => {
+  //   setCurrentEvent(evt);
+  //   for (var i = 0; i < myEventList.length; i++) {
+  //     if (evt.event_id === myEventList[i].event_id) {
+  //       setDup(false);
+  //     }
+  //   }
+  //   if (noDup) {
+  //     handleAttendingEvent();
+  //     console.log('no duplicates');
+  //   } else {
+  //     handleAttendedEvent();
+  //     console.log('trying to add duplicates');
+  //   }
+  //  };
+
+  // ----------- checking duplacates ----------------
+  const checkAttended = (event) => {
     setCurrentEvent(event);
-    // console.log('this is id array', myEventList, eventIdArr);
-    // if (eventIdArr.indexOf(event.event_id) < 0) {
-    //   handleAttendingEvent();
-    // } else {
-    //   handleAttendedEvent();
-    // }
-   };
+    if (eventIdArr.indexOf(event.event_id) < 0) {
+      addEvent(event);
+      handleAttendingEvent();
+    } else {
+      handleAttendedEvent();
+    }
+  };
 
   return (
     <div>
       <Container maxWidth="xs" className={classes.root}>
         <Header/>
         <Container maxWidth="xs" className={classes.container}>
-        <Button className={classes.myListBtn} size="small" onClick={getAttendingEvents}>My event list</Button>
+        <Button className={classes.myListBtn} size="small" onClick={handleMyList}>My event list</Button>
         <h3>Upcoming events</h3>
         <div className="container-slide">
           {eventData.map((event) => (
