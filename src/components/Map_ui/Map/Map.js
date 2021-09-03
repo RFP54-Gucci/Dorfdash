@@ -2,8 +2,11 @@ import React, { useState, useEffect, useRef, useContext } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
 import {Context} from '../../../_Context/Context.js';
 import axios from 'axios';
+import useStyles from './styles';
+
 
 const Map = (props) => {
+  const classes = useStyles();
   const [riders, setRiders] = useState([]);
   const {currentEvent, currentDriver} = useContext(Context);
   useEffect(()=>{
@@ -68,7 +71,7 @@ const Map = (props) => {
 
   return (
     <div>
-      <div id="map" ref={googlemap} />
+      <div className={classes.map} ref={googlemap} />
     </div>
   );
 };
