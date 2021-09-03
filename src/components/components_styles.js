@@ -166,7 +166,7 @@ export default makeStyles((theme) => ({
   },
   modalBtn: {
     color: '#10BD82',
-    marginLeft: 185,
+    marginLeft: 210,
     fontFamily: 'Sora',
     fontWeight: 600
   },

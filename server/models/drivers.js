@@ -6,8 +6,8 @@ module.exports = {
     return db.query(query);
   },
   getDriver: (req) => {
-    const { driverEmail } = req.params;
-    const query = `SELECT * FROM drivers WHERE drivers.driver_email='${driverEmail}'`;
+    const { eventName, driverEmail } = req.params;
+    const query = `SELECT * FROM drivers WHERE drivers.event_name='${eventName}' AND drivers.driver_email='${driverEmail}'`;
     return db.query(query);
   },
 }

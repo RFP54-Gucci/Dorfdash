@@ -37,6 +37,6 @@ router.put('/riders', controller.riders.put); // update a rider's driver for a s
 
 router.post('/drivers', controller.drivers.post);
 
-router.get('/drivers/:driverEmail', controller.drivers.get);
+router.get('/drivers/:eventName/:driverEmail', controller.drivers.get);
 
 module.exports = router;

@@ -53,7 +53,7 @@ const EventForm = () => {
   const [ eventDes, setEventDes ] = useState('');
   const [ validation, setValidation ] = useState('');
 
-  const { currentUser } = useContext(Context);
+  const { currentUser, setMyList, setEventData } = useContext(Context);
 
   // ------------ switch routes ---------------
   let history = useHistory();
@@ -99,6 +99,19 @@ const EventForm = () => {
       time: eventTime,
       description: eventDes,
       location: eventLocation
+    })
+    .then(() => {
+      axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
+      .then((res) => {
+        let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
+        setMyList(temp);
+      })
+    })
+    .then(() => {
+      axios.get('http://localhost:3100/data/events')
+      .then((res) => {
+        setEventData(res.data);
+      })
     })
       .then((res) => {
         console.log('successfully create new event!');
