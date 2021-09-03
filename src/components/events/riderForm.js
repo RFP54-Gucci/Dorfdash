@@ -153,7 +153,6 @@ const RiderForm = () => {
         })
       })
       .then((response) => {
-        console.log(response.data)
         history.push("/driverForm");
       })
       .catch( (error) => {
@@ -196,7 +195,7 @@ const RiderForm = () => {
   }
 
   const classes = useStyles();
-  console.log(addRider.phone)
+  // console.log(addRider.phone)
   if(value==='Rider') {
     return (
 

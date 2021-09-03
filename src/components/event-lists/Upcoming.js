@@ -71,16 +71,16 @@ const Upcoming = (props) => {
 
   // console.log('this is from upcoming', myEventList, eventIdArr);
 
-   const addEvent = (evt) => {
-     let myList = [];
-     let idArr = [];
-     if (eventIdArr.indexOf(evt.event_id) < 0) {
-       idArr.push(evt.event_id);
-       setEventIdArr(eventIdArr.concat(idArr));
-       myList.push(evt);
-       setMyList(myEventList.concat(myList));
-     }
-   };
+  //  const addEvent = (evt) => {
+  //    let myList = [];
+  //    let idArr = [];
+  //    if (eventIdArr.indexOf(evt.event_id) < 0) {
+  //      idArr.push(evt.event_id);
+  //      setEventIdArr(eventIdArr.concat(idArr));
+  //      myList.push(evt);
+  //      setMyList(myEventList.concat(myList));
+  //    }
+  //  };
 
    // --------- checking if already attended --------
   //  const [ noDup, setDup ] = useState(true);
@@ -103,12 +103,12 @@ const Upcoming = (props) => {
   // ----------- checking duplacates ----------------
   const checkAttended = (event) => {
     setCurrentEvent(event);
-    if (eventIdArr.indexOf(event.event_id) < 0) {
-      addEvent(event);
-      handleAttendingEvent();
-    } else {
-      handleAttendedEvent();
-    }
+    // if (eventIdArr.indexOf(event.event_id) < 0) {
+    //   addEvent(event);
+    //   handleAttendingEvent();
+    // } else {
+    //   handleAttendedEvent();
+    // }
   };
 
   return (
@@ -175,7 +175,7 @@ const Upcoming = (props) => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button className={classes.link1} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
+                  <Button className={classes.link1} size="small" onClick = {handleAttendingEvent}>Attend</Button>
                   <TransitionsModal selectedEvent={event}/>
                 </CardActions>
               </CardActionArea>

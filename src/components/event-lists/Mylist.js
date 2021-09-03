@@ -97,6 +97,8 @@ const Mylist = () => {
     history.push('/eventSummary');
   };
 
+  // console.log(currentUser.email);
+
   // --------- get request -----------
   return (
     // <Container maxWidth="xs" className={classes.root}>
@@ -140,7 +142,7 @@ const Mylist = () => {
     // update with new css
     <Container maxWidth="xs" className={classes.div2}>
       <img alt="logo2" className={classes.logo} src={logo}/>
-      <Container maxWidth="xs" className={classes.form3}>
+      <Container maxWidth="xs" className={classes.formSlide}>
         <h1 className={classes.title}>My events</h1>
         <div className="container-slide">
         {myEventList.length === 0 ? <div>You're not attending any events right now, please select some events or create one! </div> :
