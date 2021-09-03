@@ -44,6 +44,9 @@ export default makeStyles((theme) => ({
   logo2: {
     width: '250px'
   },
+  logo3: {
+    width: '100px'
+  },
   // header: {
   //   backgroundColor: '#10BD82',
   //   padding: '2%'
@@ -71,6 +74,15 @@ export default makeStyles((theme) => ({
     backgroundColor: '#fff'
   },
   form3: {
+    padding: '2%',
+    margin: '2%',
+    borderRadius: '10px',
+    boxShadow: '0px 5px 12px 0px rgba(0,0,0,0.65)',
+    backgroundColor: '#fff'
+  },
+  formSlide: {
+    overflowY: 'scroll',
+    overflowX: 'hidden',
     padding: '2%',
     margin: '2%',
     borderRadius: '10px',
@@ -117,7 +129,11 @@ export default makeStyles((theme) => ({
     fontStyle: 'italic'
   },
   card: {
-    backgroundColor: 'rgba(19,225,155, 0.3)',
+    backgroundColor: 'rgba(19,225,155, 0.25)',
+    marginBottom: '5%'
+  },
+  card2: {
+    backgroundColor: 'rgba(19,225,155, 0.1)',
     marginBottom: '5%'
   },
   links: {
@@ -126,4 +142,13 @@ export default makeStyles((theme) => ({
     padding: '2%',
     margin: '2%'
   },
+  link1: {
+    fontFamily: 'Sora',
+    color: '#10BD82',
+    fontWeight: 600
+  },
+  myListBtn: {
+    marginLeft: 230,
+    marginTop: 10
+  }
 }));

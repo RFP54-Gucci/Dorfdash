@@ -13,35 +13,40 @@ import Header from './../Header/Header.js';
 import Footer from './../Footer/Footer.js';
 import TransitionsModal from '../events/modal.js';
 
+// Jinhoo change
+import useStyles from '../components_styles.js';
+import logo from '../../assets/logo.png';
+
+
 const Upcoming = (props) => {
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      padding: 0,
-    },
-    container: {
-      height: 650,
-      overflowX: 'scroll',
-    },
-    card: {
-      margin: 20,
-      minHeight: 110,
-    },
-    title: {
-      fontSize: 14,
-      fontWeight: 'bold',
-    },
-    body: {
-      fontSize: 12,
-    },
-    attendBtn: {
-      color: '#20A46B',
-    },
-    myListBtn: {
-      color: '#20A46B',
-      marginLeft: 230,
-      marginTop: 10,
-    },
-  }));
+  // const useStyles = makeStyles((theme) => ({
+  //   root: {
+  //     padding: 0,
+  //   },
+  //   container: {
+  //     height: 650,
+  //     overflowX: 'scroll',
+  //   },
+  //   card: {
+  //     margin: 20,
+  //     minHeight: 110,
+  //   },
+  //   title: {
+  //     fontSize: 14,
+  //     fontWeight: 'bold',
+  //   },
+  //   body: {
+  //     fontSize: 12,
+  //   },
+  //   attendBtn: {
+  //     color: '#20A46B',
+  //   },
+  //   myListBtn: {
+  //     color: '#20A46B',
+  //     marginLeft: 230,
+  //     marginTop: 10,
+  //   },
+  // }));
 
   const classes = useStyles();
 
@@ -90,32 +95,70 @@ const Upcoming = (props) => {
    };
 
   return (
-    <div>
-      <Container maxWidth="xs" className={classes.root}>
-        <Header/>
-        <Container maxWidth="xs" className={classes.container}>
+    // <div>
+    //   <Container maxWidth="xs" className={classes.root}>
+    //     <Header/>
+    //     <Container maxWidth="xs" className={classes.container}>
+    //     <Button className={classes.myListBtn} size="small" onClick={handleMyList}>My event list</Button>
+    //     <h3>Upcoming events</h3>
+    //     <div className="container-slide">
+    //       {eventData.map((event) => (
+    //         <Card className={classes.card} key={event.index}>
+    //           <CardActionArea>
+    //             <CardContent>
+    //               <Typography className={classes.title}>
+    //                 {event.event_name}
+    //               </Typography>
+    //               <Typography className={classes.body}>
+    //                 {event.name}
+    //               </Typography>
+    //               <Typography className={classes.body}>
+    //               {`${event.date}  ${event.time}`}
+    //               </Typography>
+    //               <Typography className={classes.body}>
+    //                 {event.location}
+    //               </Typography>
+    //             </CardContent>
+    //             <CardActions>
+    //               <Button className={classes.attendBtn} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
+    //               <TransitionsModal selectedEvent={event}/>
+    //             </CardActions>
+    //           </CardActionArea>
+    //         </Card>
+    //       ))}
+    //     </div>
+    //     </Container>
+    //     <Footer/>
+    //   </Container>
+    // </div>
+
+
+    // jinhoo change
+      <Container maxWidth="xs" className={classes.div2}>
+        <img alt="logo2" className={classes.logo2} src={logo}/>
+        <Container maxWidth="xs" className={classes.formSlide}>
         <Button className={classes.myListBtn} size="small" onClick={handleMyList}>My event list</Button>
-        <h3>Upcoming events</h3>
+        <h3 className={classes.title}>Upcoming events</h3>
         <div className="container-slide">
           {eventData.map((event) => (
-            <Card className={classes.card} key={event.index}>
+            <Card className={classes.card2} key={event.index}>
               <CardActionArea>
                 <CardContent>
-                  <Typography className={classes.title}>
+                  <Typography className={classes.title2}>
                     {event.event_name}
                   </Typography>
-                  <Typography className={classes.body}>
+                  <Typography className={classes.font}>
                     {event.name}
                   </Typography>
-                  <Typography className={classes.body}>
+                  <Typography className={classes.font}>
                   {`${event.date}  ${event.time}`}
                   </Typography>
-                  <Typography className={classes.body}>
+                  <Typography className={classes.font}>
                     {event.location}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button className={classes.attendBtn} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
+                  <Button className={classes.link1} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
                   <TransitionsModal selectedEvent={event}/>
                 </CardActions>
               </CardActionArea>
@@ -123,9 +166,7 @@ const Upcoming = (props) => {
           ))}
         </div>
         </Container>
-        <Footer/>
       </Container>
-    </div>
   );
 };
 
