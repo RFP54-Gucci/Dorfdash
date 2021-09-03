@@ -23,8 +23,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems:'center',
     height:'45rem',
     maxHeight: '100%',
-    overflow: 'hidden',
-    width: '25rem'
+    // overflow: 'hidden',
+    width: '25rem',
+
 
  },
  formContainer: {

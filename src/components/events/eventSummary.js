@@ -4,9 +4,7 @@ import { useContext } from 'react';
 import { Container, Button} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory } from "react-router-dom";
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import samples from './sample.js';
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
 import axios from 'axios';
@@ -41,9 +39,8 @@ const useStyles = makeStyles((theme) => ({
 const EventSummary = (props) => {
 
   const { currentEvent, setCurrentEvent } = useContext(Context);
-
-  // const[eventDetails, setEventDetails] = useState([]);
-
+  const { currentUser, setCurrentUser } = useContext(Context);
+  const[driverDetails, setDriverDetails] = useState({});
 
   // useEffect(() => {
   //   axios.get( `http://localhost:3100/events/${currentEvent.event_name}`, {})
@@ -64,6 +61,24 @@ const EventSummary = (props) => {
   const handleUpcomingEventPage =() => {
     history.push("/myList");
   }
+
+  const getDriverDetails = () => {
+    if (driverDetails.driver_name !== undefined) {
+      return;
+    }
+
+    axios.get(`http://localhost:3100/data/riders/driverInfo/${currentUser.email}/${currentEvent.event_name}`,{})
+    .then((response) => {
+      setDriverDetails(response.data)
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  useEffect(() => {
+    getDriverDetails();
+  })
 
 
 
@@ -98,12 +113,27 @@ const EventSummary = (props) => {
               <span className={classes.span}>Location: </span>
               <span>{currentEvent.location}</span>
             </div>
-            <span style={{fontWeight:700}}>You Will Be Notified Soon By Your Driver</span>
-            <div style={{backgroundColor:'#ECECEC'}}>
-            <div><span style={{fontWeight:600, fontStyle:'italic'}}></span></div>
-            <div><span style={{fontWeight:600}}>3M53AF2</span> </div>
-            <div><span style={{fontWeight:600}}>Honda Civic- Silver</span></div>
-            </div>
+            {driverDetails.driver_name === undefined &&
+            <>
+              <span style={{fontWeight:700}}>You Will Be Notified Soon By Your Driver</span>
+              <span><Button variant="contained"  className={classes.root}
+              style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 20}}
+              onClick = {getDriverDetails}>
+        Refresh
+       </Button></span>
+          </>
+            }
+
+             {driverDetails.driver_name !== undefined &&
+             <div style={{backgroundColor:'#20A46B'}}>
+               <span style={{fontWeight:700}}>You Will Be Picked Up By</span>
+              <div>{driverDetails.driver_name}</div>
+              <div>{driverDetails.phone}</div>
+              <div>{driverDetails.vehicle_info}</div>
+             </div>
+
+            }
+
             </Grid>
 
         </Grid>

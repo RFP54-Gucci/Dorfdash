@@ -93,7 +93,6 @@ const RiderForm = () => {
   };
 
   const handleSubmit = () => {
-    alert(addRider.phone)
     if(addRider.phone === '' && addRider.location === '') {
       setValidatePhone('Please Enter Your Phone Number!');
       setValidateAddress('Please Enter Your Location!');
