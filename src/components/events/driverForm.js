@@ -9,6 +9,7 @@ import {Context} from '../../_Context/Context';
 import axios from 'axios';
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -44,10 +45,14 @@ riderInfo: {
 }))
 
 const DriverForm = () => {
+  const { currentUser, setCurrentUser } = useContext(Context);
   const {currentEvent:{event_name}} = useContext(Context);
+  const { currentEvent, setCurrentEvent } = useContext(Context);
   const classes = useStyles();
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
   const [riders, setRiders] = useState([]);
+  const[onChange, setOnChange] = useState([]);
+  console.log(riders);
   useEffect(() => {
     async function fetchData() {
       try{
@@ -71,17 +76,33 @@ const DriverForm = () => {
 
   const handleChange = (event,name) => {
     setChecked(event.target.checked);
+    setOnChange({name})
   };
+  console.log(onChange);
+  console.log(currentUser.email);
+
   const handleSubmit = () => {
+    axios.put('http://localhost:3100/data/riders',{
+        riderEmail: onChange.name.rider_email,
+        eventName: currentEvent.event_name,
+        driverEmail: currentUser.email
+    })
+    .then((response) => {
+      console.log(response);
     history.push("/map");
+    })
+    .catch(err => {
+    console.log(err);
+    })
   }
   return (
+
     <Container maxWidth="xs" className={classes.container}>
       <Header />
       <Container maxWidth="xs" >
-      <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
+      <p style = {{fontStyle:'italic'}}>Hey <span style={{fontWeight:780}}>{currentUser.name}</span> Select your Riders</p>
       {
-        riders.map(({rider_name, location, phone}) => (
+        riders.map(({rider_name, location, phone,rider_email}) => (
         <Grid container spacing={2} style={{paddingBottom:8}}>
             <Grid>
               <Avatar className={classes.avatar} />
@@ -89,15 +110,16 @@ const DriverForm = () => {
             <Grid item xs={8}>
               <Paper className={classes.paper} >
                 <div  className={classes.riderInfo}>{rider_name}</div>
-                <div className={classes.riderInfo}>{'490-699-7444'}</div>
+                <div className={classes.riderInfo}>{phone}</div>
                 <div className={classes.riderInfo}>{location}</div>
+
               </Paper>
             </Grid>
             <Grid item xs={0}>
               <Checkbox
-                    defaultChecked
+                    // defaultChecked
                     color="primary"
-                    onClick={(e) => handleChange(e,{rider_name,location})}
+                    onClick={(e) => handleChange(e,{rider_name,location,rider_email})}
                     inputProps={{ 'aria-label': 'secondary checkbox' }}
                 />
                <div>1.1mi</div>

@@ -29,6 +29,7 @@ module.exports = {
     })
   },
   put: (req, res) => {
+    console.log(req.body);
     models.riders.putRider(req, (err) => {
       if (err) {
         res.send(err);

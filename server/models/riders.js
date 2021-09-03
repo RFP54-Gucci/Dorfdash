@@ -44,7 +44,7 @@ module.exports = {
     const queryStr = `UPDATE riders
                       SET driver_email='${driverEmail}'
                       WHERE rider_email='${riderEmail}' AND event_name='${eventName}'`;
-
+    console.log(queryStr);
     try {
       await db.query(queryStr);
       callback(null);
