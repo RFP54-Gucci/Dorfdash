@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { Context } from '../../_Context/Context.js';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import Button from '@material-ui/core/Button';
@@ -57,42 +57,59 @@ const Upcoming = (props) => {
     history.push('/myList');
   };
 
-   // ---------- adding events to my list ----------
-   const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
-    currentEvent, setCurrentEvent } = useContext(Context);
+  const handleAttendingEvent = () => {
+    history.push('/riderForm');
+  };
 
-    console.log('this is event data', eventData);
+  const handleAttendedEvent = () => {
+    history.push('/eventSummary');
+  };
 
-   const addEvent = (evt) => {
-     let myList = [];
-     let idArr = [];
-     if (eventIdArr.indexOf(evt.event_id) < 0) {
-       idArr.push(evt.event_id);
-       setEventIdArr(eventIdArr.concat(idArr));
-       myList.push(evt);
-       setMyList(myEventList.concat(myList));
-     }
-     // console.log(eventIdArr);
-   };
+  // ---------- adding events to my list ----------
+  const { myEventList, setMyList, eventIdArr, setEventIdArr, eventData,
+    currentEvent, setCurrentEvent, currentUser } = useContext(Context);
 
-   const handleAttendingEvent = () => {
-     history.push('/riderForm');
-   };
+  // console.log('this is from upcoming', myEventList, eventIdArr);
 
-   const handleAttendedEvent = () => {
-     history.push('/eventSummary');
-   };
+  //  const addEvent = (evt) => {
+  //    let myList = [];
+  //    let idArr = [];
+  //    if (eventIdArr.indexOf(evt.event_id) < 0) {
+  //      idArr.push(evt.event_id);
+  //      setEventIdArr(eventIdArr.concat(idArr));
+  //      myList.push(evt);
+  //      setMyList(myEventList.concat(myList));
+  //    }
+  //  };
 
    // --------- checking if already attended --------
-   const checkAttended = (event) => {
+  //  const [ noDup, setDup ] = useState(true);
+  //  const checkAttended = (evt) => {
+  //   setCurrentEvent(evt);
+  //   for (var i = 0; i < myEventList.length; i++) {
+  //     if (evt.event_id === myEventList[i].event_id) {
+  //       setDup(false);
+  //     }
+  //   }
+  //   if (noDup) {
+  //     handleAttendingEvent();
+  //     console.log('no duplicates');
+  //   } else {
+  //     handleAttendedEvent();
+  //     console.log('trying to add duplicates');
+  //   }
+  //  };
+
+  // ----------- checking duplacates ----------------
+  const checkAttended = (event) => {
     setCurrentEvent(event);
-     if (eventIdArr.indexOf(event.event_id) < 0) {
-       addEvent(event);
-       handleAttendingEvent();
-     } else {
-       handleAttendedEvent();
-     }
-   };
+    // if (eventIdArr.indexOf(event.event_id) < 0) {
+    //   addEvent(event);
+    //   handleAttendingEvent();
+    // } else {
+    //   handleAttendedEvent();
+    // }
+  };
 
   return (
     // <div>
@@ -158,7 +175,7 @@ const Upcoming = (props) => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button className={classes.link1} size="small" onClick = {() => checkAttended(event)}>Attend</Button>
+                  <Button className={classes.link1} size="small" onClick = {handleAttendingEvent}>Attend</Button>
                   <TransitionsModal selectedEvent={event}/>
                 </CardActions>
               </CardActionArea>

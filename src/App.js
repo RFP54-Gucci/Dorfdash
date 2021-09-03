@@ -26,10 +26,12 @@ function App() {
   const [currentEvent, setCurrentEvent] = useState(realEvent);
   const [currentDriver, setCurrentDriver] = useState(riders[0]);
   const [currentUser, setCurrentUser] = useState({});
-  // const [currentEvent, setCurrentEvent ] = useState({});
-  // const [userData, setUserData] = useState(users);
   const [riderData, setRiderData] = useState(riders);
   const [driverData, setDriverData] = useState(drivers);
+
+    // -------- states for myList -----------
+    const [ myEventList, setMyList ] = useState([]);
+    const [ eventIdArr, setEventIdArr ] = useState([]);
 
   useEffect( () => {
       async function fetchData() {
@@ -38,7 +40,6 @@ function App() {
         const {data:users} = await axios.get('http://localhost:3100/data/users');
         setUserData(users);
         setEventData(events);
-
        }
         catch(err){
           console.log('ERROR:', err);
@@ -47,9 +48,6 @@ function App() {
       fetchData();
   },[])
 
-  // -------- states for myList -----------
-  const [ myEventList, setMyList ] = useState([]);
-  const [ eventIdArr, setEventIdArr ] = useState([]);
 
   return (
     <div className="App">

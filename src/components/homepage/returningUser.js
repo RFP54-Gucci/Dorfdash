@@ -1,7 +1,7 @@
 import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
 import useStyles from './homepage_styles.js';
-
+import axios from 'axios';
 import { Context } from '../../_Context/Context.js';
 import { useState, useContext } from 'react';
 import { Container, AppBar, Typography, TextField, Button } from '@material-ui/core';
@@ -18,7 +18,7 @@ const ReturningUser = () => {
 
   // with the returning user, we want to set the GLOBAL CURRENT USER to be whatevr the user types in
   // userData should be an array of objects that hold all of the users information currently in the db
-  const { currentUser, setCurrentUser, userData } = useContext(Context);
+  const { currentUser, setCurrentUser, userData, myEventList, setMyList, eventIdArr, setEventIdArr } = useContext(Context);
 
   let handleEmail = (e) => {
     // console.log(e.target.value);
@@ -28,7 +28,7 @@ const ReturningUser = () => {
   // function to check whether the signing in user already exists, if not then we throw an error
   let validateEmail = () => {
     for (let i = 0; i < userData.length; i++) {
-      console.log(userData[i].email);
+      // console.log(userData[i].email);
       // if the input email exists in the db, then return true
       if (userData[i].email === email) {
         return true;
@@ -46,7 +46,17 @@ const ReturningUser = () => {
 
     if (validateEmail()) {
       setCurrentUser({email: email});
-      history.push('/upcoming')
+      // get all attending events for current email:
+      axios.get(`http://localhost:3100/data/events/user/${email}`)
+        .then((res) => {
+          // console.log(res.data);
+          let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
+          setMyList(temp);
+        })
+        .then(() => {
+          history.push('/upcoming');
+        })
+        .catch((err) => { console.log(err) });
     } else {
       console.log('here');
     }

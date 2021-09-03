@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Button from '@material-ui/core/Button';
 import Link from "@material-ui/core/Link";
@@ -17,6 +18,9 @@ import useStyles from '../../components_styles.js';
 const MapContainer = () => {
   const [displayMap, setDisplayMap] = useState(false);
   const classes = useStyles();
+
+  let history = useHistory();
+
   return (
 
       // <Container maxWidth="sm" className={classes.container}>
@@ -60,11 +64,9 @@ const MapContainer = () => {
               className={classes.solidBtn} >
                 Start
             </Button>
-            <Button className={classes.solidBtn}>
-              <Link className={classes.link}
-                href='/mylist'>
-                  My Events
-              </Link>
+            <Button className={classes.solidBtn} onClick={() => {
+              history.push('/myList');
+            }}>
             </Button>
           </div>
         </Container>
