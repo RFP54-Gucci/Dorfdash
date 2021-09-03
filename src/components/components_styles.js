@@ -101,6 +101,7 @@ export default makeStyles((theme) => ({
   title3: {
     fontSize: '1.2rem',
     fontFamily: 'Sora',
+    fontWeight: 800
   },
   solidBtn: {
     backgroundColor: '#10BD82',
@@ -150,5 +151,32 @@ export default makeStyles((theme) => ({
   myListBtn: {
     marginLeft: 230,
     marginTop: 10
+  },
+  modalBtn: {
+    color: '#10BD82',
+    marginLeft: 185,
+    fontFamily: 'Sora',
+    fontWeight: 600
+  },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    width: 500,
+    padding: '2%',
+    borderRadius: '10px'
+  },
+  span: {
+    color: '#037041',
+    fontStyle: 'italic',
+    fontWeight: 900,
+    padding: 10,
+    fontFamily: 'Sora',
+  },
+  spanDivs: {
+    marginBottom: 10
   }
 }));
