@@ -13,16 +13,14 @@ const MapContainer = () => {
   const [displayMap, setDisplayMap] = useState(false);
   const classes = useStyles();
   return (
-    <div>
+
       <Container maxWidth="sm" className={classes.container}>
          <Header />
-         <Container >
+         <Container className={classes.formContainer}>
            <h3>Your Route</h3>
-            {displayMap? <Map />:
-              <div className={classes.mapContainer}>
-                Click Start to see route
-              </div>
-             }
+            <div className={classes.mapContainer}>
+            {displayMap? <Map />: <p>Click Start to see route</p>}
+            </div>
             <div className={classes.buttonContainer}>
               <Button
               onClick={() => setDisplayMap(!displayMap) }
@@ -40,8 +38,6 @@ const MapContainer = () => {
           </Container>
           <Footer />
       </Container>
-    </div>
-
   );
 }
 

@@ -17,11 +17,20 @@ const useStyles = makeStyles((theme) => ({
     borderColor: '#ECECEC',
     borderStyle: 'solid',
     borderWidth:1,
+    borderRadius:'2.5rem',
     padding:0,
-    paddingLeft:5,
-    paddingRight:5,
-    alignItems:'center'
+    alignItems:'center',
+    height:'45rem',
+    maxHeight: '100%',
+    overflow: 'hidden',
+    width: '25rem'
+
  },
+ formContainer: {
+  height:'35rem',
+  maxHeight: '73.5%',
+  overflowY: 'scroll',
+},
  paper: {
   padding: theme.spacing(2),
   textAlign: 'center',
@@ -57,7 +66,7 @@ const DriverForm = () => {
          '35 Palm Ave # 2, San Francisco, CA 94118','500-514 Hayes Street',
          '501 Stanyan St, San Francisco, CA 94117'
         ];
-       ridersArr.forEach((e,i) => e.location = location[i] );
+       ridersArr?.forEach((e,i) => e.location = location[i] );
        setRiders(ridersArr);
       }
        catch(err){
@@ -76,9 +85,9 @@ const DriverForm = () => {
     history.push("/map");
   }
   return (
-    <Container maxWidth="xs" className={classes.container}>
+    <Container maxWidth="xs"  className={classes.container}>
       <Header />
-      <Container maxWidth="xs" >
+      <Container maxWidth="xs" className={classes.formContainer} >
       <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
       {
         riders.map(({rider_name, location, phone}) => (
