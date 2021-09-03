@@ -152,13 +152,13 @@ const Mylist = () => {
                     {event.event_name}
                   </Typography>
                   <Typography className={classes.font}>
-                    {event.event_host}
+                    {event.host_name}
                   </Typography>
                   <Typography className={classes.font}>
-                  {`${event.event_date}  ${event.event_time}`}
+                  {`${event.date}  ${event.time}`}
                   </Typography>
                   <Typography className={classes.font}>
-                    {event.event_location}
+                    {event.location}
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.action}>

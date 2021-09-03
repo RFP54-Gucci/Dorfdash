@@ -68,7 +68,7 @@ import useStyles from '../components_styles.js';
 const RiderForm = () => {
   let history = useHistory();
   const { currentUser, setCurrentUser } = useContext(Context);
-  const { currentEvent, setCurrentEvent } = useContext(Context);
+  const { currentEvent, setCurrentEvent, setMyList } = useContext(Context);
 
   const[addRider, setAddRider] = useState({
     phone: '',
@@ -120,6 +120,13 @@ const RiderForm = () => {
         phone:addRider.phone ,
         location: addRider.location
       })
+      .then(() => {
+        axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
+        .then((res) => {
+          let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
+          setMyList(temp);
+        })
+      })
       .then((response) => {
         console.log(response)
         history.push("/eventSummary");
@@ -137,6 +144,13 @@ const RiderForm = () => {
         phone:addRider.phone ,
         location: addRider.location,
         vehicleInfo: addRider.vehicleInfo
+      })
+      .then(() => {
+        axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
+        .then((res) => {
+          let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
+          setMyList(temp);
+        })
       })
       .then((response) => {
         console.log(response.data)

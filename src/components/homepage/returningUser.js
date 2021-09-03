@@ -47,8 +47,9 @@ const ReturningUser = () => {
     if (validateEmail()) {
       setCurrentUser({email: email});
       // get all attending events for current email:
-      axios.get(`/data/events/user/${email}`)
+      axios.get(`http://localhost:3100/data/events/user/${email}`)
         .then((res) => {
+          // console.log(res.data);
           let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
           setMyList(temp);
         })
