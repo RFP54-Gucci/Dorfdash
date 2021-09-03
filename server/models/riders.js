@@ -18,7 +18,7 @@ module.exports = {
     const { eventName } = req.params;
     const queryStr = `SELECT name AS rider_name, rider_email, driver_email, location AS rider_location, phone AS rider_phone
                       FROM riders INNER JOIN users ON (riders.rider_email=users.email)
-                      WHERE event_name='${eventName}'`;
+                      WHERE event_name='${eventName}' AND driver_email IS NULL`;
 
     try {
       const riders = await db.query(queryStr);
