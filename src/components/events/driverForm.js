@@ -66,7 +66,7 @@ const DriverForm = () => {
   useEffect(() => {
     async function fetchData() {
       try{
-       const {data:ridersArr} = await axios.get(`http://localhost:3100/data/riders/${event_name}`);
+       const {data:ridersArr} = await axios.get(`/data/riders/${event_name}`);
        const location = [
          '2229 Union St, San Francisco, CA 94123','350 Turk St, San Francisco, CA 94102',
          '35 Palm Ave # 2, San Francisco, CA 94118','500-514 Hayes Street',
@@ -90,9 +90,9 @@ const DriverForm = () => {
   };
   console.log(onChange);
   console.log(currentUser.email);
-
+// put request to update the riders table (drivers-email)specific driver for a rider
   const handleSubmit = () => {
-    axios.put('http://localhost:3100/data/riders',{
+    axios.put('/data/riders',{
         riderEmail: onChange.name.rider_email,
         eventName: currentEvent.event_name,
         driverEmail: currentUser.email
@@ -105,6 +105,7 @@ const DriverForm = () => {
     console.log(err);
     })
   }
+  //----------------------------------
   return (
 
     <Container maxWidth="xs" className={classes.container}>

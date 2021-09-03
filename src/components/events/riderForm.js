@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { Context } from '../../_Context/Context.js';
 import { useContext } from 'react';
 
-import { Container, Paper, Grid, Button, TextField} from '@material-ui/core';
+import { Container, Grid, Button, TextField} from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -108,7 +108,7 @@ const RiderForm = () => {
     // }
 
     if(value === 'Rider') {
-      axios.post(' http://localhost:3100/data/riders', {
+      axios.post('/data/riders', {
         riderEmail: currentUser.email,
         eventName: currentEvent.event_name,
         phone:addRider.phone ,
@@ -124,7 +124,7 @@ const RiderForm = () => {
       });
     } else {
       // driverEmail, eventName, phone, location, vehicleInfo
-      axios.post('http://localhost:3100/data/drivers', {
+      axios.post('/data/drivers', {
         //driver_email, event_name, phone, location, vehicle_info
         driverEmail: currentUser.email,
         eventName: currentEvent.event_name,

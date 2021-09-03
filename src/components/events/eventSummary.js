@@ -42,18 +42,6 @@ const EventSummary = (props) => {
   const { currentUser, setCurrentUser } = useContext(Context);
   const[driverDetails, setDriverDetails] = useState({});
 
-  // useEffect(() => {
-  //   axios.get( `http://localhost:3100/events/${currentEvent.event_name}`, {})
-  //   .then(response => {
-  //     console.log(response.data)
-  //     setEventDetails({
-  //       eventDetails:response.data
-  //     })
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
-  // })
   const classes = useStyles();
 
   let history = useHistory();
@@ -67,7 +55,7 @@ const EventSummary = (props) => {
       return;
     }
 
-    axios.get(`http://localhost:3100/data/riders/driverInfo/${currentUser.email}/${currentEvent.event_name}`,{})
+    axios.get(`/data/riders/driverInfo/${currentUser.email}/${currentEvent.event_name}`,{})
     .then((response) => {
       setDriverDetails(response.data)
     })
