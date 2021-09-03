@@ -2,13 +2,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles(() => ({
   container: {
-    padding:'0',
-    maxWidth: 375,
-    height: '100%',
     borderColor: '#ECECEC',
     borderStyle: 'solid',
-    marginBottom: 25,
-  },
+    borderWidth:1,
+    borderRadius:'2.5rem',
+    padding:0,
+    alignItems:'center',
+    height:'45rem',
+    maxHeight: '100%',
+    overflow: 'hidden',
+    width: '25rem'
+
+ },
   button: {
     backgroundColor: '#20A46B',
     color: 'white',
@@ -20,6 +25,7 @@ export default makeStyles(() => ({
     gridGap: '1rem',
   },
   mapContainer: {
-    height: '45vh', width: '100%',
+    height: '20.3rem',
+    width: '100%',
   },
 }));

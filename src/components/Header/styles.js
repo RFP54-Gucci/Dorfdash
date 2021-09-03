@@ -12,7 +12,7 @@ export default makeStyles((theme) => ({
     backgroundColor: '#20A46B',
     color:'white',
     fontSize:'2rem',
-    height: '3.8rem',
+    height: '5rem',
     display:'flex',
     alignItems:'center',
     justifyContent:'center'
