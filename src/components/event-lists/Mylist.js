@@ -65,22 +65,28 @@ const Mylist = () => {
   const { myEventList, setMyList, eventIdArr, setEventIdArr, currentUser } = useContext(Context);
 
   // ------------ removing event --------------
-  const removeEvent = (eventId) => {
-    for (var i = 0; i < myEventList.length; i++) {
-      if (myEventList[i].event_id === eventId) {
-        setMyList(myEventList.slice(0, i).concat(myEventList.slice(i + 1)));
-      }
-    }
-    var removedIndex = eventIdArr.indexOf(eventId);
-    setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
-  };
+  // const removeEvent = (eventId) => {
+  //   for (var i = 0; i < myEventList.length; i++) {
+  //     if (myEventList[i].event_id === eventId) {
+  //       setMyList(myEventList.slice(0, i).concat(myEventList.slice(i + 1)));
+  //     }
+  //   }
+  //   var removedIndex = eventIdArr.indexOf(eventId);
+  //   setEventIdArr(eventIdArr.slice(0, removedIndex).concat(eventIdArr.slice(removedIndex + 1)));
+  // };
 
   // ----------- delete request --------------
-  // const deleteEvent = () => {
-  //   axios.delete(`http://localhost:3100/data/events/user/${currentUser.email}`)
-  //     .then((res) => { console.log('successfully remove from my list!') })
-  //     .catch((err) => { console.log(err) });
-  // }
+  const deleteEvent = (event) => {
+    axios.delete(`http://localhost:3100/data/events/user/`, { eventName: event.event_name, email: currentUser.email })
+      .then((res) => {
+        axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
+        .then((res) => {
+          let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
+          setMyList(temp);
+        })
+      })
+      .catch((err) => { console.log(err) });
+  }
 
   // ------------ switching routes --------------
   let history = useHistory();
@@ -164,7 +170,7 @@ const Mylist = () => {
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.action}>
-                  <Button size="small" className={classes.remove} onClick={() => removeEvent(event.event_id)}>Remove</Button>
+                  <Button size="small" className={classes.remove} onClick={() => deleteEvent(event)}>Remove</Button>
                 </CardActions>
               </CardActionArea>
             </Card>
