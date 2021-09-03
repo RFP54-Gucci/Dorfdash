@@ -83,6 +83,9 @@ export default makeStyles((theme) => ({
     boxShadow: '0px 5px 12px 0px rgba(0,0,0,0.65)',
     backgroundColor: '#fff'
   },
+  form4: {
+    padding: '2%',
+  },
   formSlide: {
     overflowY: 'scroll',
     overflowX: 'hidden',
@@ -213,5 +216,22 @@ export default makeStyles((theme) => ({
   },
   spanDivs2: {
     margin: '7% auto'
+  },
+  riderCard: {
+    marginBottom: '3%',
+    justifyContent: 'space-between',
+  },
+  avatar: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex'
+  },
+  riderInfoDiv: {
+    width: '110%'
+  },
+  riderInfo: {
+    fontSize: '0.9rem',
+    fontFamily: 'Sora',
+    backgroundColor: 'transparent'
   }
 }));

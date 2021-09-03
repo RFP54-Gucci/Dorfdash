@@ -8,49 +8,53 @@ import Footer from '../Footer/Footer.js';
 import {Context} from '../../_Context/Context';
 import axios from 'axios';
 
+// Jinhoo change
+import logo from '../../assets/logo.png';
+import useStyles from '../components_styles.js';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  container: {
-    borderColor: '#ECECEC',
-    borderStyle: 'solid',
-    borderWidth:1,
-    borderRadius:'2.5rem',
-    padding:0,
-    alignItems:'center',
-    height:'45rem',
-    maxHeight: '100%',
-    overflow: 'hidden',
-    width: '25rem'
 
- },
- formContainer: {
-  height:'35rem',
-  maxHeight: '73.5%',
-  overflowY: 'scroll',
-},
- paper: {
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: "black",
-  backgroundColor:'#ECECEC',
-  marginBottom:15
-},
-typography: {
-  backgroundColor:'#ECECEC',
-  height:40
-},
-avatar: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    margin:4
-},
-riderInfo: {
-  padding:5
-}
-}))
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   container: {
+//     borderColor: '#ECECEC',
+//     borderStyle: 'solid',
+//     borderWidth:1,
+//     borderRadius:'2.5rem',
+//     padding:0,
+//     alignItems:'center',
+//     height:'45rem',
+//     maxHeight: '100%',
+//     overflow: 'hidden',
+//     width: '25rem'
+
+//  },
+//  formContainer: {
+//   height:'35rem',
+//   maxHeight: '73.5%',
+//   overflowY: 'scroll',
+// },
+//  paper: {
+//   padding: theme.spacing(2),
+//   textAlign: 'center',
+//   color: "black",
+//   backgroundColor:'#ECECEC',
+//   marginBottom:15
+// },
+// typography: {
+//   backgroundColor:'#ECECEC',
+//   height:40
+// },
+// avatar: {
+//     width: theme.spacing(7),
+//     height: theme.spacing(7),
+//     margin:4
+// },
+// riderInfo: {
+//   padding:5
+// }
+// }))
 
 const DriverForm = () => {
   const {currentEvent:{event_name}} = useContext(Context);
@@ -85,45 +89,78 @@ const DriverForm = () => {
     history.push("/map");
   }
   return (
-    <Container maxWidth="xs"  className={classes.container}>
-      <Header />
-      <Container maxWidth="xs" className={classes.formContainer} >
-      <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
-      {
-        riders.map(({rider_name, location, phone}) => (
-        <Grid container spacing={2} style={{paddingBottom:8}}>
-            <Grid>
-              <Avatar className={classes.avatar} />
-            </Grid>
-            <Grid item xs={8}>
-              <Paper className={classes.paper} >
-                <div  className={classes.riderInfo}>{rider_name}</div>
-                <div className={classes.riderInfo}>{'490-699-7444'}</div>
-                <div className={classes.riderInfo}>{location}</div>
-              </Paper>
-            </Grid>
-            <Grid item xs={0}>
-              <Checkbox
-                    defaultChecked
-                    color="primary"
-                    onClick={(e) => handleChange(e,{rider_name,location})}
-                    inputProps={{ 'aria-label': 'secondary checkbox' }}
-                />
-               <div>1.1mi</div>
-            </Grid>
+  //   <Container maxWidth="xs"  className={classes.container}>
+  //     <Header />
+  //     <Container maxWidth="xs" className={classes.formContainer} >
+  //     <p style = {{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
+  //     {
+  //       riders.map(({rider_name, location, phone}) => (
+  //       <Grid container spacing={2} style={{paddingBottom:8}}>
+  //           <Grid>
+  //             <Avatar className={classes.avatar} />
+  //           </Grid>
+  //           <Grid item xs={8}>
+  //             <Paper className={classes.paper} >
+  //               <div  className={classes.riderInfo}>{rider_name}</div>
+  //               <div className={classes.riderInfo}>{'490-699-7444'}</div>
+  //               <div className={classes.riderInfo}>{location}</div>
+  //             </Paper>
+  //           </Grid>
+  //           <Grid item xs={0}>
+  //             <Checkbox
+  //                   defaultChecked
+  //                   color="primary"
+  //                   onClick={(e) => handleChange(e,{rider_name,location})}
+  //                   inputProps={{ 'aria-label': 'secondary checkbox' }}
+  //               />
+  //              <div>1.1mi</div>
+  //           </Grid>
+  //       </Grid>
+  //       ))
+  //     }
+  //     <Button
+  //       variant="contained"  className={classes.root}
+  //       style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 40}}
+  //       onClick={handleSubmit}
+  //     >
+  //       Finish
+  //     </Button>
+  //   </Container>
+  //   <Footer />
+  // </Container>
+
+
+    // Jinhoo change
+    <Container maxWidth="xs" className={classes.div2}>
+      <img alt="logo2" className={classes.logo} src={logo}/>
+      <Container maxWidth="xs" className={classes.form2} >
+      <p className={classes.font} style={{fontStyle:'italic'}}>Hey Helio! Select your Riders</p>
+      {riders.map(({rider_name, location, phone}) => (
+        <Grid className={classes.riderCard} container spacing={2} style={{paddingBottom:8}}>
+          <Grid className={classes.avatar}>
+            <Avatar />
+          </Grid>
+          <Grid item xs={8}>
+            <Paper className={classes.riderInfoDiv}>
+              <div  className={classes.riderInfo}>{rider_name}</div>
+              <div className={classes.riderInfo}>{'490-699-7444'}</div>
+              <div className={classes.riderInfo}>{location}</div>
+            </Paper>
+          </Grid>
+          <Grid item xs={0}>
+            <Checkbox
+              defaultChecked
+              color='primary'
+              onClick={(e) => handleChange(e,{rider_name,location})}
+              inputProps={{ 'aria-label': 'secondary checkbox' }}
+            />
+            <div>1.1mi</div>
+          </Grid>
         </Grid>
-        ))
-      }
-      <Button
-        variant="contained"  className={classes.root}
-        style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 40}}
-        onClick={handleSubmit}
-      >
-        Finish
-      </Button>
+      ))}
+      <Button className={classes.solidBtn} onClick={handleSubmit}>Finish</Button>
+      </Container>
     </Container>
-    <Footer />
-  </Container>
   )
 }
 
