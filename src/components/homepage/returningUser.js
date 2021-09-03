@@ -49,8 +49,10 @@ const ReturningUser = () => {
       // get all attending events for current email:
       axios.get(`http://localhost:3100/data/events/user/${email}`)
         .then((res) => {
-          // console.log(res.data);
-          let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
+          let driverEvents = res.data.driver_events || [];
+          let hostEvents = res.data.host_events || [];
+          let riderEvents =  res.data.rider_events || [];
+          let temp = [...driverEvents, ...hostEvents, ...riderEvents];
           setMyList(temp);
         })
         .then(() => {

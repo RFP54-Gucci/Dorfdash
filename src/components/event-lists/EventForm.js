@@ -103,7 +103,10 @@ const EventForm = () => {
     .then(() => {
       axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
       .then((res) => {
-        let temp = [...res.data.driver_events, ...res.data.rider_events, ...res.data.host_events];
+        let driverEvents = res.data.driver_events || [];
+        let hostEvents = res.data.host_events || [];
+        let riderEvents =  res.data.rider_events || [];
+        let temp = [...driverEvents, ...hostEvents, ...riderEvents];
         setMyList(temp);
       })
     })
