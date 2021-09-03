@@ -86,24 +86,25 @@ const Upcoming = (props) => {
         setMyList(temp);
         handleMyList();
       })
+      // .then(() => {
+      //   myEventList.forEach((evt) => {
+      //     let idArr= [];
+      //     idArr.push(evt.event_id);
+      //     setEventIdArr(eventIdArr.concat(idArr));
+      //   });
+      // })
       .catch((err) => { console.log(err) });
    }
 
    // --------- checking if already attended --------
    const checkAttended = (event) => {
     setCurrentEvent(event);
-    if (myEventList.contains(event.event_id)) {
-      handleAttendedEvent();
-    } else {
-      handleAttendingEvent();
-    }
-
-    //  if (myEventList.includes < 0) {
-    //   //  addEvent(event);
-    //    handleAttendingEvent();
-    //  } else {
-    //    handleAttendedEvent();
-    //  }
+    // console.log('this is id array', myEventList, eventIdArr);
+    // if (eventIdArr.indexOf(event.event_id) < 0) {
+    //   handleAttendingEvent();
+    // } else {
+    //   handleAttendedEvent();
+    // }
    };
 
   return (

@@ -23,8 +23,8 @@ const EventForm = () => {
       padding: 0,
     },
     button: {
-      backgroundColor: '#20A46B',
-      color: 'white',
+      backgroundColor: 'white',
+      color: '#10BD82',
       marginTop: 20,
       marginBottom: 40,
     },
