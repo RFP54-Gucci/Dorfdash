@@ -8,51 +8,53 @@ import Footer from '../Footer/Footer.js';
 import {Context} from '../../_Context/Context';
 import axios from 'axios';
 
+// Jinhoo change
+import logo from '../../assets/logo.png';
+import useStyles from '../components_styles.js';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  container: {
-    borderColor: '#ECECEC',
-    borderStyle: 'solid',
-    borderWidth:1,
-    borderRadius:'2.5rem',
-    padding:0,
-    alignItems:'center',
-    height:'45rem',
-    maxHeight: '100%',
-    // overflow: 'hidden',
-    width: '25rem',
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   container: {
+//     borderColor: '#ECECEC',
+//     borderStyle: 'solid',
+//     borderWidth:1,
+//     borderRadius:'2.5rem',
+//     padding:0,
+//     alignItems:'center',
+//     height:'45rem',
+//     maxHeight: '100%',
+//     overflow: 'hidden',
+//     width: '25rem'
 
-
- },
- formContainer: {
-  height:'35rem',
-  maxHeight: '73.5%',
-  overflowY: 'scroll',
-},
- paper: {
-  padding: theme.spacing(2),
-  textAlign: 'center',
-  color: "black",
-  backgroundColor:'#ECECEC',
-  marginBottom:15
-},
-typography: {
-  backgroundColor:'#ECECEC',
-  height:40
-},
-avatar: {
-    width: theme.spacing(7),
-    height: theme.spacing(7),
-    margin:4
-},
-riderInfo: {
-  padding:5
-}
-}))
+//  },
+//  formContainer: {
+//   height:'35rem',
+//   maxHeight: '73.5%',
+//   overflowY: 'scroll',
+// },
+//  paper: {
+//   padding: theme.spacing(2),
+//   textAlign: 'center',
+//   color: "black",
+//   backgroundColor:'#ECECEC',
+//   marginBottom:15
+// },
+// typography: {
+//   backgroundColor:'#ECECEC',
+//   height:40
+// },
+// avatar: {
+//     width: theme.spacing(7),
+//     height: theme.spacing(7),
+//     margin:4
+// },
+// riderInfo: {
+//   padding:5
+// }
+// }))
 
 const DriverForm = () => {
   const { currentUser, setCurrentUser } = useContext(Context);
@@ -136,18 +138,10 @@ const DriverForm = () => {
                <div>1.1mi</div>
             </Grid>
         </Grid>
-        ))
-      }
-      <Button
-        variant="contained"  className={classes.root}
-        style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 40}}
-        onClick={handleSubmit}
-      >
-        Finish
-      </Button>
+      ))}
+      <Button className={classes.solidBtn} onClick={handleSubmit}>Finish</Button>
+      </Container>
     </Container>
-    <Footer />
-  </Container>
   )
 }
 

@@ -34,7 +34,7 @@ module.exports = {
     })
   },
   deleteUserEvents: (req, res) => {
-    models.events.removeUserEvent(req.params.email)
+    models.events.removeUserEvent(req.body.email, req.body.eventName)
       .then((success) => res.send(success))
       .catch((err) => err);
   }

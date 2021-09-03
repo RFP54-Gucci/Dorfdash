@@ -13,50 +13,55 @@ import Header from '../Header/Header.js';
 import Footer from '../Footer/Footer.js';
 import axios from 'axios';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    height: 400,
-    width: 390,
-    justifyContent:'center',
-    marginBottom:10,
-    backgroundColor:'#ECECEC',
-  },
-  control: {
-    padding: theme.spacing(2),
-  },
-  container: {
-    borderColor: '#ECECEC',
-    borderStyle: 'solid',
-    marginTop:20,
-    alignItems:'center',
-    padding:0,
- },
- label: {
-   paddingRight:70,
-   marginBottom:10,
-   textAlign:'left'
- },
- textField: {
-   padding:12,
-   width:300,
-   margin:10,
-   marginTop:30,
-   color:'#ECECEC'
- },
 
- header: {
-   backgroundColor:'#20A46B',
-   height:40
- },
+// Jinhoo change
+import logo from '../../assets/logo.png';
+import useStyles from '../components_styles.js';
 
- gridStyle: {
-   height:400,
-  paddingBottom:70,
-}
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     flexGrow: 1,
+//   },
+//   paper: {
+//     height: 400,
+//     width: 390,
+//     justifyContent:'center',
+//     marginBottom:10,
+//     backgroundColor:'#ECECEC',
+//   },
+//   control: {
+//     padding: theme.spacing(2),
+//   },
+//   container: {
+//     borderColor: '#ECECEC',
+//     borderStyle: 'solid',
+//     marginTop:20,
+//     alignItems:'center',
+//     padding:0,
+//  },
+//  label: {
+//    paddingRight:70,
+//    marginBottom:10,
+//    textAlign:'left'
+//  },
+//  textField: {
+//    padding:12,
+//    width:300,
+//    margin:10,
+//    marginTop:30,
+//    color:'#ECECEC'
+//  },
+
+//  header: {
+//    backgroundColor:'#20A46B',
+//    height:40
+//  },
+
+//  gridStyle: {
+//    height:400,
+//   paddingBottom:70,
+// }
+// }));
 
 
 
@@ -180,53 +185,102 @@ const RiderForm = () => {
   if(value==='Rider') {
     return (
 
-      <Container maxWidth="xs" className={classes.container}>
-      <Header />
-      <Container maxWidth="xs">
+  //     <Container maxWidth="xs" className={classes.container}>
+  //     <Header />
+  //     <Container maxWidth="xs">
+  //       <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
+  //       {errorMessage!=='' ? errorMessage : ''}
+  //       </div>
+  //       <FormControl component="fieldset">
+  //       <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+  //         <span><FormControlLabel  value="Rider" control={<Radio style={{color:'green'}} />} label="Rider" />
+  //         <FormControlLabel value="Driver" control={<Radio style={{color:'green'}} />} label="Driver" /></span>
+  //       </RadioGroup>
+  //     </FormControl>
+
+  //     <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
+  //         <Grid item xs={12}>
+  //             <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
+
+  //           <form className={classes.root} Validate autoComplete="phone">
+  //             <TextField id="filled-basic"  label="Contact Number"
+  //              variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
+  //               onChange ={handlePhoneChange}/>
+
+  //              <br />
+
+  //              <div style={{color:'red', fontStyle:'italic'}}>
+  //                {validatePhone !== ''?validatePhone : ''}</div>
+
+  //              <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
+  //              className={classes.textField} required
+  //              onChange ={handleAddressChange}/>
+
+  //              <br />
+
+  //              <div style={{color:'red', fontStyle:'italic'}}>
+  //                {validateAddress!== '' ? validateAddress : ''}</div>
+
+  //           </form>
+  //         </Grid>
+  //     </Grid>
+  //     <Button variant="contained"  className={classes.root}
+  //          style={{backgroundColor: '#20A46B', color: '#FFFFFF', marginBottom:70}}
+  //          onClick = {handleSubmit}>
+  //   {buttonText}
+  // </Button>
+
+  //   </Container>
+  //   <Footer />
+  //   </Container>
+
+
+    // Jinhoo change
+    <Container maxWidth="xs" className={classes.div2}>
+      <img alt="logo2" className={classes.logo} src={logo}/>
+      <Container maxWidth="xs" className={classes.form2}>
         <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
         {errorMessage!=='' ? errorMessage : ''}
         </div>
         <FormControl component="fieldset">
-        <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-          <span><FormControlLabel  value="Rider" control={<Radio style={{color:'green'}} />} label="Rider" />
-          <FormControlLabel value="Driver" control={<Radio style={{color:'green'}} />} label="Driver" /></span>
-        </RadioGroup>
-      </FormControl>
+          <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+            <span><FormControlLabel value="Rider" control={<Radio style={{color:'#10BD82'}} />} label="Rider" />
+            <FormControlLabel value="Driver" control={<Radio style={{color:'#10BD82'}} />} label="Driver" /></span>
+          </RadioGroup>
+        </FormControl>
 
-      <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
-          <Grid item xs={12}>
-              <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
+        <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
+            <Grid item xs={12}>
+                <p className={classes.font} style={{fontStyle:'italic'}}>Enter your contact details*</p>
 
-            <form className={classes.root} Validate autoComplete="phone">
-              <TextField id="filled-basic"  label="Contact Number"
-               variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
-                onChange ={handlePhoneChange}/>
+              <form className={classes.inputForm} Validate autoComplete="phone">
+                <TextField id="filled-basic"  label="Contact Number"
+                variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
+                  onChange ={handlePhoneChange}/>
 
-               <br />
+                <br />
 
-               <div style={{color:'red', fontStyle:'italic'}}>
-                 {validatePhone !== ''?validatePhone : ''}</div>
+                <div style={{color:'red', fontStyle:'italic'}}>
+                  {validatePhone !== ''?validatePhone : ''}</div>
 
-               <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
-               className={classes.textField} required
-               onChange ={handleAddressChange}/>
+                <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
+                className={classes.textField} required
+                onChange ={handleAddressChange}/>
 
-               <br />
+                <br />
 
-               <div style={{color:'red', fontStyle:'italic'}}>
-                 {validateAddress!== '' ? validateAddress : ''}</div>
+                <div style={{color:'red', fontStyle:'italic'}}>
+                  {validateAddress!== '' ? validateAddress : ''}</div>
 
-            </form>
-          </Grid>
-      </Grid>
-      <Button variant="contained"  className={classes.root}
-           style={{backgroundColor: '#20A46B', color: '#FFFFFF', marginBottom:70}}
-           onClick = {handleSubmit}>
-    {buttonText}
-  </Button>
+              </form>
+            </Grid>
+        </Grid>
+        <Button variant="contained"  className={classes.solidBtn}
+            onClick = {handleSubmit}>
+          {buttonText}
+        </Button>
 
-    </Container>
-    <Footer />
+      </Container>
     </Container>
 
 
@@ -234,65 +288,111 @@ const RiderForm = () => {
   } else {
     return (
 
-      <Container maxWidth="xs" className={classes.container}>
-      <Header />
-      <Container maxWidth="xs">
-        <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
+  //     <Container maxWidth="xs" className={classes.container}>
+  //     <Header />
+  //     <Container maxWidth="xs">
+  //       <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
+  //       {errorMessage!=='' ? errorMessage : ''}
+  //       </div>
+  //       <FormControl component="fieldset">
+  //       <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+  //         <span><FormControlLabel  value="Rider" control={<Radio style={{color:'green'}} />} label="Rider" />
+  //         <FormControlLabel value="Driver" control={<Radio style={{color:'green'}} />} label="Driver" /></span>
+  //       </RadioGroup>
+  //     </FormControl>
+
+  //     <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
+  //         <Grid item xs={12}>
+  //             <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
+
+  //           <form className={classes.root} Validate autoComplete="phone">
+  //             <TextField id="filled-basic" type="tel" label="Contact Number"
+  //              variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
+  //               onChange ={handlePhoneChange}/>
+
+  //              <br />
+
+  //              <div style={{color:'red', fontStyle:'italic'}}>
+  //                {validatePhone !== ''?validatePhone : ''}</div>
+
+  //              <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
+  //              className={classes.textField} required
+  //              onChange ={handleAddressChange}/>
+
+  //              <br />
+
+  //              <div style={{color:'red', fontStyle:'italic'}}>
+  //                {validateAddress!== '' ? validateAddress : ''}</div>
+
+
+  //              <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Vehicle Info"
+  //              className={classes.textField} required
+  //              onChange ={handleVehicleInfo}/>
+
+  //              <br />
+
+  //              <div style={{color:'red', fontStyle:'italic'}}>
+  //                {validateVehicleInfo!== '' ? validateVehicleInfo : ''}</div>
+
+  //           </form>
+  //         </Grid>
+  //     </Grid>
+  //     <Button variant="contained"  className={classes.root}
+  //          style={{backgroundColor: '#20A46B', color: '#FFFFFF', marginBottom:20,
+  //         marginTop:90}}
+  //          onClick = {handleSubmit}>
+  //   {buttonText}
+  // </Button>
+
+  //   </Container>
+  //   <Footer />
+  //   </Container>
+
+
+  <Container maxWidth="xs" className={classes.div2}>
+    <img alt="logo2" className={classes.logo} src={logo}/>
+    <Container maxWidth="xs" className={classes.form2}>
+      <div style={{color:'red', fontStyle:'italic', fontWeight:700}}>
         {errorMessage!=='' ? errorMessage : ''}
-        </div>
-        <FormControl component="fieldset">
+      </div>
+      <FormControl component="fieldset">
         <RadioGroup aria-label="gender" name="gender1" value={value} onChange={handleChange}>
-          <span><FormControlLabel  value="Rider" control={<Radio style={{color:'green'}} />} label="Rider" />
-          <FormControlLabel value="Driver" control={<Radio style={{color:'green'}} />} label="Driver" /></span>
+          <span><FormControlLabel  value="Rider" control={<Radio style={{color:'#10BD82'}} />} label="Rider" />
+          <FormControlLabel value="Driver" control={<Radio style={{color:'#10BD82'}} />} label="Driver" /></span>
         </RadioGroup>
       </FormControl>
 
       <Grid container justify="center" alignItems="center" className={classes.gridStyle}>
-          <Grid item xs={12}>
-              <p style={{fontStyle:'italic'}}>Enter your contact details*</p>
-
-            <form className={classes.root} Validate autoComplete="phone">
-              <TextField id="filled-basic" type="tel" label="Contact Number"
-               variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
-                onChange ={handlePhoneChange}/>
-
-               <br />
-
-               <div style={{color:'red', fontStyle:'italic'}}>
-                 {validatePhone !== ''?validatePhone : ''}</div>
-
-               <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
-               className={classes.textField} required
-               onChange ={handleAddressChange}/>
-
-               <br />
-
-               <div style={{color:'red', fontStyle:'italic'}}>
-                 {validateAddress!== '' ? validateAddress : ''}</div>
-
-
-               <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Vehicle Info"
-               className={classes.textField} required
-               onChange ={handleVehicleInfo}/>
-
-               <br />
-
-               <div style={{color:'red', fontStyle:'italic'}}>
-                 {validateVehicleInfo!== '' ? validateVehicleInfo : ''}</div>
-
-            </form>
-          </Grid>
+        <Grid item xs={12}>
+          <p className={classes.font} style={{fontStyle:'italic'}}>Enter your contact details*</p>
+          <form className={classes.inputForm} Validate autoComplete="phone">
+          <TextField id="filled-basic" type="tel" label="Contact Number"
+            variant="filled" inputProps={{ maxLength: 12 }}className={classes.textField} required
+            onChange ={handlePhoneChange}/>
+          <br />
+          <div style={{color:'red', fontStyle:'italic'}}>
+             {validatePhone !== ''?validatePhone : ''}</div>
+          <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Location"
+           className={classes.textField} required
+           onChange ={handleAddressChange}/>
+          <br />
+          <div style={{color:'red', fontStyle:'italic'}}>
+            {validateAddress!== '' ? validateAddress : ''}</div>
+          <TextField id="filled-basic"  variant="filled" multiline maxRows={4} label="Vehicle Info"
+           className={classes.textField} required
+           onChange ={handleVehicleInfo}/>
+           <br />
+           <div style={{color:'red', fontStyle:'italic'}}>
+             {validateVehicleInfo!== '' ? validateVehicleInfo : ''}</div>
+          </form>
+        </Grid>
       </Grid>
-      <Button variant="contained"  className={classes.root}
-           style={{backgroundColor: '#20A46B', color: '#FFFFFF', marginBottom:20,
-          marginTop:90}}
-           onClick = {handleSubmit}>
-    {buttonText}
-  </Button>
-
+      <Button variant="contained"  className={classes.solidBtn}
+        onClick = {handleSubmit}>
+          {buttonText}
+      </Button>
     </Container>
-    <Footer />
-    </Container>
+  </Container>
 
 
     )
