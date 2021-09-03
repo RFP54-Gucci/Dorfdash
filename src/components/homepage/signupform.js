@@ -114,7 +114,7 @@ const SignUpForm = () => {
 
   return (
     <Container className={classes.form} maxWidth="xs">
-      <img alt="logo2" className={classes.logo2} src={logo2}></img>
+      <img alt="logo2" className={classes.logo2} src={logo2}/>
       <h2 className={classes.title}>New Here?</h2>
       <TextField fullWidth={true} id="filled-basic" label="First Name" variant="filled" required margin="normal"
         onChange={(e) => {
