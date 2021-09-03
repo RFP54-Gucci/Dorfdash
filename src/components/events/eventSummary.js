@@ -81,14 +81,13 @@ const EventSummary = (props) => {
             <span className={classes.font} style={{marginLeft: '1%'}}>{currentEvent.location}</span>
           </div>
           {driverDetails.driver_name === undefined &&
-            <>
-          <span className={classes.font2}>You Will Be Notified Soon By Your Driver</span>
-          <span><Button variant="contained"  className={classes.root}
-              style={{backgroundColor: '#20A46B', color: '#FFFFFF', margin: 20}}
-              onClick = {getDriverDetails}>
+            <div className={classes.spanDivs2} style={{display:'flex', justifyContent:"center", flexDirection:'column'}}>
+          <span className={classes.font2}>You Will Be Notified By The Driver</span>
+          <Button variant="contained"  className={classes.solidBtn}
+             style={{width:'50%', margin:'6% auto'}} onClick = {getDriverDetails}>
         Refresh
-       </Button></span>
-          </>
+       </Button>
+          </div>
           }
 
       {driverDetails.driver_name !== undefined &&
