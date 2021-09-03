@@ -28,7 +28,7 @@ const ReturningUser = () => {
   // function to check whether the signing in user already exists, if not then we throw an error
   let validateEmail = () => {
     for (let i = 0; i < userData.length; i++) {
-      console.log(userData[i].email);
+      // console.log(userData[i].email);
       // if the input email exists in the db, then return true
       if (userData[i].email === email) {
         return true;

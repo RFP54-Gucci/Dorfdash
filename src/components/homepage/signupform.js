@@ -90,7 +90,7 @@ const SignUpForm = () => {
 
       axios({
         method: 'post',
-        url: 'http://localhost:3100/data/users',
+        url: '/data/users',
         data: {
           name: firstName + ' ' + lastName,
           email: email
