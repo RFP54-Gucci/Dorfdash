@@ -105,12 +105,15 @@ const RiderForm = () => {
       return;
     }
 
+
+
 // //----------------------------------
     // if(value === 'Rider'  ) {
     //   history.push('/eventSummary');
     // } else {
     //   history.push('/driverForm')
     // }
+
 
     if(value === 'Rider') {
       axios.post('/data/riders', {
@@ -122,11 +125,11 @@ const RiderForm = () => {
       .then(() => {
         axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
         .then((res) => {
-          let driverEvents = res.data.driver_events || [];
-          let hostEvents = res.data.host_events || [];
-          let riderEvents =  res.data.rider_events || [];
-          let temp = [...driverEvents, ...hostEvents, ...riderEvents];
-          setMyList(temp);
+        let driverEvents = res.data.driver_events || [];
+        let hostEvents = res.data.host_events || [];
+        let riderEvents =  res.data.rider_events || [];
+        let temp = [...driverEvents, ...hostEvents, ...riderEvents];
+        setMyList(temp);
         })
       })
       .then((response) => {
@@ -150,11 +153,11 @@ const RiderForm = () => {
       .then(() => {
         axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
         .then((res) => {
-          let driverEvents = res.data.driver_events || [];
-          let hostEvents = res.data.host_events || [];
-          let riderEvents =  res.data.rider_events || [];
-          let temp = [...driverEvents, ...hostEvents, ...riderEvents];
-          setMyList(temp);
+        let driverEvents = res.data.driver_events || [];
+        let hostEvents = res.data.host_events || [];
+        let riderEvents =  res.data.rider_events || [];
+        let temp = [...driverEvents, ...hostEvents, ...riderEvents];
+        setMyList(temp);
         })
       })
       .then((response) => {
