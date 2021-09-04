@@ -42,11 +42,11 @@ const Mylist = () => {
       .then((res) => {
         axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
         .then((res) => {
-          let driverEvents = res.data.driver_events || [];
-          let hostEvents = res.data.host_events || [];
-          let riderEvents =  res.data.rider_events || [];
-          let temp = [...driverEvents, ...hostEvents, ...riderEvents];
-          setMyList(temp);
+        let driverEvents = res.data.driver_events || [];
+        let hostEvents = res.data.host_events || [];
+        let riderEvents =  res.data.rider_events || [];
+        let temp = [...driverEvents, ...hostEvents, ...riderEvents];
+        setMyList(temp);
         })
       })
       .catch((err) => { console.log(err) });
