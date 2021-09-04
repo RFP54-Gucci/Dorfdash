@@ -36,7 +36,9 @@ const Mylist = () => {
 
   // ----------- delete request --------------
   const deleteEvent = (event) => {
-    axios.delete(`http://localhost:3100/data/events/user/`, { eventName: event.event_name, email: currentUser.email })
+    axios.delete(`http://localhost:3100/data/events/user/${currentUser.email}`, {
+      data: { eventName: event.event_name }
+    })
       .then((res) => {
         axios.get(`http://localhost:3100/data/events/user/${currentUser.email}`)
         .then((res) => {

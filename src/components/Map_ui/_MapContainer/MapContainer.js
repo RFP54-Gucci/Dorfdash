@@ -66,7 +66,7 @@ const MapContainer = () => {
             </Button>
             <Button className={classes.solidBtn} onClick={() => {
               history.push('/myList');
-            }}>
+            }}>My Events
             </Button>
           </div>
         </Container>

@@ -62,6 +62,7 @@ module.exports = {
     const queryRemoveRider = `DELETE FROM riders WHERE rider_email = '${email}' AND event_name = '${eventName}'`;
     const queryRemoveDriverFromRider = `UPDATE riders SET driver_email = null WHERE driver_email = '${email}' AND event_name = '${eventName}'`;
     const queryRemoveDriver = `DELETE FROM drivers WHERE driver_email = '${email}' AND event_name = '${eventName}'`;
-    return Promise.all([db.query(queryRemoveRider), db.query(queryRemoveDriverFromRider), db.query(queryRemoveDriver)]);
+    const queryRemoveHost = `DELETE FROM events WHERE host_email = ${email} AND event_name = ${eventName}`
+    return Promise.all([db.query(queryRemoveRider), db.query(queryRemoveDriverFromRider), db.query(queryRemoveDriver), db.query(queryRemoveHost)]);
   }
 }
