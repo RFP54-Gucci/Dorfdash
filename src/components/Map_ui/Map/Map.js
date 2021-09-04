@@ -7,13 +7,12 @@ import useStyles from './styles';
 
 const Map = (props) => {
   const classes = useStyles();
-  const [riders, setRiders] = useState([]);
-  const {currentEvent, currentDriver} = useContext(Context);
+  const [riders, setRiders] = useState([{'location': '1200 Van Ness Ave, San Francisco, CA 94109'}, {'location':'Bush St, San Francisco, CA 94108'}]);  const {currentEvent, currentDriver} = useContext(Context);
   useEffect(()=>{
     async function fetchData() {
       try{
        const {data:riderArr} = await axios.get(`http://localhost:3100/data/riders/${currentEvent}`);
-       setRiders(riderArr)
+      //  setRiders(riderArr)
       }
        catch(err){
          console.log('ERROR:', err);
@@ -24,7 +23,6 @@ const Map = (props) => {
 
   const origin = currentDriver.location;
   const destination = currentEvent.location;
-  const riderLocations = riders?.map(({location}) => ({location}) );
   const googlemap = useRef(null);
 
   useEffect(() => {
@@ -67,7 +65,7 @@ const Map = (props) => {
         }
       );
     });
-  }, [riderLocations, destination, origin]);
+  }, [riders, destination, origin]);
 
   return (
     <div>
