@@ -19,50 +19,9 @@ import useStyles from '../components_styles.js';
 import logo from '../../assets/logo.png';
 
 const Mylist = () => {
-  // const useStyles = makeStyles((theme) => ({
-  //   root: {
-  //     padding: 0,
-  //     height: 700,
-  //   },
-  //   container: {
-  //     height: 650,
-  //     overflowX: 'scroll',
-  //   },
-  //   card: {
-  //     margin: 20,
-  //   },
-  //   content: {
-  //     paddingBottom: 2,
-  //   },
-  //   title: {
-  //     fontSize: 14,
-  //     fontWeight: 'bold',
-  //   },
-  //   body: {
-  //     fontSize: 12,
-  //   },
-  //   action: {
-  //     height: 30,
-  //     paddingBottom: 10,
-  //     paddingTop: 2,
-  //   },
-  //   button: {
-  //     color: '#20A46B',
-  //     marginTop: 10,
-  //   },
-  //   remove: {
-  //     color: '#20A46B',
-  //   },
-  //   browse: {
-  //     marginBottom: 15,
-  //     marginTop: 10,
-  //     color: '#20A46B',
-  //   },
-  // }));
-
   const classes = useStyles();
 
-  const { myEventList, setMyList, eventIdArr, setEventIdArr, currentUser } = useContext(Context);
+  const { myEventList, setMyList, eventIdArr, setEventIdArr, currentUser, setCurrentEvent } = useContext(Context);
 
   // ------------ removing event --------------
   // const removeEvent = (eventId) => {
@@ -102,7 +61,8 @@ const Mylist = () => {
     history.push('/upcoming');
   };
 
-  const handleAttendedEvent = () => {
+  const handleAttendedEvent = (evt) => {
+    setCurrentEvent(evt)
     history.push('/eventSummary');
   };
 
@@ -158,7 +118,7 @@ const Mylist = () => {
           myEventList.map((event) => (
             <Card className={classes.card}>
               <CardActionArea>
-                <CardContent className={classes.content} onClick={handleAttendedEvent}>
+                <CardContent className={classes.content} onClick={() => handleAttendedEvent(event)}>
                   <Typography className={classes.title2}>
                     {event.event_name}
                   </Typography>

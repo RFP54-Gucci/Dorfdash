@@ -58,6 +58,7 @@ const Upcoming = (props) => {
   };
 
   const handleAttendingEvent = (event) => {
+
     setCurrentEvent(event);
     history.push('/riderForm');
   };
@@ -176,7 +177,8 @@ const Upcoming = (props) => {
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button className={classes.link1} size="small" onClick = {() => {handleAttendingEvent(event)}}>Attend</Button>
+
+                  <Button className={classes.link1} size="small" onClick = {() => handleAttendingEvent(event)}>Attend</Button>
                   <TransitionsModal selectedEvent={event}/>
                 </CardActions>
               </CardActionArea>
